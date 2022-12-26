@@ -15,7 +15,7 @@ public class TestDB {
 //        System.out.println(users);
         users = db.findUserByLinerId(1);
         System.out.println(users);
-//        DaoFactory daoFactory = new MySqlDaoFactory();
+//        DaoFactory daoFactory = new MySqlDaoFactory();//
 //        List<Group> list;
 //        try (Connection con = daoFactory.getConnection()) {
 //            GroupDao dao = daoFactory.getGroupDao(con);

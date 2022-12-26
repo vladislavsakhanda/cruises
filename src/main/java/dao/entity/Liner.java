@@ -10,4 +10,6 @@ public class Liner {
     private String route;
     private int amount_of_visited_ports;
     private int price;
+
+    //
 }

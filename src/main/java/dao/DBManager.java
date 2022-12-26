@@ -52,7 +52,7 @@ return param.replace("!", "!!").replace("%", "!%")
         }
         return users;
     }
-
+//
     public List<User> findUserByLinerId(int pattern) throws SQLException {
         List<User> users = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(FULL_URL);

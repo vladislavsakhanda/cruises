@@ -18,7 +18,7 @@ public class FastTest {
             e.printStackTrace();
         }
     }
-
+//
     public static Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
         try (InputStream in = Files.newInputStream(Paths.get("database.properties"))) {

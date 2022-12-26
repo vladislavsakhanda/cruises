@@ -6,7 +6,7 @@ public class User {
     private String email;
     private String password;
     private boolean paid;
-    private long liner_id;
+    private long liner_id;//
 
     public static User createUser(String full_name, String password, boolean paid) {
         User user = new User();

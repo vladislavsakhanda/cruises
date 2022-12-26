@@ -7,7 +7,7 @@ public class DBConstants {
 
     // FIELDS
     public static final String F_USER_ID = "id";
-
+//
     // QUERIES
     public static final String GET_ALL_USERS = "SELECT * FROM user u ORDER BY u.full_name;";
     public static final String FIND_USERS_BY_PAID = "SELECT * FROM user u WHERE u.paid = ? ORDER BY u.full_name;";
