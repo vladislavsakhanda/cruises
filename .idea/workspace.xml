@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Created Project and first Servlet">
-      <change afterPath="$PROJECT_DIR$/database.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DAOFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/document.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/liner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/roleHasUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/staff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/user.java" afterDir="false" />
+    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="" />
+    <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DBConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DBManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/entity/Document.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/entity/Liner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/entity/RoleHasUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/entity/Staff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +25,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -44,18 +50,18 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-18",
-    "last_opened_file_path": "C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.31.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\megai\JetBrains\cruises" />
@@ -65,10 +71,29 @@
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\java\com\mysql\cj\jdbs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FastTest">
+  <component name="RunManager" selected="JUnit.TestDB">
     <configuration name="FastTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="FastTest" />
       <module name="cruises" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDB" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestDB" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDB.testGetAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestDB" />
+      <option name="METHOD_NAME" value="testGetAll" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -100,18 +125,21 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestDB" />
+        <item itemvalue="JUnit.TestDB.testGetAll" />
         <item itemvalue="Application.FastTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
+    <task id="Default" summary="Default task">
+      <branch name="master" repository="C:\Users\megai\JetBrains\cruises" />
       <changelist id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="" />
       <created>1671214002794</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1671214002794</updated>
+      <updated>1672003900406</updated>
     </task>
     <task id="LOCAL-00001" summary="Created Project and first Servlet">
       <created>1671215014264</created>
@@ -120,7 +148,24 @@
       <option name="project" value="LOCAL" />
       <updated>1671215014264</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Preparation to testing and work with db">
+      <created>1671666634701</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671666634701</updated>
+    </task>
+    <task active="true" id="LOCAL-00003" summary="mapUser">
+      <branch name="master" repository="C:\Users\megai\JetBrains\cruises" original="true" />
+      <branch name="mapUser" repository="C:\Users\megai\JetBrains\cruises" />
+      <changelist id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="" />
+      <created>1672003898435</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672003900406</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +181,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created Project and first Servlet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Project and first Servlet" />
+    <MESSAGE value="Preparation to testing and work with db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Preparation to testing and work with db" />
   </component>
 </project>
