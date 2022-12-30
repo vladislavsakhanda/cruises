@@ -1,7 +1,6 @@
-package entity;
+package model;
 
-public class User {
-    private long id;
+public class User extends Model {
     private String name;
     private String surname;
     private String email;
@@ -17,7 +16,11 @@ public class User {
     }
 
     public User() {
+        super();
+    }
 
+    public User(long id) {
+        super(id);
     }
 
     public User(String name, String surname, String email, String password) {
@@ -25,18 +28,6 @@ public class User {
         this.surname = surname;
         this.email = email;
         this.password = password;
-    }
-
-    public User(long id, String name, String surname, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {
@@ -53,10 +44,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setName(String name) {

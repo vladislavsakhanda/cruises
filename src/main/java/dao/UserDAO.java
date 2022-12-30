@@ -1,7 +1,6 @@
 package dao;
 
-import entity.User;
+import model.User;
 
-public interface UserDAO {
-    public User getById(long id);
+public interface UserDAO extends ItemDAO<User> {
 }

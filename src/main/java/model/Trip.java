@@ -1,9 +1,8 @@
-package entity;
+package model;
 
 import java.util.Date;
 
-public class Trip {
-    private long id;
+public class Trip extends Model {
     private long user_id;
     private long liner_id;
     private String from;
@@ -26,7 +25,11 @@ public class Trip {
     }
 
     public Trip() {
+        super();
+    }
 
+    public Trip(long id) {
+        super(id);
     }
 
     public Trip(long user_id, long liner_id, String from, String to, boolean is_paid, double price, Date date_start, Date date_end) {
@@ -38,22 +41,6 @@ public class Trip {
         this.price = price;
         this.date_start = date_start;
         this.date_end = date_end;
-    }
-
-    public Trip(long id, long user_id, long liner_id, String from, String to, boolean is_paid, double price, Date date_start, Date date_end) {
-        this.id = id;
-        this.user_id = user_id;
-        this.liner_id = liner_id;
-        this.from = from;
-        this.to = to;
-        this.is_paid = is_paid;
-        this.price = price;
-        this.date_start = date_start;
-        this.date_end = date_end;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setUser_id(long user_id) {
@@ -86,10 +73,6 @@ public class Trip {
 
     public void setDate_end(Date date_end) {
         this.date_end = date_end;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public long getUser_id() {

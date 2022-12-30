@@ -1,5 +1,6 @@
 package dao;
 
-public interface TripDAO {
-    public TripDAO getById(long id);
+import model.Trip;
+
+public interface TripDAO extends ItemDAO<Trip> {
 }

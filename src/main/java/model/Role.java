@@ -1,7 +1,6 @@
-package entity;
+package model;
 
-public class Role {
-    private long id;
+public class Role extends Model {
     private String name;
 
     public static Role createRole (long id, String name) {
@@ -12,23 +11,15 @@ public class Role {
     }
 
     public Role() {
+        super();
     }
 
-    public Role(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public Role(long id) {
+        super(id);
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {

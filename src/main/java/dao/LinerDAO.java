@@ -1,4 +1,6 @@
 package dao;
 
-public class LinerDAO {
+import model.Liner;
+
+public interface LinerDAO extends ItemDAO<Liner> {
 }

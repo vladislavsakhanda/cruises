@@ -1,4 +1,6 @@
 package dao;
 
-public interface RoleDAO {
+import model.Role;
+
+public interface RoleDAO extends ItemDAO<Role> {
 }

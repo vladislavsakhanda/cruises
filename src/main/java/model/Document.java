@@ -1,9 +1,8 @@
-package entity;
+package model;
 
 import java.awt.*;
 
-public class Document {
-    private long id;
+public class Document extends Model {
     private Image passport;
     private long user_id;
 
@@ -15,22 +14,16 @@ public class Document {
     }
 
     public Document() {
+        super();
+    }
+
+    public Document(long id) {
+        super(id);
     }
 
     public Document(Image passport, long user_id) {
         this.passport = passport;
         this.user_id = user_id;
-    }
-
-    public Document(long id, Image passport, long user_id) {
-        this.id = id;
-        this.passport = passport;
-        this.user_id = user_id;
-    }
-
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setPassport(Image passport) {
@@ -39,10 +32,6 @@ public class Document {
 
     public void setUser_id(long user_id) {
         this.user_id = user_id;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public Image getPassport() {

@@ -1,5 +1,5 @@
 import dao.DBManager;
-import entity.User;
+import model.User;
 import org.junit.Test;
 
 import java.util.List;

@@ -1,4 +1,6 @@
 package dao;
 
-public interface ScheduleDAO {
+import model.Schedule;
+
+public interface ScheduleDAO extends ItemDAO<Schedule> {
 }

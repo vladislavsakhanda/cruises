@@ -1,7 +1,6 @@
-package entity;
+package model;
 
-public class Staff {
-    private long id;
+public class Staff extends Model {
     private String name;
     private String surname;
     private String specialization;
@@ -17,6 +16,11 @@ public class Staff {
     }
 
     public Staff() {
+        super();
+    }
+
+    public Staff(long id) {
+        super(id);
     }
 
     public Staff(String name, String surname, String specialization, long liner_id) {
@@ -24,18 +28,6 @@ public class Staff {
         this.surname = surname;
         this.specialization = specialization;
         this.liner_id = liner_id;
-    }
-
-    public Staff(long id, String name, String surname, String specialization, long liner_id) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.specialization = specialization;
-        this.liner_id = liner_id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -52,10 +44,6 @@ public class Staff {
 
     public void setLiner_id(long liner_id) {
         this.liner_id = liner_id;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {

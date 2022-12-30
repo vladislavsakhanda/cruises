@@ -1,7 +1,6 @@
-package entity;
+package model;
 
-public class Liner {
-    private long id;
+public class Liner extends Model {
     private String name;
     private String description;
     private int capacity;
@@ -19,6 +18,11 @@ public class Liner {
     }
 
     public Liner() {
+        super();
+    }
+
+    public Liner(long id) {
+        super(id);
     }
 
     public Liner(String name, String description, int capacity, String route, int price_coefficient) {
@@ -27,19 +31,6 @@ public class Liner {
         this.capacity = capacity;
         this.route = route;
         this.price_coefficient = price_coefficient;
-    }
-
-    public Liner(long id, String name, String description, int capacity, String route, int price_coefficient) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.capacity = capacity;
-        this.route = route;
-        this.price_coefficient = price_coefficient;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -60,10 +51,6 @@ public class Liner {
 
     public void setPrice_coefficient(int price_coefficient) {
         this.price_coefficient = price_coefficient;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {

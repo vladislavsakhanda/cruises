@@ -1,4 +1,6 @@
 package dao;
 
-public interface StaffDAO {
+import model.Staff;
+
+public interface StaffDAO extends ItemDAO<Staff> {
 }

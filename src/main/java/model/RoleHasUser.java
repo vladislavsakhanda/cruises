@@ -1,6 +1,6 @@
-package entity;
+package model;
 
-public class RoleHasUser {
+public class RoleHasUser extends Model {
     private long role_id;
     private long user_id;
 
@@ -12,6 +12,11 @@ public class RoleHasUser {
     }
 
     public RoleHasUser() {
+        super();
+    }
+
+    public RoleHasUser(long id) {
+        super(id);
     }
 
     public RoleHasUser(long role_id, long user_id) {

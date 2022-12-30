@@ -1,7 +1,6 @@
-package entity;
+package model;
 
-public class Schedule {
-    private long id;
+public class Schedule extends Model {
     private String route_and_schedule;
     private long liner_id;
 
@@ -13,21 +12,16 @@ public class Schedule {
     }
 
     public Schedule() {
+        super();
+    }
+
+    public Schedule(long id) {
+        super(id);
     }
 
     public Schedule(String route_and_schedule, long liner_id) {
         this.route_and_schedule = route_and_schedule;
         this.liner_id = liner_id;
-    }
-
-    public Schedule(long id, String route_and_schedule, long liner_id) {
-        this.id = id;
-        this.route_and_schedule = route_and_schedule;
-        this.liner_id = liner_id;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getRoute_and_schedule() {
@@ -36,10 +30,6 @@ public class Schedule {
 
     public long getLiner_id() {
         return liner_id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setRoute_and_schedule(String route_and_schedule) {
