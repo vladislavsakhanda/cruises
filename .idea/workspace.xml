@@ -5,7 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="some changes">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/DocumentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/LinerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/RoleHasUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ScheduleDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/StaffDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/TripDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DocumentDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/LinerDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/RoleDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/RoleHasUserDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ScheduleDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/StaffDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/TripDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/UserDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Document.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Liner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/RoleHasUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Schedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Staff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/Trip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DAOFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/document.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/entity/Document.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/entity/Liner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/entity/RoleHasUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/entity/Staff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/liner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/roleHasUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/staff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/user.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,10 +103,18 @@
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\java\com\mysql\cj\jdbs" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestDB">
+  <component name="RunManager" selected="JUnit.All in cruises">
     <configuration name="FastTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="FastTest" />
       <module name="cruises" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -116,6 +165,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in cruises" />
         <item itemvalue="JUnit.TestDB" />
         <item itemvalue="JUnit.TestDB.testGetAll" />
         <item itemvalue="Application.FastTest" />
@@ -163,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672077665918</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="some changes">
+      <created>1672082845062</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672082845062</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,6 +237,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created Project and first Servlet" />
     <MESSAGE value="Preparation to testing and work with db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Preparation to testing and work with db" />
+    <MESSAGE value="some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes" />
   </component>
 </project>

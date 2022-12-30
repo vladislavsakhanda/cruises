@@ -1,10 +1,7 @@
 import dao.DBManager;
-import dao.entity.User;
+import entity.User;
 import org.junit.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
 
 public class TestDB {

@@ -1,6 +1,6 @@
 package dao;
 
-import dao.entity.User;
+import entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -74,11 +74,10 @@ return param.replace("!", "!!").replace("%", "!%")
     private static User mapUser(ResultSet rs) throws SQLException {
         User u = new User();
         u.setId(rs.getLong(F_USER_ID));
-        u.setFull_name(rs.getString("full_name"));
+        u.setName(rs.getString("name"));
+        u.setSurname(rs.getString("surname"));
         u.setEmail(rs.getString("email"));
         u.setPassword(rs.getString("password"));
-        u.setPaid(rs.getBoolean("paid"));
-        u.setLiner_id(rs.getLong("liner_id"));
         return u;
     }
 
