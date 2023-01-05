@@ -4,43 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="some changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ItemDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/DocumentDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/LinerDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/RoleDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/RoleHasUserDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/ScheduleDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/StaffDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/TripDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/impl/UserDatabaseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Model.java" afterDir="false" />
+    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="some changes DAO">
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/DAOFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/ItemDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/RoleDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/TripDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DocumentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/DocumentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/LinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/LinerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/RoleHasUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ScheduleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/ScheduleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/StaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/StaffDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/TripDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/DocumentDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/LinerDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/RoleDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/RoleHasUserDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/ScheduleDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/StaffDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/TripDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/UserDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Document.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Liner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Liner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/RoleHasUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RoleHasUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Schedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DBManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/DocumentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/DocumentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ItemDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/LinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/LinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/RoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/RoleHasUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/ScheduleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/ScheduleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/StaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/StaffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/TripDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/DocumentDatabaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDocumentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/LinerDatabaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/RoleDatabaseDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/RoleHasUserDatabaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/ScheduleDatabaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlScheduleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/StaffDatabaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/TripDatabaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/impl/UserDatabaseDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Liner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Liner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RoleHasUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/RoleHasUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Schedule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
@@ -52,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,7 +89,8 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -98,7 +102,7 @@
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\java\com\mysql\cj\jdbs" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in cruises">
+  <component name="RunManager" selected="Maven.cruises [package]">
     <configuration name="FastTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="FastTest" />
       <module name="cruises" />
@@ -160,9 +164,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in cruises" />
-        <item itemvalue="JUnit.TestDB" />
         <item itemvalue="JUnit.TestDB.testGetAll" />
+        <item itemvalue="JUnit.TestDB" />
+        <item itemvalue="JUnit.All in cruises" />
         <item itemvalue="Application.FastTest" />
       </list>
     </recent_temporary>
@@ -215,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672082845062</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="some changes DAO">
+      <created>1672427175861</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672427175861</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,6 +244,7 @@
     <MESSAGE value="Created Project and first Servlet" />
     <MESSAGE value="Preparation to testing and work with db" />
     <MESSAGE value="some changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="some changes" />
+    <MESSAGE value="some changes DAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes DAO" />
   </component>
 </project>
