@@ -1,5 +1,12 @@
 package db.dao;
 
+import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
+import com.mysql.cj.jdbc.MysqlDataSource;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public abstract class DAOFactory {
     private static DAOFactory instance;
 
@@ -19,6 +26,25 @@ public abstract class DAOFactory {
     public static void setDaoFactoryFCN (String daoFactoryFCN) {
         instance = null;
         DAOFactory.daoFactoryFCN = daoFactoryFCN;
+    }
+
+    public static DataSource getPooledConnectionDataSource() {
+        String URL = "jdbc:mysql://localhost/cruise_company";
+        String USER = "root";
+        String PASSWORD = "1tfsS*oKM";
+        String FULL_URL = URL + "?" + "user=" + USER + "&password=" + PASSWORD;
+        MysqlDataSource ds = new MysqlConnectionPoolDataSource();
+        ds.setUrl(FULL_URL);
+        return ds;
+    }
+
+    public static void connectPooledConnectionDataSource() {
+        DataSource ds = getPooledConnectionDataSource();
+        try (Connection con = ds.getConnection();) {
+            System.out.println("Connected " + con.getClass());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public abstract UserDAO getUserDao();

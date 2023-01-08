@@ -3,7 +3,7 @@ package db.dao.mysql.entity;
 public class Role extends Entity {
     private String name;
 
-    public static Role createRole (long id, String name) {
+    public static Role createRole(long id, String name) {
         Role role = new Role();
         role.setId(id);
         role.setName(name);
