@@ -1,7 +1,9 @@
 package db.dao.mysql;
 
+import com.zaxxer.hikari.HikariDataSource;
 import db.dao.*;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -14,6 +16,8 @@ public class MySqlDAOFactory extends DAOFactory {
     private MySqlRoleDAO mySqlRoleDAO;
     private MySqlLinerDAO mySqlLinerDAO;
     private MySqlDocumentDAO mySqlDocumentDAO;
+
+
 
     @Override
     public MySqlUserDAO getUserDao() {

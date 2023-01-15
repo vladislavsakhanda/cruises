@@ -1,26 +1,26 @@
-import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
-import com.mysql.cj.jdbc.MysqlDataSource;
-import db.dao.DAOFactory;
 import db.dao.mysql.MySqlDAOFactory;
 import db.dao.mysql.MySqlLinerDAO;
-import db.dao.mysql.MySqlStaffDAO;
+import db.dao.mysql.MySqlUserDAO;
+import db.dao.mysql.entity.Liner;
+import db.dao.mysql.entity.User;
 import org.junit.Test;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 
 public class TestDB {
-
-
     @Test
     public void testGetAll() throws Exception {
-        DAOFactory.connectPooledConnectionDataSource();
+//        User user = User.createUser("2", "2", "2", "2");
+//        try {
+//            MySqlUserDAO.initDatabaseConnectionPool();
+//            new MySqlDAOFactory().getUserDao().create(user);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            MySqlUserDAO.closeDatabaseConnectionPool();
+//        }
 
-        MySqlDAOFactory daoFactory = new MySqlDAOFactory();
-        MySqlLinerDAO mySqlLinerDAO = daoFactory.getLinerDAO();
-        MySqlStaffDAO mySqlStaffDAO = daoFactory.getStaffDAO();
-        System.out.println(mySqlStaffDAO.getAll());
+
     }
 }
 

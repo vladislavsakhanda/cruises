@@ -1,8 +1,10 @@
 package db.dao.mysql;
 
+import com.zaxxer.hikari.HikariDataSource;
 import db.dao.UserDAO;
 import db.dao.mysql.entity.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,19 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlUserDAO implements UserDAO {
+
+    private static HikariDataSource dataSource;
+
+    public static void initDatabaseConnectionPool() {
+        dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:mysql://localhost/cruise_company");
+        dataSource.setUsername("root");
+        dataSource.setPassword("1tfsS*oKM");
+    }
+
+    public static void closeDatabaseConnectionPool() {
+        dataSource.close();
+    }
 
     private static User mapUser(ResultSet rs) throws SQLException {
         User u = new User();
@@ -26,7 +41,8 @@ public class MySqlUserDAO implements UserDAO {
     @Override
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(MySqlConstants.FULL_URL)) {
+//        try (Connection con = DriverManager.getConnection(MySqlConstants.FULL_URL)) {
+        try (Connection con = dataSource.getConnection()) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_USERS);
             while (rs.next()) {
@@ -46,7 +62,7 @@ public class MySqlUserDAO implements UserDAO {
     @Override
     public User read(long id) throws SQLException {
         User u = new User();
-        try (Connection con = DriverManager.getConnection(FULL_URL);
+        try (Connection con = dataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(GET_USER_By_ID)
         ) {
             stmt.setLong(1, id);
@@ -66,7 +82,7 @@ public class MySqlUserDAO implements UserDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
-            con = DriverManager.getConnection(FULL_URL);
+            con = dataSource.getConnection();
             con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS);
 
@@ -100,7 +116,7 @@ public class MySqlUserDAO implements UserDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
-            con = DriverManager.getConnection(FULL_URL);
+            con = dataSource.getConnection();
             con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_USER);
             int k = 0;
@@ -128,7 +144,7 @@ public class MySqlUserDAO implements UserDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
-            con = DriverManager.getConnection(FULL_URL);
+            con = dataSource.getConnection();
             con.setAutoCommit(false);
             stmt = con.prepareStatement(DELETE_USER);
 
@@ -145,4 +161,6 @@ public class MySqlUserDAO implements UserDAO {
             close(con);
         }
     }
+
+
 }

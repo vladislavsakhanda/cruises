@@ -4,22 +4,91 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="some changes DAO">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/IndexServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/javax.servlet.jsp-api-2.3.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl-1.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/user.tag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/test.jsp" afterDir="false" />
+    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="customized configuration">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/CharsetFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/CreateSchedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/MyBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/RegistrationServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/classes/Validation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/filters/GeneralFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.rtl.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.rtl.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.rtl.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-grid.rtl.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.rtl.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.rtl.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.rtl.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-reboot.rtl.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.rtl.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.rtl.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.rtl.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-utilities.rtl.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.rtl.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.rtl.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.rtl.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.rtl.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/hello.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.bundle.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.bundle.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.esm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.esm.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.esm.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.esm.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/bootstrap.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/regist.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/registrationDetails.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/tes.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/validateUser.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FastTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FastTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FastTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/IndexServlet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/my/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/DAOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDocumentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDocumentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlScheduleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlScheduleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/javax.servlet.jsp-api-2.3.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/createSchedule.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/createSchedule.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/test.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
@@ -27,6 +96,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,12 +115,25 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="KEEP" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/webapp/test.jsp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="openjdk-18" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2J0TSg0RZe8G5V3rmC517iDjPBD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -61,26 +146,37 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path&quot;: &quot;C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\lib&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/webapp/WEB-INF/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/plugins&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2954023&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/java/com/my/Test.java&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
+      <recent name="C:\Users\megai\JetBrains\cruises\plugins" />
+      <recent name="C:\Users\megai\JetBrains\cruises\src" />
       <recent name="C:\Users\megai\JetBrains\cruises" />
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp" />
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\megai\JetBrains\cruises" />
-      <recent name="C:\Users\megai\JetBrains\cruises\src\main\java\com\mysql\cj\jdbs" />
+      <recent name="C:\Users\megai\JetBrains\cruises\.idea" />
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.my" />
@@ -94,9 +190,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="aa" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="aa" />
+      <module name="cruises" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -104,8 +211,11 @@
     </configuration>
     <configuration name="TestDB" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestDB" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -146,11 +256,20 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.aa" />
+      <item itemvalue="Application.FastTest" />
+      <item itemvalue="JUnit.All in cruises" />
+      <item itemvalue="JUnit.TestDB" />
+      <item itemvalue="JUnit.TestDB.testGetAll" />
+      <item itemvalue="Maven.cruises [package]" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FastTest" />
-        <item itemvalue="JUnit.TestDB" />
         <item itemvalue="JUnit.TestDB.testGetAll" />
+        <item itemvalue="JUnit.TestDB" />
+        <item itemvalue="Application.aa" />
+        <item itemvalue="Application.FastTest" />
         <item itemvalue="JUnit.All in cruises" />
       </list>
     </recent_temporary>
@@ -217,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672888262989</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="customized configuration">
+      <created>1673151037262</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673151037262</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,7 +362,8 @@
     <MESSAGE value="Preparation to testing and work with db" />
     <MESSAGE value="some changes" />
     <MESSAGE value="some changes DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="some changes DAO" />
+    <MESSAGE value="customized configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="customized configuration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
