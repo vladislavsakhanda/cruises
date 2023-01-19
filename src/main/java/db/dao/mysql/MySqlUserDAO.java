@@ -4,7 +4,10 @@ import com.zaxxer.hikari.HikariDataSource;
 import db.dao.UserDAO;
 import db.dao.mysql.entity.User;
 
-import javax.sql.DataSource;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,8 @@ import java.util.List;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
+
+import static db.dao.PBKDF2.*;
 
 public class MySqlUserDAO implements UserDAO {
 
@@ -22,6 +27,7 @@ public class MySqlUserDAO implements UserDAO {
         dataSource.setJdbcUrl("jdbc:mysql://localhost/cruise_company");
         dataSource.setUsername("root");
         dataSource.setPassword("1tfsS*oKM");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
     }
 
     public static void closeDatabaseConnectionPool() {
@@ -61,11 +67,49 @@ public class MySqlUserDAO implements UserDAO {
 
     @Override
     public User read(long id) throws SQLException {
-        User u = new User();
+        User u;
         try (Connection con = dataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USER_By_ID)
+             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_ID)
         ) {
             stmt.setLong(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                rs.next();
+                u = mapUser(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return u;
+    }
+
+    public User read(String email) throws SQLException {
+        User u;
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_EMAIL)
+        ) {
+            int k = 0;
+            stmt.setString(++k, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                rs.next();
+                u = mapUser(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return u;
+    }
+
+    public User read(String email, String password) throws SQLException {
+        User u;
+
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_EMAIL_AND_PASSWORD)
+        ) {
+            int k = 0;
+            stmt.setString(++k, email);
+            stmt.setString(++k, password);
             try (ResultSet rs = stmt.executeQuery()) {
                 rs.next();
                 u = mapUser(rs);
@@ -90,7 +134,7 @@ public class MySqlUserDAO implements UserDAO {
             stmt.setString(++k, user.getName());
             stmt.setString(++k, user.getSurname());
             stmt.setString(++k, user.getEmail());
-            stmt.setString(++k, user.getPassword());
+            stmt.setString(++k, generatePasswordHash(user.getPassword()));
 
             int count = stmt.executeUpdate();
             if (count > 0) {
@@ -105,6 +149,8 @@ public class MySqlUserDAO implements UserDAO {
             e.printStackTrace();
             rollback(con);
             throw e;
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new RuntimeException(e);
         } finally {
             close(stmt);
             close(con);
@@ -161,6 +207,4 @@ public class MySqlUserDAO implements UserDAO {
             close(con);
         }
     }
-
-
 }

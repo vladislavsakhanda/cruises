@@ -18,7 +18,9 @@ public class MySqlConstants {
     public static final String GET_ALL_USERS = "SELECT * FROM user u ORDER BY u.name;";
     public static final String GET_ALL_USERS_By_Name = "SELECT * FROM user u ORDER BY u.name;";
     public static final String GET_ALL_USERS_By_Surname = "SELECT * FROM user u ORDER BY u.surname;";
-    public static final String GET_USER_By_ID = "SELECT * FROM user WHERE user.id = ?;";
+    public static final String GET_USER_BY_ID = "SELECT * FROM user WHERE user.id = ?;";
+    public static final String GET_USER_BY_EMAIL = "SELECT * FROM user WHERE email=?;";
+    public static final String GET_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM user WHERE email=? AND password=?;";
     public static final String INSERT_USER = "INSERT INTO user (name, surname, email, password) VALUES (?, ?, ?, ?);";
     public static final String FIND_USERS_BY_PAID = "SELECT * FROM user u WHERE u.paid = ? ORDER BY u.full_name;";
     public static final String FIND_USERS_BY_LINER_ID = "SELECT * FROM user u WHERE u.liner_id = ? ORDER BY u.liner_id;";
