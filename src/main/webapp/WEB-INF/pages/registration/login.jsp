@@ -2,7 +2,7 @@
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
 
 <s:form action="loginprocess">
-    <s:textfield name="email" label="Email"></s:textfield>
-    <s:password name="password" label="Password"></s:password>
-<s:submit value="login"></s:submit>
+      <s:textfield name="userBean.email"  label ="Email"/>
+      <s:textfield name="userBean.password"  label="Password"/>
+      <s:submit/>
 </s:form>

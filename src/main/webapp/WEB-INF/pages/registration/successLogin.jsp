@@ -2,4 +2,4 @@
 
 <%@ taglib uri="/struts-tags" prefix="s" %>
 
-<br/>Welcome, ${sessionScope.m}
+<br/>Ви успішно увійшли під поштою ${sessionScope.userEmail}!

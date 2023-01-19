@@ -4,53 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="customized configuration">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/IndexServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/classes/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/classes/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/classes/Register.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/filters/EncodingFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/PBKDF2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/log4j-api-2.19.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/log4j-core-2.19.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mysql-connector-j-8.0.31.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/struts2-convention-plugin-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/struts2-core-6.1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorLogin.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorProfile.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorRegistration.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogout.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successRegistration.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="Implementation registration and log in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/MyBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/RegistrationServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/classes/Validation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/filters/GeneralFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/classes/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/classes/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/classes/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/classes/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/META-INF/context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/hello.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/regist.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/registrationDetails.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tes.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/test.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/validateUser.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
     <option name="SHOW_DIALOG" value="false" />
@@ -313,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673787089583</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implementation registration and log in">
+      <created>1674145933679</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1674145933679</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -345,7 +315,8 @@
     <MESSAGE value="some changes" />
     <MESSAGE value="some changes DAO" />
     <MESSAGE value="customized configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="customized configuration" />
+    <MESSAGE value="Implementation registration and log in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation registration and log in" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
