@@ -1,7 +1,3 @@
-p {
-  color: green;
-}
-
-.errorLabel {
-    font-style:italic; color:black;
+#messageValidation {
+  color: red;
 }

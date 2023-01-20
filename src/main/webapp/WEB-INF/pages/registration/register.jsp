@@ -1,4 +1,3 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
 <s:head />
@@ -12,12 +11,20 @@
   <body>
     <h3>Реєстрація</h3>
 
-    <s:form action="register">
-      <s:textfield name="userBean.name" label="First name" />
-      <s:textfield name="userBean.surname" label="Last name" />
-      <s:textfield name="userBean.email"  label ="Email"/>
-      <s:textfield name="userBean.password"  label="Password"  />
-      <s:submit/>
-    </s:form>
+    <form action="register">
+       <div id="messageValidation">${requestScope.messageName}</div>
+        First Name: <input name="name" />
+        <br><br>
+        <div id="messageValidation">${requestScope.messageSurname}</div>
+        Last Name: <input name="surname" />
+        <br></br>
+        <div id="messageValidation">${requestScope.messageEmail}</div>
+        Email: <input name="email" />
+        <br></br>
+        <div id="messageValidation">${requestScope.messagePassword}</div>
+        Password: <input name="password" />
+        <br></br>
+        <input type="submit" value="Register" />
+    </form>
   </body>
 </html>

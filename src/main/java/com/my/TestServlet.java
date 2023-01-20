@@ -6,11 +6,11 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/test")
-public class Test extends HttpServlet {
+public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Test#doGet");
 
-        getServletContext().getRequestDispatcher("/test.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/pages/test/test.jsp").forward(req, resp);
     }
 }

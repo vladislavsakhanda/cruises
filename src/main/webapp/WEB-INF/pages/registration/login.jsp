@@ -1,8 +1,25 @@
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
+<s:head />
 
-<s:form action="loginprocess">
-      <s:textfield name="userBean.email"  label ="Email"/>
-      <s:textfield name="userBean.password"  label="Password"/>
-      <s:submit/>
-</s:form>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Login</title>
+    <style><%@include file="/WEB-INF/css/style.css"%></style>
+  </head>
+  <body>
+    <h3>Реєстрація</h3>
+
+    <form action="login">
+        <div id="messageValidation">${requestScope.messageEmail}</div>
+        Email: <input name="email" />
+        <br></br>
+        <div id="messageValidation">${requestScope.messagePassword}</div>
+        Password: <input name="password" />
+        <br></br>
+        <input type="submit" value="Login" />
+    </form>
+    <div id="messageValidation">${requestScope.messageErrorLogin}</div>
+  </body>
+</html>
