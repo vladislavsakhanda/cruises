@@ -45,7 +45,6 @@ public class LoginServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
         } else {
             try {
-                MySqlUserDAO.initDatabaseConnectionPool();
                 User user = new MySqlUserDAO().read(email);
                 if (user != null && PBKDF2.validatePassword(password, user.getPassword())) {
                     HttpSession session = req.getSession();
@@ -58,12 +57,7 @@ public class LoginServlet extends HttpServlet {
                 e.printStackTrace();
                 req.setAttribute("messageErrorLogin", "Email or password invalid!");
                 getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
-            } finally {
-                MySqlUserDAO.closeDatabaseConnectionPool();
-                req.setAttribute("messageErrorLogin", "Email or password invalid!");
-                getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
             }
-
         }
     }
 
@@ -74,12 +68,9 @@ public class LoginServlet extends HttpServlet {
 
     private boolean userExist(String requestEmail) {
         try {
-            MySqlUserDAO.initDatabaseConnectionPool();
             new MySqlUserDAO().read(requestEmail);
         } catch (SQLException e) {
             return false;
-        } finally {
-            MySqlUserDAO.closeDatabaseConnectionPool();
         }
         return true;
     }

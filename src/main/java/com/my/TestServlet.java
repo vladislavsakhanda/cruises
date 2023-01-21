@@ -24,16 +24,15 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Test#doGet");
 
-        Liner liner;
+        Liner liner = null;
         try {
-            MySqlLinerDAO.initDatabaseConnectionPool();
             MySqlLinerDAO mySqlLinerDAO = new MySqlDAOFactory().getLinerDAO();
             List<Liner> liners = mySqlLinerDAO.getAll();
             liner = liners.get(1);
             req.setAttribute("liners", liners);
             System.out.println(liners.get(0).getPrice_coefficient());
-        } finally {
-            MySqlLinerDAO.closeDatabaseConnectionPool();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         String jsonData = liner.getRoute();
