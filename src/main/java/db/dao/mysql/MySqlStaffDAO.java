@@ -1,6 +1,7 @@
 package db.dao.mysql;
 
 import com.zaxxer.hikari.HikariDataSource;
+import db.dao.DataSource;
 import db.dao.StaffDAO;
 import db.dao.mysql.entity.Staff;
 
@@ -13,18 +14,6 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlStaffDAO implements StaffDAO {
-    private static HikariDataSource dataSource;
-
-    public static void initDatabaseConnectionPool() {
-        dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://localhost/cruise_company");
-        dataSource.setUsername("root");
-        dataSource.setPassword("1tfsS*oKM");
-    }
-
-    public static void closeDatabaseConnectionPool() {
-        dataSource.close();
-    }
     private static Staff mapStaff(ResultSet rs) throws SQLException {
         Staff s = new Staff();
         s.setId(rs.getLong(ID));
@@ -38,7 +27,7 @@ public class MySqlStaffDAO implements StaffDAO {
     @Override
     public List<Staff> getAll() {
         List<Staff> staff = new ArrayList<>();
-        try (Connection con = dataSource.getConnection()) {
+        try (Connection con = DataSource.getConnection()) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_STAFF);
             while (rs.next()) {
@@ -58,7 +47,7 @@ public class MySqlStaffDAO implements StaffDAO {
     @Override
     public Staff read(long id) throws SQLException {
         Staff s = new Staff();
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = DataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(GET_STAFF_By_ID)
         ) {
             stmt.setLong(1, id);
@@ -78,7 +67,7 @@ public class MySqlStaffDAO implements StaffDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
-            con = dataSource.getConnection();
+            con = DataSource.getConnection();
             con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_STAFF, Statement.RETURN_GENERATED_KEYS);
 
@@ -112,7 +101,7 @@ public class MySqlStaffDAO implements StaffDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
-            con = dataSource.getConnection();
+            con = DataSource.getConnection();
             con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_STAFF);
             int k = 0;
@@ -140,7 +129,7 @@ public class MySqlStaffDAO implements StaffDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
-            con = dataSource.getConnection();
+            con = DataSource.getConnection();
             con.setAutoCommit(false);
             stmt = con.prepareStatement(DELETE_STAFF);
 

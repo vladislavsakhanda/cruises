@@ -1,7 +1,5 @@
 package com.my;
 
-import org.apache.struts2.ServletActionContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

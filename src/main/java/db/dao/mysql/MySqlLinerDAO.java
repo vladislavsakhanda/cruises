@@ -1,6 +1,7 @@
 package db.dao.mysql;
 
 import com.zaxxer.hikari.HikariDataSource;
+import db.dao.DataSource;
 import db.dao.LinerDAO;
 import db.dao.mysql.entity.Liner;
 
@@ -11,18 +12,6 @@ import java.util.List;
 import static db.dao.mysql.MySqlConstants.*;
 
 public class MySqlLinerDAO implements LinerDAO {
-    private static HikariDataSource dataSource;
-
-    public static void initDatabaseConnectionPool() {
-        dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://localhost/cruise_company");
-        dataSource.setUsername("root");
-        dataSource.setPassword("1tfsS*oKM");
-    }
-
-    public static void closeDatabaseConnectionPool() {
-        dataSource.close();
-    }
     private static Liner mapLiner(ResultSet rs) throws SQLException {
         Liner l = new Liner();
         l.setId(rs.getLong(ID));
@@ -37,7 +26,7 @@ public class MySqlLinerDAO implements LinerDAO {
     @Override
     public List<Liner> getAll() {
         List<Liner> liners = new ArrayList<>();
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = DataSource.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(GET_ALL_LINERS)) {
             while (rs.next()) {
@@ -57,7 +46,7 @@ public class MySqlLinerDAO implements LinerDAO {
     @Override
     public Liner read(long id) throws SQLException {
         Liner u;
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = DataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(GET_LINER_By_ID)
         ) {
             stmt.setLong(1, id);

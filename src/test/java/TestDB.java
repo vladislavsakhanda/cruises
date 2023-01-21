@@ -1,5 +1,10 @@
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import db.dao.mysql.MySqlDAOFactory;
+import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.MySqlUserDAO;
+import db.dao.mysql.entity.Liner;
 import db.dao.mysql.entity.User;
 import org.junit.Test;
 
@@ -11,29 +16,31 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 
 import static db.dao.PBKDF2.*;
 
 public class TestDB {
     @Test
     public void testGetAll() throws Exception {
-//        User user = null;
+//       Liner liner1;
 //        try {
-//            MySqlUserDAO.initDatabaseConnectionPool();
-//            new MySqlDAOFactory().getUserDao().create(User.createUser("Vlad", "Sakhanda", "vladSakhanda@ukr.net",
-//                    "root"));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
+//            MySqlLinerDAO.initDatabaseConnectionPool();
+//            MySqlLinerDAO mySqlLinerDAO = new MySqlDAOFactory().getLinerDAO();
+//            List<Liner> liners = mySqlLinerDAO.getAll();
+//            liner1 = liners.get(1);
+//            System.out.println(liners.get(0).getPrice_coefficient());
 //        } finally {
-//            MySqlUserDAO.closeDatabaseConnectionPool();
+//            MySqlLinerDAO.closeDatabaseConnectionPool();
 //        }
+
+//        String jsonData = liner1.getRoute();
+//        JsonObject jsonObject = new JsonParser().parse(jsonData).getAsJsonObject();
+//        HashMap yourHashMap = new Gson().fromJson(jsonObject, HashMap.class);
+//        System.out.println(yourHashMap);
     }
 
-    @Test
-    public void testHash() throws Exception {
-        boolean matched = validatePassword("111111", "1000:d3f32ac66dfca6025951a3828a64e2c0:996e3665303c6cebe1a1afb7c3f6736ad05a68f39ff6ae8a0c2dd3c6c3e314eedcbf8fe66712a98e0b789198a877374294f92621b1dbb6598a651e1d1a27891f");
-        System.out.println(matched);
-    }
 
 
 }

@@ -3,7 +3,6 @@ package com.my;
 import db.dao.PBKDF2;
 import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.User;
-import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,6 +60,7 @@ public class LoginServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
             } finally {
                 MySqlUserDAO.closeDatabaseConnectionPool();
+                req.setAttribute("messageErrorLogin", "Email or password invalid!");
                 getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
             }
 
