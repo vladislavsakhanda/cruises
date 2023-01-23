@@ -24,9 +24,7 @@ public abstract class DAOFactory {
     public abstract UserDAO getUserDao();
     public abstract TripDAO getTripDAO();
     public abstract StaffDAO getStaffDAO();
-    public abstract ScheduleDAO getScheduleDAO();
     public abstract RoleHasUserDAO getRoleHasUserDAO();
     public abstract RoleDAO getRoleDAO();
     public abstract LinerDAO getLinerDAO();
-    public abstract DocumentDAO getDocumentDAO();
 }

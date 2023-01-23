@@ -20,6 +20,8 @@ public class MySqlLinerDAO implements LinerDAO {
         l.setCapacity(rs.getInt("capacity"));
         l.setRoute(rs.getString("route"));
         l.setPrice_coefficient(rs.getDouble("price_coefficient"));
+        l.setDate_start(rs.getDate("date_start"));
+        l.setDate_end(rs.getDate("date_end"));
         return l;
     }
 

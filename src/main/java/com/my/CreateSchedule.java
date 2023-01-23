@@ -17,12 +17,11 @@ public class CreateSchedule extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            MySqlLinerDAO.initDatabaseConnectionPool();
             MySqlLinerDAO mySqlLinerDAO = new MySqlDAOFactory().getLinerDAO();
             List<Liner> liners = mySqlLinerDAO.getAll();
             req.setAttribute("liners", liners);
-        } finally {
-            MySqlLinerDAO.closeDatabaseConnectionPool();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         getServletContext().getRequestDispatcher("/createSchedule.jsp").forward(req, resp);

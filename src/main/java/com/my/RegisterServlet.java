@@ -83,23 +83,17 @@ public class RegisterServlet extends HttpServlet {
 
     public void register(String name, String surname, String email, String password) throws Exception {
         try {
-            MySqlUserDAO.initDatabaseConnectionPool();
             new MySqlDAOFactory().getUserDao().create(User.createUser(name, surname, email, password));
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            MySqlUserDAO.closeDatabaseConnectionPool();
         }
     }
 
     private boolean userExist(String requestEmail) {
         try {
-            MySqlUserDAO.initDatabaseConnectionPool();
             new MySqlUserDAO().read(requestEmail);
         } catch (SQLException e) {
             return false;
-        } finally {
-            MySqlUserDAO.closeDatabaseConnectionPool();
         }
         return true;
     }

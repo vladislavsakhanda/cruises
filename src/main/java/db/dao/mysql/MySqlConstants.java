@@ -28,7 +28,7 @@ public class MySqlConstants {
     public static final String DELETE_USER = "DELETE FROM user WHERE id = ?;";
 
     public static final String GET_ALL_TRIPS = "SELECT * FROM user u ORDER BY u.name;";
-
+    public static final String GET_ALL_TRIPS_BY_LINER = "SELECT * FROM trip t WHERE t.liner_id = ? ORDER BY t.is_paid;";
 
     public static final String GET_ALL_LINERS = "SELECT * FROM liner l ORDER BY l.price_coefficient;";
     public static final String INSERT_LINER = "INSERT INTO liner (name, description, capacity, route, price_coefficient) VALUES (?, ?, ?, ?);";

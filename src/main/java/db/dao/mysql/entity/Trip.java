@@ -1,26 +1,27 @@
 package db.dao.mysql.entity;
 
-import java.util.Date;
+import java.io.InputStream;
+import java.sql.Date;
 
 public class Trip extends Entity {
     private long user_id;
     private long liner_id;
-    private String from;
-    private String to;
     private boolean is_paid;
     private double price;
     private Date date_start;
     private Date date_end;
+    private InputStream passport;
+    private int status;
 
-    public static Trip createTrip (long user_id, long liner_id, String from, String to, boolean is_paid, double price, Date date_start, Date date_end) {
+    public static Trip createTrip(long user_id, long liner_id, boolean is_paid, double price, Date date_start, Date date_end, InputStream passport, int status) {
         Trip trip = new Trip();
         trip.setUser_id(user_id);
         trip.setLiner_id(liner_id);
-        trip.setFrom(from);
-        trip.setTo(to);
         trip.setPrice(price);
         trip.setDate_start(date_start);
         trip.setDate_end(date_end);
+        trip.setPassport(passport);
+        trip.setStatus(status);
         return trip;
     }
 
@@ -32,15 +33,15 @@ public class Trip extends Entity {
         super(id);
     }
 
-    public Trip(long user_id, long liner_id, String from, String to, boolean is_paid, double price, Date date_start, Date date_end) {
+    public Trip(long user_id, long liner_id, boolean is_paid, double price, Date date_start, Date date_end, InputStream passport, int status) {
         this.user_id = user_id;
         this.liner_id = liner_id;
-        this.from = from;
-        this.to = to;
         this.is_paid = is_paid;
         this.price = price;
         this.date_start = date_start;
         this.date_end = date_end;
+        this.passport = passport;
+        this.status = status;
     }
 
     public void setUser_id(long user_id) {
@@ -49,18 +50,6 @@ public class Trip extends Entity {
 
     public void setLiner_id(long liner_id) {
         this.liner_id = liner_id;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public void setIs_paid(boolean is_paid) {
-        this.is_paid = is_paid;
     }
 
     public void setPrice(double price) {
@@ -83,18 +72,6 @@ public class Trip extends Entity {
         return liner_id;
     }
 
-    public String getFrom() {
-        return from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public boolean isIs_paid() {
-        return is_paid;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -105,5 +82,33 @@ public class Trip extends Entity {
 
     public Date getDate_end() {
         return date_end;
+    }
+
+    public InputStream getPassport() {
+        return passport;
+    }
+
+    public void setPassport(InputStream passport) {
+        this.passport = passport;
+    }
+
+    public boolean getIs_paid() {
+        return is_paid;
+    }
+
+    public void setIs_paid(boolean is_paid) {
+        this.is_paid = is_paid;
+    }
+
+    public boolean isIs_paid() {
+        return is_paid;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

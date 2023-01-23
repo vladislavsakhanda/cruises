@@ -11,11 +11,9 @@ public class MySqlDAOFactory extends DAOFactory {
     private MySqlUserDAO mySqlUserDAO;
     private MySqlTripDAO mySqlTripDAO;
     private MySqlStaffDAO mySqlStaffDAO;
-    private MySqlScheduleDAO mySqlScheduleDAO;
     private MySqlRoleHasUserDAO mySqlRoleHasUserDAO;
     private MySqlRoleDAO mySqlRoleDAO;
     private MySqlLinerDAO mySqlLinerDAO;
-    private MySqlDocumentDAO mySqlDocumentDAO;
 
 
 
@@ -44,14 +42,6 @@ public class MySqlDAOFactory extends DAOFactory {
     }
 
     @Override
-    public MySqlScheduleDAO getScheduleDAO() {
-        if (mySqlScheduleDAO == null) {
-            mySqlScheduleDAO = new MySqlScheduleDAO();
-        }
-        return mySqlScheduleDAO;
-    }
-
-    @Override
     public MySqlRoleHasUserDAO getRoleHasUserDAO() {
         if (mySqlRoleHasUserDAO == null) {
             mySqlRoleHasUserDAO = new MySqlRoleHasUserDAO();
@@ -73,14 +63,6 @@ public class MySqlDAOFactory extends DAOFactory {
             mySqlLinerDAO = new MySqlLinerDAO();
         }
         return mySqlLinerDAO;
-    }
-
-    @Override
-    public MySqlDocumentDAO getDocumentDAO() {
-        if (mySqlDocumentDAO == null) {
-            mySqlDocumentDAO = new MySqlDocumentDAO();
-        }
-        return mySqlDocumentDAO;
     }
 
     public static void close(AutoCloseable stmt) {

@@ -12,7 +12,8 @@ public class DataSource {
     private static HikariDataSource ds;
 
     static {
-        config.setJdbcUrl("jdbc:mysql://localhost/cruise_company");
+        config.setJdbcUrl("jdbc:mysql://localhost/cruise_company" +
+                "?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false");
         config.setUsername("root");
         config.setPassword("1tfsS*oKM");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
