@@ -34,7 +34,6 @@ public class MySqlUserDAO implements UserDAO {
     @Override
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
-//        try (Connection con = DriverManager.getConnection(MySqlConstants.FULL_URL)) {
         try (Connection con = DataSource.getConnection()) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_USERS);

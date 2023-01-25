@@ -4,6 +4,7 @@ import db.dao.DataSource;
 import db.dao.TripDAO;
 import db.dao.mysql.entity.Liner;
 import db.dao.mysql.entity.Trip;
+import db.dao.mysql.entity.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.util.List;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 import static db.dao.mysql.MySqlConstants.*;
+
 import javax.servlet.http.Part;
 
 public class MySqlTripDAO implements TripDAO {
@@ -33,7 +35,22 @@ public class MySqlTripDAO implements TripDAO {
 
     @Override
     public List<Trip> getAll() {
-        return null;
+        List<Trip> trips = new ArrayList<>();
+        try (Connection con = DataSource.getConnection()) {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(GET_ALL_TRIPS);
+            while (rs.next()) {
+                trips.add(mapTrip(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                throw e;
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        return trips;
     }
 
     public List<Trip> getAllByLiner(Liner liner) throws SQLException {
@@ -67,15 +84,115 @@ public class MySqlTripDAO implements TripDAO {
         return trips;
     }
 
+    public List<Trip> getAllByUserId(long userId) throws SQLException {
+        List<Trip> trips = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(GET_ALL_TRIPS_BY_USER_ID);
+            int k = 0;
+            stmt.setLong(++k, userId);
+
+            stmt.executeQuery();
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                trips.add(mapTrip(rs));
+            }
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw e;
+        } finally {
+            close(stmt);
+            close(con);
+        }
+        return trips;
+    }
+
     @Override
-    public Trip read(long id) {
-        return null;
+    public Trip read(long id) throws SQLException {
+        Trip t = null;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_ID)
+        ) {
+            stmt.setLong(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                rs.next();
+                t = mapTrip(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return t;
+    }
+
+    public Trip readByUserId(long user_id) throws SQLException {
+        Trip t = null;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID)
+        ) {
+            stmt.setLong(1, user_id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    t = mapTrip(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return t;
+    }
+
+    public Trip readByLinerId(long liner_id) throws SQLException {
+        Trip t = null;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID)
+        ) {
+            stmt.setLong(1, liner_id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    t = mapTrip(rs);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return t;
+    }
+
+    public Trip readByUserIdAndLinerId(long user_id, long liner_id) throws SQLException {
+        Trip t = null;
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID_AND_LINER_ID)
+        ) {
+            int k = 0;
+            stmt.setLong(++k, user_id);
+            stmt.setLong(++k, liner_id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    t = mapTrip(rs);
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return t;
     }
 
     @Override
     public void create(Trip trip) {
         try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRIP)) {
 
             int k = 0;
             preparedStatement.setLong(++k, trip.getUser_id());
@@ -102,14 +219,76 @@ public class MySqlTripDAO implements TripDAO {
 
     }
 
-    @Override
-    public void delete(Trip entity) {
+    public void updateIsPaid(boolean isPaid, long id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(UPDATE_IS_PAID_IN_TRIP);
+            int k = 0;
+            stmt.setBoolean(++k, isPaid);
+            stmt.setLong(++k, id);
 
+            stmt.executeUpdate();
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw e;
+        } finally {
+            close(stmt);
+            close(con);
+        }
     }
 
-    private static final String sql = "INSERT INTO trip " +
-            "(user_id, liner_id, is_paid, price, date_start, date_end, passport)"
-            + " VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void updateIsStatus(Trip.Status status, long id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(UPDATE_IS_PAID_IN_TRIP);
+            int k = 0;
+            stmt.setInt(++k, status.getCode());
+            stmt.setLong(++k, id);
+
+            stmt.executeUpdate();
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw e;
+        } finally {
+            close(stmt);
+            close(con);
+        }
+    }
+
+    @Override
+    public void delete(Trip trip) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(DELETE_TRIP);
+
+            stmt.setLong(1, trip.getId());
+            stmt.executeUpdate();
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw e;
+        } finally {
+            close(stmt);
+            close(con);
+        }
+    }
 
 
 }

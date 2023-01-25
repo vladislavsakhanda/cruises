@@ -10,8 +10,21 @@ public class Trip extends Entity {
     private double price;
     private Date date_start;
     private Date date_end;
-    private InputStream passport;
     private int status;
+    private InputStream passport;
+
+    public enum Status {
+        PENDING(0), REQUIRING_PAYMENT(1), REJECTED(2), CONFIRMED(3);
+        private final int code;
+
+        Status(int code) {
+            this.code = code;
+        }
+
+        public int getCode() {
+            return code;
+        }
+    }
 
     public static Trip createTrip(long user_id, long liner_id, boolean is_paid, double price, Date date_start, Date date_end, InputStream passport, int status) {
         Trip trip = new Trip();
@@ -110,5 +123,18 @@ public class Trip extends Entity {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "user_id=" + user_id +
+                ", liner_id=" + liner_id +
+                ", is_paid=" + is_paid +
+                ", price=" + price +
+                ", date_start=" + date_start +
+                ", date_end=" + date_end +
+                ", status=" + status +
+                '}';
     }
 }

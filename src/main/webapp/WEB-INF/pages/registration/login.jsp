@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
-<s:head />
 
 <html>
   <head>
@@ -11,7 +10,7 @@
   <body>
     <h3>Реєстрація</h3>
 
-    <form action="login">
+    <form action="login" method="post">
         <div id="messageValidation">${requestScope.messageEmail}</div>
         Email: <input name="email" />
         <br></br>

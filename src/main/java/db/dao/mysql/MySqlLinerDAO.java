@@ -44,12 +44,44 @@ public class MySqlLinerDAO implements LinerDAO {
         }
         return liners;
     }
+    private int noOfRecords;
+    public List<Liner> getAll(int offset, int noOfRecords) {
+        List<Liner> liners = new ArrayList<>();
+        try (Connection con = DataSource.getConnection();
+             PreparedStatement stmt = con.prepareStatement(GET_ALL_LINERS_PAGINATION)) {
+
+            int k = 0;
+            stmt.setInt(++k, offset);
+            stmt.setInt(++k, noOfRecords);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                liners.add(mapLiner(rs));
+            }
+
+            rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+            if (rs.next()) {
+                this.noOfRecords = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                throw e;
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        return liners;
+    }
+
+    public int getNoOfRecords() {
+        return noOfRecords;
+    }
 
     @Override
     public Liner read(long id) throws SQLException {
         Liner u;
         try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_LINER_By_ID)
+             PreparedStatement stmt = con.prepareStatement(GET_LINER_BY_ID)
         ) {
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {

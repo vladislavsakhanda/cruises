@@ -48,7 +48,7 @@ public class MySqlStaffDAO implements StaffDAO {
     public Staff read(long id) throws SQLException {
         Staff s = new Staff();
         try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_STAFF_By_ID)
+             PreparedStatement stmt = con.prepareStatement(GET_STAFF_BY_ID)
         ) {
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {

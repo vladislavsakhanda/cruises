@@ -11,7 +11,7 @@
   <body>
     <h3>Реєстрація</h3>
 
-    <form action="register">
+    <form action="register" method="post">
        <div id="messageValidation">${requestScope.messageName}</div>
         First Name: <input name="name" />
         <br><br>

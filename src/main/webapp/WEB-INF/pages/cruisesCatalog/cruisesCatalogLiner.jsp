@@ -1,28 +1,33 @@
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="cruisesTLD" uri="/WEB-INF/tlds/cruises.tld" %>
 
-<h3>${liners[0].name}<br><br></h3>
+<c:set var="liner" value="${cruisesTLD:getLinerById(id)}"/>
+<c:set var="liner_id" value="${liner.getId()}"/>
+<c:set var="price" value="${cruisesTLD:countPriceLiner(liner)}"/>
+<c:set var="date_start" value="${liner.getDate_end()}"/>
+<c:set var="date_end" value="${liner.getDate_start()}"/>
+<c:set var="freePlaces" value="${cruisesTLD:getLinerFreePlaces(liner)}"/>
+
+<h3>${liner.name}<br><br></h3>
 <h4>Деталі</h4>
-${liners[0].description}<br><br>
+${liner.description}<br><br>
 <h4>Коротка круїзна програма</h4>
-<c:set var="i" value="0"/>
-<c:forEach items="${linersRoute}" var="entry">
-    <c:if test="${i == '0'}">
-        <div>День | Порт</div><br>
-    </c:if>
 
+<div>День | Порт</div><br>
+<c:forEach items="${cruisesTLD:getLinerRouteInMap(liner)}" var="entry">
     ${entry.key}  ${entry.value}<br>
-    <c:set var="i" value="${i + 1}"/>
 </c:forEach>
 <br><br>
-<c:set var="liner_id" value="${liners[0].getId()}"/>
-<c:set var="price" value="${liners[0].price_coefficient * i}"/>
-<c:set var="date_start" value="${liners[0].getDate_end()}"/>
-<c:set var="date_end" value="${liners[0].getDate_start()}"/>
+Дата: ${date_start} по ${date_end}<br>
 Вільних місць: ${freePlaces}<br>
 Ціна: ${price} $<br>
 
+<c:set var="trip" value="${cruisesTLD:getTripByUserIdAndLinerId(sessionScope.userId, liner_id)}"/>
 <c:choose>
+    <c:when test="${trip != null}">
+        <p>Ваша заявка на цей круїз вже існує. Ви можете перевірити її статус в профілі.</p>
+    </c:when>
     <c:when test="${freePlaces == 0}">
         <p>На даний момент всі місця зайняті, Ви можете обрати будь-який інший круїз.<p>
     </c:when>
@@ -39,4 +44,8 @@ ${liners[0].description}<br><br>
             </form>
     </c:otherwise>
 </c:choose>
+<br>
+<a href="/cruises/cruisesCatalog">Обрати інший круїз</a>
+
+
 

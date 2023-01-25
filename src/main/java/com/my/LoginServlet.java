@@ -1,7 +1,10 @@
 package com.my;
 
 import db.dao.PBKDF2;
+import db.dao.mysql.MySqlRoleHasUserDAO;
 import db.dao.mysql.MySqlUserDAO;
+import db.dao.mysql.entity.Role;
+import db.dao.mysql.entity.RoleHasUser;
 import db.dao.mysql.entity.User;
 
 import javax.servlet.ServletException;
@@ -21,6 +24,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("login#doGet");
+
+        getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("login#doPost");
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
@@ -48,11 +58,16 @@ public class LoginServlet extends HttpServlet {
                 User user = new MySqlUserDAO().read(email);
                 if (user != null && PBKDF2.validatePassword(password, user.getPassword())) {
                     HttpSession session = req.getSession();
+                    session.setAttribute("role", new MySqlRoleHasUserDAO().read(
+                            new RoleHasUser(Role.Roles.ADMIN.getCode(), user.getId())));
                     session.setAttribute("userId", user.getId());
                     session.setAttribute("userName", user.getName());
                     session.setAttribute("userSurname", user.getSurname());
                     session.setAttribute("userEmail", user.getEmail());
                     getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
+                } else {
+                    req.setAttribute("messageErrorLogin", "Email or password invalid!");
+                    getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -60,11 +75,6 @@ public class LoginServlet extends HttpServlet {
                 getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
             }
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 
     private boolean userExist(String requestEmail) {

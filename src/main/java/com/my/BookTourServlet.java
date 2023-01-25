@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 
-@WebServlet("/bookTour")
+@WebServlet("/cruisesCatalog/bookTour")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10,  // 10 MB
         maxFileSize = 1024 * 1024 * 50,       // 50 MB
         maxRequestSize = 1024 * 1024 * 100)    // 100 MB
@@ -39,7 +39,7 @@ public class BookTourServlet extends HttpServlet {
         req.setAttribute("date_start", date_start);
         req.setAttribute("date_end", date_end);
 
-        req.getRequestDispatcher("/WEB-INF/pages/test/bookTour.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/cruisesCatalog/bookTour.jsp").forward(req, resp);
     }
 
     @Override
@@ -58,9 +58,6 @@ public class BookTourServlet extends HttpServlet {
         if (filePart != null) {
             inputStream = filePart.getInputStream();
         }
-        System.out.println("\n\n" +
-                user_id + " " + liner_id + " " + is_paid + " " + price + " " +
-                date_start + " " + date_end + " " + inputStream + " " + status);
 
         try {
             new MySqlTripDAO().create(Trip.createTrip(user_id, liner_id, is_paid,
@@ -72,7 +69,7 @@ public class BookTourServlet extends HttpServlet {
         }
         req.setAttribute("Message", message);
 
-        getServletContext().getRequestDispatcher("/WEB-INF/pages/test/successBookTour.jsp")
+        getServletContext().getRequestDispatcher("/WEB-INF/pages/cruisesCatalog/successBookTour.jsp")
                 .forward(req, resp);
     }
 }
