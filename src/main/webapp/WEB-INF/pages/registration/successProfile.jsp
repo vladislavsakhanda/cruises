@@ -3,7 +3,7 @@
 <%@ taglib prefix="cruisesTLD" uri="/WEB-INF/tlds/cruises.tld" %>
 
 <p>Привіт, ${sessionScope.userSurname} ${sessionScope.userName}! Ви увійшли на сайт з пошти ${sessionScope.userEmail}</p>
-<a href="logout">Log out</a><br>
+<a href="profile/logout">Log out</a><br>
 
 <c:choose>
     <c:when test="${role != null}">
@@ -29,6 +29,7 @@
                 <td>${trip.date_start} по ${trip.date_end}</td>
                 <c:choose>
                    <c:when test="${trip.status == 1}">
+                     <td><a href="/cruises/profile/remove/request?id=${trip.id}">Відмінити заявку</a></td>
                      <td><a href="/cruises/profile/pay?id=${trip.id}">Сплатити</a></td>
                    </c:when>
                    <c:otherwise>

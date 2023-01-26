@@ -57,7 +57,6 @@ public class MySqlTripDAO implements TripDAO {
         List<Trip> trips = new ArrayList<>();
         Connection con = null;
         PreparedStatement stmt = null;
-        int rows = 0;
         try {
             con = DataSource.getConnection();
             con.setAutoCommit(false);
@@ -132,24 +131,6 @@ public class MySqlTripDAO implements TripDAO {
         return t;
     }
 
-    public Trip readByUserId(long user_id) throws SQLException {
-        Trip t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID)
-        ) {
-            stmt.setLong(1, user_id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    t = mapTrip(rs);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
-        return t;
-    }
-
     public Trip readByLinerId(long liner_id) throws SQLException {
         Trip t = null;
         try (Connection con = DataSource.getConnection();
@@ -170,9 +151,15 @@ public class MySqlTripDAO implements TripDAO {
 
     public Trip readByUserIdAndLinerId(long user_id, long liner_id) throws SQLException {
         Trip t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID_AND_LINER_ID)
-        ) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+//        try (Connection con = DataSource.getConnection();
+//             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID_AND_LINER_ID)
+//        ) {
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_TRIP_BY_USER_ID_AND_LINER_ID);
+
             int k = 0;
             stmt.setLong(++k, user_id);
             stmt.setLong(++k, liner_id);
@@ -180,11 +167,13 @@ public class MySqlTripDAO implements TripDAO {
                 if (rs.next()) {
                     t = mapTrip(rs);
                 }
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
+        } finally {
+            stmt.close();
+            con.close();
         }
         return t;
     }
@@ -203,10 +192,8 @@ public class MySqlTripDAO implements TripDAO {
             preparedStatement.setDate(++k, trip.getDate_end());
             preparedStatement.setInt(++k, trip.getStatus());
             if (trip.getPassport() != null) {
-                preparedStatement.setBlob(++k, trip.getPassport());
+                preparedStatement.setBinaryStream(++k, trip.getPassport());
             }
-            System.out.println("\nPassport: ");
-            System.out.println(trip.getPassport());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

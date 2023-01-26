@@ -26,7 +26,8 @@ public class Trip extends Entity {
         }
     }
 
-    public static Trip createTrip(long user_id, long liner_id, boolean is_paid, double price, Date date_start, Date date_end, InputStream passport, int status) {
+    public static Trip createTrip(long user_id, long liner_id, boolean is_paid, double price,
+                                  Date date_start, Date date_end, InputStream passport, int status) {
         Trip trip = new Trip();
         trip.setUser_id(user_id);
         trip.setLiner_id(liner_id);

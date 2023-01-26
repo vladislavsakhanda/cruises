@@ -20,8 +20,8 @@
      <input type="hidden" name="date_start" value="${date_start}" />
      <input type="hidden" name="date_end" value="${date_end}" />
      <div class="form-group">
-      <label for="Profile Photo"></label> <input
-       type="file" name="passport" size="50" required/>
+      <label for="Profile Photo"></label>
+      <input type="file" accept="image/*" name="passport" size="999999999" required/>
      </div>
      <input type="submit" value="Підтвердити заявку" class="btn btn-success">
     </form>

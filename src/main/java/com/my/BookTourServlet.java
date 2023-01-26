@@ -55,6 +55,7 @@ public class BookTourServlet extends HttpServlet {
         InputStream inputStream = null;
         String message = null;
         Part filePart = req.getPart("passport");
+        System.out.println("\n\n " + filePart.getSize());
         if (filePart != null) {
             inputStream = filePart.getInputStream();
         }

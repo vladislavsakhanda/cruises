@@ -8,7 +8,7 @@
     <style><%@include file="/WEB-INF/css/style.css"%></style>
   </head>
   <body>
-    <h3>Реєстрація</h3>
+    <h3>Увійти</h3>
 
     <form action="login" method="post">
         <div id="messageValidation">${requestScope.messageEmail}</div>

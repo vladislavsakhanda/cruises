@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/logout")
+@WebServlet("/profile/logout")
 public class LogOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.invalidate();
 
-        getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/errorProfile.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 }

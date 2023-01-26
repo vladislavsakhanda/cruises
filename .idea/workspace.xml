@@ -5,39 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="Implementation main task">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/CruisesCatalogServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/ProfilePayServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/ProfileRemoveRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/RequestsCatalog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/my/tlds/CruisesTLD.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/cruises.tld" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/index.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/my/BookTourServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/BookTourServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/CreateSchedule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/CruiseCatalogServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/CruisesCatalogLinerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/LogOutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/LogOutServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/my/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/ProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/ProfileServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/RegisterServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/RequestsCatalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/my/RequestsCatalog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/bookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/cruisesCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/test/successBookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/successBookTour.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/user.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/createSchedule.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
@@ -105,7 +85,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/webapp/WEB-INF/lib&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/webapp/images&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2954023&quot;,
@@ -115,25 +95,25 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\images" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
       <recent name="C:\Users\megai\JetBrains\cruises\plugins" />
       <recent name="C:\Users\megai\JetBrains\cruises\src" />
       <recent name="C:\Users\megai\JetBrains\cruises" />
-      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\megai\JetBrains\cruises" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages\templates" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp" />
-      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\pages" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="com.my" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestDB.testGetAll">
+  <component name="RunManager" selected="Maven.cruises [package]">
     <configuration name="FastTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="FastTest" />
       <module name="cruises" />
@@ -350,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674466327059</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Implementation main task">
+      <created>1674667482078</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1674667482078</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

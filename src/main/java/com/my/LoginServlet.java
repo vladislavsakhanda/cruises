@@ -58,8 +58,12 @@ public class LoginServlet extends HttpServlet {
                 User user = new MySqlUserDAO().read(email);
                 if (user != null && PBKDF2.validatePassword(password, user.getPassword())) {
                     HttpSession session = req.getSession();
-                    session.setAttribute("role", new MySqlRoleHasUserDAO().read(
-                            new RoleHasUser(Role.Roles.ADMIN.getCode(), user.getId())));
+                    try {
+                        session.setAttribute("role", new MySqlRoleHasUserDAO().read(
+                                new RoleHasUser(Role.Roles.ADMIN.getCode(), user.getId())));
+                    } catch (Exception ignored) {
+
+                    }
                     session.setAttribute("userId", user.getId());
                     session.setAttribute("userName", user.getName());
                     session.setAttribute("userSurname", user.getSurname());
