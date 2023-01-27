@@ -68,7 +68,7 @@ public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 

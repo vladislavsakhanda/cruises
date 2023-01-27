@@ -1,4 +1,4 @@
-package com.my;
+package servlets;
 
 import db.dao.PBKDF2;
 import db.dao.mysql.MySqlRoleHasUserDAO;

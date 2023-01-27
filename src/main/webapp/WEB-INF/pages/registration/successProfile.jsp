@@ -27,28 +27,40 @@
                 <td>${trip.id}</td>
                 <td><a href="cruisesCatalog/liner?id=${trip.liner_id}">${cruisesTLD:getLinerById(trip.liner_id).name}</a></td>
                 <td>${trip.date_start} по ${trip.date_end}</td>
-                <c:choose>
+                <td><c:choose>
                    <c:when test="${trip.status == 1}">
-                     <td><a href="/cruises/profile/remove/request?id=${trip.id}">Відмінити заявку</a></td>
-                     <td><a href="/cruises/profile/pay?id=${trip.id}">Сплатити</a></td>
+                         <form action="profile" method="POST">
+                            <input type="hidden" name="action" value="changePayment">
+                            <input type="hidden" name="id" value="${trip.id}">
+
+                            <input type="submit" value="Сплатити" />
+                         </form>
                    </c:when>
-                   <c:otherwise>
-                      <td><a href="/cruises/profile/remove/request?id=${trip.id}">Відмінити заявку</a></td>
-                   </c:otherwise>
-                </c:choose>
+                   <c:when test="${trip.is_paid == false}">
+                       <form action="profile" method="POST">
+                            <input type="hidden" name="action" value="removeRequest">
+                            <input type="hidden" name="id" value="${trip.id}">
+
+                            <input type="submit" value="Відмінити заявку" />
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        Наразі дії недоступні
+                    </c:otherwise>
+                </c:choose></td>
                 <c:choose>
                     <c:when test="${trip.status == 0}">
                         <td>На розгляді</td>
                     </c:when>
                     <c:when test="${trip.status == 1}">
-                        td>Потребує оплати</td>
+                        <td>Потребує оплати</td>
                    </c:when>
                    <c:when test="${trip.status == 2}">
                         <td>Відхилено</td>
                    </c:when>
-                   <c:otherwise>
+                   <c:when test="${trip.status == 3}">
                         <td>Підтверджено</td>
-                   </c:otherwise>
+                   </c:when>
                 </c:choose>
             </tr>
         </c:forEach>

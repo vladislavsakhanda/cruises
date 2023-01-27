@@ -1,4 +1,4 @@
-package com.my;
+package servlets;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -19,7 +19,7 @@ import java.util.List;
 public class CruisesCatalogLinerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Test#doGet");
+        System.out.println("CruisesCatalogLiner#doGet");
 
         req.setAttribute("id", req.getParameter("id"));
 

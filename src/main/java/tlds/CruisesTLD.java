@@ -1,18 +1,46 @@
-package com.my.tlds;
+package tlds;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.MySqlTripDAO;
+import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.Liner;
 import db.dao.mysql.entity.Trip;
+import db.dao.mysql.entity.User;
+import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
 public class CruisesTLD {
+    public static User getUserByUserId(long user_id) throws SQLException {
+        return new MySqlUserDAO().read(user_id);
+    }
+
+    public static void getAndWriteTempImageOfPassport(Trip trip, java.lang.String pathProjectDirectory) {
+        String pathToStore = null;
+        try {
+            pathToStore = pathProjectDirectory + "\\images\\" + trip.getId() + "_temp.jpg";
+
+//            Files.deleteIfExists(new File(pathToStore).toPath());
+
+            File image = new File(pathToStore);
+            FileOutputStream fos = new FileOutputStream(image, false);
+            byte[] bytes = IOUtils.toByteArray(trip.getPassport());
+            fos.write(bytes);
+            fos.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Trip getTripByUserIdAndLinerId(long user_id, long liner_id) throws SQLException {
         return new MySqlTripDAO().readByUserIdAndLinerId(user_id, liner_id);
     }

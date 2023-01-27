@@ -1,4 +1,4 @@
-package com.my;
+package servlets;
 
 import db.dao.mysql.MySqlTripDAO;
 import db.dao.mysql.entity.Trip;

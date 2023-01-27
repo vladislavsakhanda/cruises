@@ -30,6 +30,8 @@ public class MySqlConstants {
     public static final String GET_ALL_TRIPS = "SELECT * FROM trip t ORDER BY t.id;";
     public static final String GET_ALL_TRIPS_BY_LINER = "SELECT * FROM trip t WHERE t.liner_id = ? ORDER BY t.is_paid;";
     public static final String GET_ALL_TRIPS_BY_USER_ID = "SELECT * FROM trip t WHERE t.user_id = ? ORDER BY t.is_paid;";
+    public static final String UPDATE_TRIP = "UPDATE trip SET user_id = ?, liner_id = ?, is_paid = ?, price = ?, " +
+            "date_start = ?, date_end = ?, status = ?, passport = ? WHERE id = ?;";
     public static final String UPDATE_IS_PAID_IN_TRIP = "UPDATE trip SET is_paid = ? WHERE id = ?";
     public static final String GET_TRIP_BY_ID = "SELECT * FROM trip WHERE trip.id = ?;";
     public static final String GET_TRIP_BY_USER_ID = "SELECT * FROM trip WHERE trip.user_id = ?;";

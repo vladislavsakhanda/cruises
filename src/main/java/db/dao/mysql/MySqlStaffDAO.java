@@ -92,7 +92,7 @@ public class MySqlStaffDAO implements StaffDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 
@@ -120,7 +120,7 @@ public class MySqlStaffDAO implements StaffDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 
@@ -143,7 +143,7 @@ public class MySqlStaffDAO implements StaffDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 }

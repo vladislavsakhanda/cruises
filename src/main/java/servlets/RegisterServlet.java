@@ -1,4 +1,4 @@
-package com.my;
+package servlets;
 
 import db.dao.mysql.MySqlDAOFactory;
 import db.dao.mysql.MySqlUserDAO;

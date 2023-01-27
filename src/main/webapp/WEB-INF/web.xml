@@ -23,7 +23,7 @@
     <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>
-            com.my.filters.EncodingFilter
+            filters.EncodingFilter
         </filter-class>
 
         <init-param>

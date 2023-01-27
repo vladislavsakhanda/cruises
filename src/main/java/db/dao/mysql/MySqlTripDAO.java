@@ -78,7 +78,7 @@ public class MySqlTripDAO implements TripDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
         return trips;
     }
@@ -108,7 +108,7 @@ public class MySqlTripDAO implements TripDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
         return trips;
     }
@@ -202,8 +202,35 @@ public class MySqlTripDAO implements TripDAO {
     }
 
     @Override
-    public void update(Trip entity) {
+    public void update(Trip trip) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(UPDATE_TRIP);
+            int k = 0;
+            stmt.setLong(++k, trip.getUser_id());
+            stmt.setLong(++k, trip.getLiner_id());
+            stmt.setBoolean(++k, trip.getIs_paid());
+            stmt.setDouble(++k, trip.getPrice());
+            stmt.setDate(++k, trip.getDate_start());
+            stmt.setDate(++k, trip.getDate_end());
+            stmt.setInt(++k, trip.getStatus());
+            stmt.setBinaryStream(++k, trip.getPassport());
+            stmt.setLong(++k, trip.getId());
 
+            stmt.executeUpdate();
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw e;
+        } finally {
+            close(stmt);
+            con.close();
+        }
     }
 
     public void updateIsPaid(boolean isPaid, long id) throws SQLException {
@@ -226,7 +253,7 @@ public class MySqlTripDAO implements TripDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 
@@ -250,7 +277,7 @@ public class MySqlTripDAO implements TripDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 
@@ -273,7 +300,7 @@ public class MySqlTripDAO implements TripDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 

@@ -8,49 +8,61 @@
     <uri>/WEB-INF/tlds/cruises.tld</uri>
     <tag>
         <name>CruisesTLD</name>
-        <tag-class>com.my.tlds.CruisesTLD</tag-class>
+        <tag-class>tlds.CruisesTLD</tag-class>
         <body-content>empty</body-content>
     </tag>
 
     <function>
         <name>countPriceLiner</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>double countPriceLiner(db.dao.mysql.entity.Liner)</function-signature>
     </function>
 
     <function>
         <name>getLinerById</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>db.dao.mysql.entity.Liner getLinerById(long)</function-signature>
     </function>
 
     <function>
         <name>getLinerFreePlaces</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>int getLinerFreePlaces(db.dao.mysql.entity.Liner)</function-signature>
     </function>
 
     <function>
         <name>getLinerRouteInMap</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>java.util.HashMap getLinerRouteInMap(db.dao.mysql.entity.Liner)</function-signature>
     </function>
 
     <function>
         <name>getAllTripByUserId</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>java.util.List getAllTripByUserId(long)</function-signature>
     </function>
 
     <function>
         <name>getAllTrip</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>java.util.List getAllTrip()</function-signature>
     </function>
 
     <function>
         <name>getTripByUserIdAndLinerId</name>
-        <function-class>com.my.tlds.CruisesTLD</function-class>
+        <function-class>tlds.CruisesTLD</function-class>
         <function-signature>db.dao.mysql.entity.Trip getTripByUserIdAndLinerId(long, long)</function-signature>
+    </function>
+
+    <function>
+        <name>getAndWriteTempImageOfPassport</name>
+        <function-class>tlds.CruisesTLD</function-class>
+        <function-signature>void getAndWriteTempImageOfPassport(db.dao.mysql.entity.Trip, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getUserByUserId</name>
+        <function-class>tlds.CruisesTLD</function-class>
+        <function-signature>db.dao.mysql.entity.User getUserByUserId(long)</function-signature>
     </function>
 </taglib>

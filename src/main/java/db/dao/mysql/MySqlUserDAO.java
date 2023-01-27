@@ -139,7 +139,7 @@ public class MySqlUserDAO implements UserDAO {
             throw new RuntimeException(e);
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 
@@ -167,7 +167,7 @@ public class MySqlUserDAO implements UserDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 
@@ -190,7 +190,7 @@ public class MySqlUserDAO implements UserDAO {
             throw e;
         } finally {
             close(stmt);
-            close(con);
+            con.close();
         }
     }
 }

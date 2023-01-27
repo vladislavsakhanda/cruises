@@ -1,8 +1,6 @@
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>File Upload Servlet JSP JDBC MySQL Example</title>
@@ -21,7 +19,7 @@
      <input type="hidden" name="date_end" value="${date_end}" />
      <div class="form-group">
       <label for="Profile Photo"></label>
-      <input type="file" accept="image/*" name="passport" size="999999999" required/>
+      <input type="file" accept="image/*" name="passport" required/>
      </div>
      <input type="submit" value="Підтвердити заявку" class="btn btn-success">
     </form>

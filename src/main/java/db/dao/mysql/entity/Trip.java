@@ -1,5 +1,6 @@
 package db.dao.mysql.entity;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 
@@ -31,6 +32,7 @@ public class Trip extends Entity {
         Trip trip = new Trip();
         trip.setUser_id(user_id);
         trip.setLiner_id(liner_id);
+        trip.setIs_paid(is_paid);
         trip.setPrice(price);
         trip.setDate_start(date_start);
         trip.setDate_end(date_end);
@@ -114,10 +116,6 @@ public class Trip extends Entity {
         this.is_paid = is_paid;
     }
 
-    public boolean isIs_paid() {
-        return is_paid;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -129,7 +127,8 @@ public class Trip extends Entity {
     @Override
     public String toString() {
         return "Trip{" +
-                "user_id=" + user_id +
+                "id=" + getId() +
+                ", user_id=" + user_id +
                 ", liner_id=" + liner_id +
                 ", is_paid=" + is_paid +
                 ", price=" + price +

@@ -1,4 +1,4 @@
-package com.my;
+package servlets;
 
 import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.entity.Liner;
