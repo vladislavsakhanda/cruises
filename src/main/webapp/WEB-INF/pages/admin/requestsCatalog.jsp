@@ -1,16 +1,24 @@
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="cruisesTLD" uri="/WEB-INF/tlds/cruises.tld" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="${lang}" />
+<fmt:setBundle basename="messages" />
+<html lang="${lang}">
+
+<head>
+    <title><fmt:message key="label.lang.admin.title" /></title>
+</head>
 
 <table border="1" cellpadding="5" cellspacing="5">
         <tr>
-            <th>Клієнт</th>
-            <th>Паспорт</th>
-            <th>Круїз</th>
-            <th>Дата</th>
-            <th>Оплата</th>
-            <th>Статус</th>
-            <th>Зміна статусу</th>
+            <th><fmt:message key="label.lang.admin.client" /></th>
+            <th><fmt:message key="label.lang.admin.passport" /></th>
+            <th><fmt:message key="label.lang.admin.cruise" /></th>
+            <th><fmt:message key="label.lang.admin.date" /></th>
+            <th><fmt:message key="label.lang.admin.payment" /></th>
+            <th><fmt:message key="label.lang.admin.status" /></th>
+            <th><fmt:message key="label.lang.admin.changeStatus" /></th>
         </tr>
 
         <c:forEach var="trip" items="${cruisesTLD:getAllTrip()}">
@@ -24,27 +32,27 @@
                 <img src="./images/${trip.id}_temp.jpg" width="250" height="250"/>
                 </td>
                 <td>${liner.name}</td>
-                <td>${trip.date_start} по ${trip.date_end}</td>
+                <td>${trip.date_start} <fmt:message key="label.lang.admin.to" /> ${trip.date_end}</td>
                 <c:choose>
                     <c:when test="${trip.is_paid == false}">
-                        <td>Не сплачено</td>
+                        <td><fmt:message key="label.lang.admin.notPaid" /></td>
                     </c:when>
                     <c:otherwise>
-                        <td>Сплачено</td>
+                        <td><fmt:message key="label.lang.admin.paid" /></td>
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
                     <c:when test="${trip.status == 0}">
-                        <td>На розгляді</td>
+                        <td><fmt:message key="label.lang.admin.pending" /></td>
                     </c:when>
                     <c:when test="${trip.status == 1}">
-                        <td>Потребує оплати</td>
+                        <td><fmt:message key="label.lang.admin.requiresPayment" /></td>
                     </c:when>
                     <c:when test="${trip.status == 2}">
-                        <td>Відхилено</td>
+                        <td><fmt:message key="label.lang.admin.rejected" /></td>
                     </c:when>
                     <c:when test="${trip.status == 3}">
-                        <td>Підтверджено</td>
+                        <td><fmt:message key="label.lang.admin.confirmed" /></td>
                     </c:when>
                 </c:choose>
 
@@ -54,26 +62,26 @@
                     <form action="requestsCatalog" method="POST">
                         <select name="status">
                             <c:if test="${trip.status != 0}">
-                                <option value="0">На розгляді</option>
+                                <option value="0"><fmt:message key="label.lang.admin.pending" /></option>
                             </c:if>
                             <c:if test="${trip.status != 1 && trip.is_paid == false}">
-                                <option value="1">Потребує оплати</option>
+                                <option value="1"><fmt:message key="label.lang.admin.requiresPayment" /></option>
                             </c:if>
                             <c:if test="${trip.status != 2 && trip.is_paid == false}">
-                                <option value="2">Відхилено</option>
+                                <option value="2"><fmt:message key="label.lang.admin.rejected" /></option>
                             </c:if>
                             <c:if test="${trip.status != 3 && trip.is_paid == true}">
-                                <option value="3">Підтверджено</option>
+                                <option value="3"><fmt:message key="label.lang.admin.confirmed" /></option>
                             </c:if>
                         </select>
                         <br><br>
                         <input type="hidden" name="trip_id" value="${trip.id}" />
-                        <input type="submit" value="Змінити" />
+                        <input type="submit" value="<fmt:message key="label.lang.admin.change" />" />
                     </form>
                 </c:when>
 
                 <c:otherwise>
-                    Дії відсутні
+                    <fmt:message key="label.lang.admin.changesMissing" />
                 </c:otherwise>
                 </c:choose>
                 </td>

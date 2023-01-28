@@ -25,7 +25,11 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("login#doGet");
 
-        getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("userEmail") == null) {
+            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -34,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
 
         if (email == null && password == null) {
             getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
@@ -68,16 +73,15 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("userName", user.getName());
                     session.setAttribute("userSurname", user.getSurname());
                     session.setAttribute("userEmail", user.getEmail());
-                    getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("messageErrorLogin", "Email or password invalid!");
-                    getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 req.setAttribute("messageErrorLogin", "Email or password invalid!");
-                getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
             }
+
+            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
         }
     }
 

@@ -23,7 +23,14 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("register#doGet");
 
-        getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/register.jsp").forward(req, resp);
+        System.out.println(getServletContext().getAttribute("resultRegistration"));
+        if (getServletContext().getAttribute("resultRegistration") == "success") {
+            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
+        } else if (getServletContext().getAttribute("resultRegistration") == "error") {
+            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/errorRegistration.jsp").forward(req, resp);
+        } else {
+            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/register.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -77,13 +84,15 @@ public class RegisterServlet extends HttpServlet {
                 req.getAttribute("messageEmail") != null ||
                 req.getAttribute("messagePassword") != null
         ) {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/register.jsp").forward(req, resp);
+            doGet(req, resp);
         } else {
             try {
                 register(name, surname, email, password);
-                getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successRegistration.jsp").forward(req, resp);
+                getServletContext().setAttribute("resultRegistration", "success");
+                doGet(req, resp);
             } catch (Exception e) {
-                getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/errorRegistration.jsp").forward(req, resp);
+                getServletContext().setAttribute("resultRegistration", "error");
+                doGet(req, resp);
             }
         }
     }

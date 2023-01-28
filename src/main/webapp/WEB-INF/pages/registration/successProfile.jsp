@@ -1,26 +1,37 @@
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="cruisesTLD" uri="/WEB-INF/tlds/cruises.tld" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="${lang}" />
+<fmt:setBundle basename="messages" />
+<html lang="${lang}">
 
-<p>Привіт, ${sessionScope.userSurname} ${sessionScope.userName}! Ви увійшли на сайт з пошти ${sessionScope.userEmail}</p>
+<head>
+    <title><fmt:message key="label.lang.registration.profile.title" /></title>
+</head>
+
+<p><fmt:message key="label.lang.registration.profile.hello" /> ${sessionScope.userSurname} ${sessionScope.userName}!
+<fmt:message key="label.lang.registration.profile.helloContinue" /> ${sessionScope.userEmail}</p>
 <a href="profile/logout">Log out</a><br>
 
 <c:choose>
     <c:when test="${role != null}">
-      <a href="/cruises/requestsCatalog">Каталог заявок</a><br>
+      <a href="/cruises/requestsCatalog">
+      <fmt:message key="label.lang.registration.profile.admin.requestManagement" />
+      </a><br>
     </c:when>
-    <c:otherwise>
+<c:otherwise>
 
-<p>Наявні заявки:</p>
+<p><fmt:message key="label.lang.registration.profile.user.requests" />:</p>
 <c:set var="trips" value="${cruisesTLD:getAllTripByUserId(sessionScope.userId)}"/>
 
 <table border="1" cellpadding="5" cellspacing="5">
         <tr>
-            <th>Номер</th>
-            <th>Назва</th>
-            <th>Дата</th>
-            <th>Дії</th>
-            <th>Статус</th>
+            <th><fmt:message key="label.lang.registration.profile.user.number" /></th>
+            <th><fmt:message key="label.lang.registration.profile.user.name" /></th>
+            <th><fmt:message key="label.lang.registration.profile.user.date" /></th>
+            <th><fmt:message key="label.lang.registration.profile.user.actions" /></th>
+            <th><fmt:message key="label.lang.registration.profile.user.status" /></th>
         </tr>
         <c:forEach var="trip" items="${trips}">
             <tr>
@@ -45,21 +56,21 @@
                         </form>
                     </c:when>
                     <c:otherwise>
-                        Наразі дії недоступні
+                        <fmt:message key="label.lang.registration.profile.user.actionsUnavailable" />
                     </c:otherwise>
                 </c:choose></td>
                 <c:choose>
                     <c:when test="${trip.status == 0}">
-                        <td>На розгляді</td>
+                        <td><fmt:message key="label.lang.registration.profile.user.status.pending" /></td>
                     </c:when>
                     <c:when test="${trip.status == 1}">
-                        <td>Потребує оплати</td>
+                        <td><fmt:message key="label.lang.registration.profile.user.status.requiresPayment" /></td>
                    </c:when>
                    <c:when test="${trip.status == 2}">
-                        <td>Відхилено</td>
+                        <td><fmt:message key="label.lang.registration.profile.user.status.rejected" /></td>
                    </c:when>
                    <c:when test="${trip.status == 3}">
-                        <td>Підтверджено</td>
+                        <td><fmt:message key="label.lang.registration.profile.user.status.confirmed" /></td>
                    </c:when>
                 </c:choose>
             </tr>

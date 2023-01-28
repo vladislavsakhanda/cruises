@@ -25,19 +25,16 @@ public class BookTourServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long user_id = (long) req.getSession().getAttribute("userId");
-        long liner_id = Long.parseLong(req.getParameter("liner_id"));
-        boolean is_paid = false;
-        double price = Double.parseDouble(req.getParameter("price"));
-        Date date_start = Date.valueOf(req.getParameter("date_start"));
-        Date date_end = Date.valueOf(req.getParameter("date_end"));
-
-        req.setAttribute("userId", user_id);
-        req.setAttribute("liner_id", liner_id);
-        req.setAttribute("is_paid", is_paid);
-        req.setAttribute("price", price);
-        req.setAttribute("date_start", date_start);
-        req.setAttribute("date_end", date_end);
+//        long user_id = (long) req.getSession().getAttribute("userId");
+//        req.setAttribute("userId", user_id);
+        try {
+            req.setAttribute("liner_id", Long.parseLong(req.getParameter("liner_id")));
+            req.setAttribute("price", Double.parseDouble(req.getParameter("price")));
+            req.setAttribute("date_start", Date.valueOf(req.getParameter("date_start")));
+            req.setAttribute("date_end", Date.valueOf(req.getParameter("date_end")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         req.getRequestDispatcher("/WEB-INF/pages/cruisesCatalog/bookTour.jsp").forward(req, resp);
     }

@@ -5,41 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="Implementation main task">
-      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ProfileServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/RequestsCatalogServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/javax.servlet.jsp-api-2.3.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jsp-api-2.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl-api-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/resourceBundles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/filters/SessionLocaleFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/BookTourServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/BookTourServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/CruisesCatalogLinerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/CruisesCatalogLinerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/CruisesCatalogServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/CruisesCatalogServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/IndexServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/IndexServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/LogOutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LogOutServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/ProfilePayServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/ProfileRemoveRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/ProfileServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RegisterServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/RequestsCatalog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/filters/EncodingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filters/EncodingFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/my/tlds/CruisesTLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/BookTourServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/BookTourServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/CruisesCatalogServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/CruisesCatalogServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/LogOutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LogOutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/RegisterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/successBookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/successBookTour.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorRegistration.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogout.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/cruises.tld" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/cruises.tld" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successRegistration.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +101,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/webapp/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/webapp/WEB-INF/pages/index.jsp&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2954023&quot;,
@@ -123,13 +118,14 @@
       <recent name="C:\Users\megai\JetBrains\cruises" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
       <recent name="C:\Users\megai\JetBrains\cruises" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages\templates" />
-      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="servlets" />
       <recent name="" />
       <recent name="com.my" />
     </key>
@@ -365,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674697674644</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Implementation main task">
+      <created>1674847272500</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1674847272500</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

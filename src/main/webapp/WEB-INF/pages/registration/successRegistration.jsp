@@ -1,13 +1,12 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
-<meta charset="UTF-8" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="${lang}" />
+<fmt:setBundle basename="messages" />
+<html lang="${lang}">
 
-<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Meal list</title>
+    <title><fmt:message key="label.lang.registration.register.title" /></title>
 </head>
-<body>
-<h3>Success! Ви були зареєстровані!</h3>
-</body>
-</html
+
+<h3><fmt:message key="label.lang.registration.register.success" /></h3>

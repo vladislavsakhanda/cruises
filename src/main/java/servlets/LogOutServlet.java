@@ -13,7 +13,9 @@ public class LogOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        String language = String.valueOf(session.getAttribute("lang"));
         session.invalidate();
+        req.getSession().setAttribute("lang", language);
 
         getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
