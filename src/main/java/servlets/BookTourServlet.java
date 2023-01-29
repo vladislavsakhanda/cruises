@@ -23,17 +23,17 @@ import java.sql.SQLException;
 public class BookTourServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    private void setServletContext (HttpServletRequest req, HttpServletResponse resp) {
+        getServletContext().setAttribute("liner_id", Long.parseLong(req.getParameter("liner_id")));
+        getServletContext().setAttribute("price", Double.parseDouble(req.getParameter("price")));
+        getServletContext().setAttribute("date_start", Date.valueOf(req.getParameter("date_start")));
+        getServletContext().setAttribute("date_end", Date.valueOf(req.getParameter("date_end")));
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        long user_id = (long) req.getSession().getAttribute("userId");
-//        req.setAttribute("userId", user_id);
-        try {
-            req.setAttribute("liner_id", Long.parseLong(req.getParameter("liner_id")));
-            req.setAttribute("price", Double.parseDouble(req.getParameter("price")));
-            req.setAttribute("date_start", Date.valueOf(req.getParameter("date_start")));
-            req.setAttribute("date_end", Date.valueOf(req.getParameter("date_end")));
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (getServletContext().getAttribute("liner_id") == null) {
+            setServletContext(req, resp);
         }
 
         req.getRequestDispatcher("/WEB-INF/pages/cruisesCatalog/bookTour.jsp").forward(req, resp);

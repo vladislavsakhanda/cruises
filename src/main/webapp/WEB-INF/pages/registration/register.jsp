@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/pages/templates/registrationTemplate.jsp"></jsp:include>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="messages" />
@@ -12,21 +13,42 @@
     <title><fmt:message key="label.lang.registration.register.title" /></title>
     <style><%@include file="/WEB-INF/css/style.css"%></style>
   </head>
+
+  <script>
+      function hidePassword() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+  </script>
+
   <body>
     <h3><fmt:message key="label.lang.registration.register.registration" /></h3>
 
     <form action="register" method="post">
-       <div id="messageValidation">${requestScope.messageName}</div>
-        <fmt:message key="label.lang.registration.register.name" />: <input name="name" />
+        <c:if test="${requestScope.messageName != null}">
+            <div id="messageValidation"><fmt:message key="${requestScope.messageName}" /></div>
+        </c:if>
+        <fmt:message key="label.lang.registration.register.name" />: <input name="name" value="${name}"/>
         <br><br>
-        <div id="messageValidation">${requestScope.messageSurname}</div>
-        <fmt:message key="label.lang.registration.register.surname" />: <input name="surname" />
+        <c:if test="${requestScope.messageSurname != null}">
+            <div id="messageValidation"><fmt:message key="${requestScope.messageSurname}" /></div>
+        </c:if>
+        <fmt:message key="label.lang.registration.register.surname" />: <input name="surname" value="${surname}"/>
         <br></br>
-        <div id="messageValidation">${requestScope.messageEmail}</div>
-        <fmt:message key="label.lang.registration.register.email" />: <input name="email" />
+        <c:if test="${requestScope.messageEmail != null}">
+            <div id="messageValidation"><fmt:message key="${requestScope.messageEmail}" /></div>
+        </c:if>
+        <fmt:message key="label.lang.registration.register.email" />: <input name="email" value="${email}" />
         <br></br>
-        <div id="messageValidation">${requestScope.messagePassword}</div>
-        <fmt:message key="label.lang.registration.register.password" />: <input name="password" />
+        <c:if test="${requestScope.messagePassword != null}">
+            <div id="messageValidation"><fmt:message key="${requestScope.messagePassword}" /></div>
+        </c:if>
+        <fmt:message key="label.lang.registration.register.password" />: <input name="password"  type="password" id="myInput" />
+        <input type="checkbox" onclick="hidePassword()"><fmt:message key="label.lang.registration.register.showPassword" />
         <br></br>
         <input type="submit" value="Register" />
     </form>

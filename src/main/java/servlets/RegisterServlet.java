@@ -23,14 +23,10 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("register#doGet");
 
-        System.out.println(getServletContext().getAttribute("resultRegistration"));
-        if (getServletContext().getAttribute("resultRegistration") == "success") {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
-        } else if (getServletContext().getAttribute("resultRegistration") == "error") {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/errorRegistration.jsp").forward(req, resp);
-        } else {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/register.jsp").forward(req, resp);
-        }
+        req.setAttribute("name", req.getParameter("name"));
+        req.setAttribute("surname", req.getParameter("surname"));
+        req.setAttribute("email", req.getParameter("email"));
+        req.getRequestDispatcher("/WEB-INF/pages/registration/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -42,42 +38,35 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        if (name == null || surname == null && email == null && password == null) {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/register.jsp").forward(req, resp);
-        }
-
         if (name.length() == 0) {
-            req.setAttribute("messageName", "First name is required.<br>");
+            req.setAttribute("messageName", "label.lang.registration.register.messageNameRequired");
         } else if (name.length() < 3) {
-            req.setAttribute("messageName", "First name must contain at least 3 characters.<br>");
+            req.setAttribute("messageName", "label.lang.registration.register.messageNameContainMin");
         } else if (!Pattern.compile(REGEX_NAME).matcher(name).matches()) {
-            req.setAttribute("messageName", "First name is incorrect.<br>");
+            req.setAttribute("messageName", "label.lang.registration.register.messageNameIncorrect");
         }
 
         if (surname.length() == 0) {
-            req.setAttribute("messageSurname", "Last name is required.<br>");
+            req.setAttribute("messageSurname", "label.lang.registration.register.messageSurnameRequired");
         } else if (surname.length() < 3) {
-            req.setAttribute("messageSurname", "Last name must contain at least 3 characters.<br>");
+            req.setAttribute("messageSurname", "label.lang.registration.register.messageSurnameContainMin");
         } else if (!Pattern.compile(REGEX_NAME).matcher(surname).matches()) {
-            req.setAttribute("messageSurname", "Last name is incorrect.<br>");
+            req.setAttribute("messageSurname", "label.lang.registration.register.messageSurnameIncorrect");
         }
 
         if (email.length() == 0) {
-            req.setAttribute("messageEmail", "Email is required.<br>");
+            req.setAttribute("messageEmail", "label.lang.registration.register.messageEmailRequired");
         } else if (!Pattern.compile(REGEX_EMAIL).matcher(email).matches()) {
-            req.setAttribute("messageEmail", "Email format is invalid.<br>");
+            req.setAttribute("messageEmail", "label.lang.registration.register.messageEmailFormatInvalid");
         } else if (userExist(email)) {
-            req.setAttribute("messageEmail", "This email already exists.<br>");
+            req.setAttribute("messageEmail", "label.lang.registration.register.messageEmailExists");
         }
 
         if (password.length() == 0) {
-            req.setAttribute("messagePassword", "Password is required.<br>");
+            req.setAttribute("messagePassword", "label.lang.registration.register.messagePasswordRequired");
         } else if (password.length() < 6 || password.length() > 18) {
-            req.setAttribute("messagePassword",
-                    "The password must contain at least 6 characters and no more than 18.<br>");
+            req.setAttribute("messagePassword", "label.lang.registration.register.messagePasswordContainMin");
         }
-
-        System.out.println("\n\n\nmessagePassword - " + req.getAttribute("messagePassword"));
 
         if (req.getAttribute("messageName") != null ||
                 req.getAttribute("messageSurname") != null ||
@@ -88,11 +77,9 @@ public class RegisterServlet extends HttpServlet {
         } else {
             try {
                 register(name, surname, email, password);
-                getServletContext().setAttribute("resultRegistration", "success");
-                doGet(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/registration/successRegistration.jsp").forward(req, resp);
             } catch (Exception e) {
-                getServletContext().setAttribute("resultRegistration", "error");
-                doGet(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/registration/errorRegistration.jsp").forward(req, resp);
             }
         }
     }
@@ -106,12 +93,15 @@ public class RegisterServlet extends HttpServlet {
     }
 
     private boolean userExist(String requestEmail) {
+        User user = null;
+
         try {
-            new MySqlUserDAO().read(requestEmail);
-        } catch (SQLException e) {
-            return false;
+            user = new MySqlUserDAO().read(requestEmail);
+        } catch (SQLException ignored) {
+
         }
-        return true;
+
+        return user != null;
     }
 }
 

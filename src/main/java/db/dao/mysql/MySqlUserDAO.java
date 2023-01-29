@@ -70,15 +70,16 @@ public class MySqlUserDAO implements UserDAO {
     }
 
     public User read(String email) throws SQLException {
-        User u;
+        User u = null;
         try (Connection con = DataSource.getConnection();
              PreparedStatement stmt = con.prepareStatement(GET_USER_BY_EMAIL)
         ) {
             int k = 0;
             stmt.setString(++k, email);
             try (ResultSet rs = stmt.executeQuery()) {
-                rs.next();
-                u = mapUser(rs);
+                if (rs != null && rs.next()) {
+                    u = mapUser(rs);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

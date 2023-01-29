@@ -16,7 +16,9 @@
     </c:when>
     <c:otherwise>
         <a href="/cruises"><fmt:message key="label.lang.registration.home" /></a> |
-        <a href="/cruises/cruisesCatalog"><fmt:message key="label.lang.registration.cruisesCatalog" /></a> |
+        <c:if test="${role != 'admin'}">
+            <a href="/cruises/cruisesCatalog"><fmt:message key="label.lang.registration.cruisesCatalog" /></a> |
+        </c:if>
         <a href="/cruises/profile">${sessionScope.userEmail}</a> |
     </c:otherwise>
 </c:choose>

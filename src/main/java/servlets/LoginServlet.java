@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println("login#doGet");
 
         if (req.getSession().getAttribute("userEmail") == null) {
+            req.setAttribute("email", req.getParameter("email"));
             getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
         } else {
             getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
@@ -38,59 +39,57 @@ public class LoginServlet extends HttpServlet {
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/successLogin.jsp").forward(req, resp);
-
-        if (email == null && password == null) {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
-        }
 
         if (email.length() == 0) {
-            req.setAttribute("messageEmail", "Email is required.<br>");
+            req.setAttribute("messageEmail", "label.lang.registration.messageEmailRequired");
         } else if (!Pattern.compile(REGEX_EMAIL).matcher(email).matches()) {
-            req.setAttribute("messageEmail", "Email format is invalid.<br>");
+            req.setAttribute("messageEmail", "label.lang.registration.messageEmailFormatInvalid");
         } else if (!userExist(email)) {
-            req.setAttribute("messageEmail", "This email does not exist.<br>");
+            req.setAttribute("messageEmail", "label.lang.registration.messageEmailNotExist");
         }
 
         if (password.length() == 0) {
-            req.setAttribute("messagePassword", "Password is required.<br>");
+            req.setAttribute("messagePassword", "label.lang.registration.messagePasswordRequired");
         }
 
         if (req.getAttribute("messageEmail") != null || req.getAttribute("messagePassword") != null) {
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
+            doGet(req, resp);
         } else {
             try {
                 User user = new MySqlUserDAO().read(email);
                 if (user != null && PBKDF2.validatePassword(password, user.getPassword())) {
                     HttpSession session = req.getSession();
-                    try {
-                        session.setAttribute("role", new MySqlRoleHasUserDAO().read(
-                                new RoleHasUser(Role.Roles.ADMIN.getCode(), user.getId())));
-                    } catch (Exception ignored) {
+                    RoleHasUser roleHasUser = new MySqlRoleHasUserDAO().read(new RoleHasUser(Role.Roles.ADMIN.getCode(), user.getId()));
 
+                    if (roleHasUser != null) {
+                        session.setAttribute("role", "admin");
                     }
+
                     session.setAttribute("userId", user.getId());
                     session.setAttribute("userName", user.getName());
                     session.setAttribute("userSurname", user.getSurname());
                     session.setAttribute("userEmail", user.getEmail());
                 } else {
-                    req.setAttribute("messageErrorLogin", "Email or password invalid!");
+                    req.setAttribute("messageErrorLogin", "label.lang.registration.messageErrorLogin");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                req.setAttribute("messageErrorLogin", "Email or password invalid!");
+                req.setAttribute("messageErrorLogin", "label.lang.registration.messageErrorLogin");
             }
 
-            getServletContext().getRequestDispatcher("/WEB-INF/pages/registration/login.jsp").forward(req, resp);
+            doGet(req, resp);
         }
     }
 
     private boolean userExist(String requestEmail) {
+        User user = null;
+
         try {
-            new MySqlUserDAO().read(requestEmail);
-        } catch (SQLException e) {
-            return false;
+            user = new MySqlUserDAO().read(requestEmail);
+        } catch (SQLException ignored) {
+
         }
-        return true;
+
+        return user != null;
     }
 }

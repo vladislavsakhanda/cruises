@@ -36,9 +36,12 @@ public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
             stmt.setLong(++k, roleHasUser.getRole_id());
             stmt.setLong(++k, roleHasUser.getUser_id());
             try (ResultSet rs = stmt.executeQuery()) {
-                rs.next();
-                r.setRole_id(rs.getLong("role_id"));
-                r.setUser_id(rs.getLong("user_id"));
+                if (rs != null && rs.next()) {
+                    r.setRole_id(rs.getLong("role_id"));
+                    r.setUser_id(rs.getLong("user_id"));
+                } else {
+                    r = null;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
