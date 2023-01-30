@@ -11,6 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><fmt:message key="label.lang.registration.login.title" /></title>
     <style><%@include file="/WEB-INF/css/style.css"%></style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
 
 <script>
@@ -24,25 +26,34 @@
     }
 </script>
 
+  <div id="form">
   <body>
     <h3><fmt:message key="label.lang.registration.login.login" /></h3>
 
     <form action="login" method="post">
+
+
+
+        <div><fmt:message key="label.lang.registration.login.email" />:</div>
+        <span><input name="email" value="${email}" /></span>
         <c:if test="${requestScope.messageEmail != null}">
             <div id="messageValidation"><fmt:message key="${requestScope.messageEmail}" /></div>
         </c:if>
-        <fmt:message key="label.lang.registration.login.email" />: <input name="email" value="${email}" />
-        <br></br>
+
+        <div><fmt:message key="label.lang.registration.login.password" />:</div>
+        <input name="password" type="password" id="myInput" />
         <c:if test="${requestScope.messagePassword != null}">
             <div id="messageValidation"><fmt:message key="${requestScope.messagePassword}" /></div>
         </c:if>
-        <fmt:message key="label.lang.registration.login.password" />: <input name="password" type="password" id="myInput" />
-        <input type="checkbox" onclick="hidePassword()"><fmt:message key="label.lang.registration.register.showPassword" />
-        <br></br>
-        <input type="submit" value="<fmt:message key="label.lang.registration.login.signIn" />" />
+        <div><input type="checkbox" onclick="hidePassword()"><fmt:message key="label.lang.registration.register.showPassword" /></div>
+
+        <c:if test="${requestScope.messageErrorLogin != null}">
+            <div id="messageValidation"><fmt:message key="${requestScope.messageErrorLogin}" /></div>
+        </c:if>
+
+        <div><input type="submit" value="<fmt:message key="label.lang.registration.login.signIn" />" /></div>
     </form>
-    <c:if test="${requestScope.messageErrorLogin != null}">
-        <div id="messageValidation"><fmt:message key="${requestScope.messageErrorLogin}" /></div>
-    </c:if>
+
+    </div>
   </body>
 </html>

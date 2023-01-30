@@ -9,78 +9,114 @@
 <html>
 <head>
     <title><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.title" /></title>
+    <style><%@include file="/WEB-INF/css/style.css"%></style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <form action="cruisesCatalog" method="get">
+    <div id="filter">
+    <form action="cruisesCatalog" method="get" style="margin: 0px;">
         <input type="hidden" name="action" value="change" />
 
-        <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.cruisesCatalog" />:
-        <select name="recordsPerPage">
+        <div style="margin-top: 15px;">
+        <span><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.cruisesCatalog" />:</span>
+        <span><select name="recordsPerPage">
             <option>3</option>
             <option>5</option>
             <option>10</option>
-        </select>
+        </select></span>
+        </div>
 
-        <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.duration" />:
-        <select name="choseDuration">
+        <div style="margin-top: 15px;">
+        <span><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.duration" />:</span>
+        <span><select name="choseDuration">
             <option value="all">*</option>
             <c:forEach var="duration" items="${allDuration}">
                 <option value="${duration}">${duration} <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.days" /></option>
             </c:forEach>
-        </select>
+        </select></span>
+        </div>
 
-        З <input type="date" min='${minDate}' max='${maxDate}' value='${minDate}' name="date_start">
-        По <input type="date" min='${minDate}' max='${maxDate}' value='${maxDate}' name="date_end">
+        <div style="margin-top: 15px;">
+        <span style=""><input type="date" min='${minDate}' max='${maxDate}' value='${minDate}' name="date_start"></span>
+        <span><fmt:message key="label.lang.admin.to" /></span>
+        <span><input type="date" min='${minDate}' max='${maxDate}' value='${maxDate}' name="date_end"></span>
+        </div>
 
-        <input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.confirm" />" />
+        <div style="margin-top: 15px;">
+        <span"><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.confirm" />" style="margin: 0px;"/></span>
+
+        <form action="cruisesCatalog" method="post" style="margin: 0px;">
+            <span><input type="hidden" name="action" value="reset" /></span>
+
+            <span><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.reset" />" /></span>
+        </form>
+        </div>
     </form>
 
-    <form action="cruisesCatalog" method="post">
-        <input type="hidden" name="action" value="reset" />
 
-        <input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.reset" />" />
-    </form>
 
-    <table border="1" cellpadding="5" cellspacing="5">
+    </div>
+
+    <table class="styled-table">
+        <thead>
         <tr>
             <th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.cruise" /></th>
             <th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.date" /></th>
             <th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.price" /></th>
             <th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.capacity" /></th>
         </tr>
+        </thead>
 
+        <tbody>
         <c:forEach var="liner" items="${linerList}">
-            <tr>
+            <tr class="active-row">
                 <td><a href="cruisesCatalog/liner?id=${liner.id}">${liner.name}</a></td>
                 <td>${liner.date_start} по ${liner.date_end}</td>
                 <td>${cruisesTLD:countPriceLiner(liner)}$</td>
                 <td>${liner.capacity}</td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
 
-    <c:if test="${currentPage != 1}">
-        <td><a href="cruisesCatalog?page=${currentPage - 1}"><th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.capacity" /></a></td>
-    </c:if>
-
-    <table border="1" cellpadding="5" cellspacing="5">
+    <table>
         <tr>
+            <c:choose>
+            <c:when test="${currentPage != 1}">
+                <td style="padding: 12px 15px;"><a href="cruisesCatalog?page=${currentPage - 1}">
+                <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.previous" /></a></td>
+            </c:when>
+            <c:otherwise>
+                <td style="padding: 12px 15px;">
+                <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.previous" /></td>
+            </c:otherwise>
+            </c:choose>
+
             <c:forEach begin="1" end="${numberPages}" var="i">
                 <c:choose>
                     <c:when test="${currentPage eq i}">
-                        <td>${i}</td>
+                        <td style="padding: 12px 15px;">${i}</td>
                     </c:when>
                     <c:otherwise>
-                        <td><a href="cruisesCatalog?page=${i}">${i}</a></td>
+                        <td style="padding: 12px 15px;"><a href="cruisesCatalog?page=${i}">${i}</a></td>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
+
+            <c:choose>
+            <c:when test="${currentPage lt numberPages}">
+                <td style="padding: 12px 15px;"><a href="cruisesCatalog?page=${currentPage + 1}">
+                <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.next" /></a></td>
+            </c:when>
+            <c:otherwise>
+                <td style="padding: 12px 15px;">
+                <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.next" /></td>
+            </c:otherwise>
+            </c:choose>
         </tr>
     </table>
-
-    <c:if test="${currentPage lt numberPages}">
-        <td><a href="cruisesCatalog?page=${currentPage + 1}"><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.next" /></a></td>
-    </c:if>
 
 </body>
 </html>

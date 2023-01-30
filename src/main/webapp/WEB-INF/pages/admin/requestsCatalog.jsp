@@ -8,9 +8,13 @@
 
 <head>
     <title><fmt:message key="label.lang.admin.title" /></title>
+    <style><%@include file="/WEB-INF/css/style.css"%></style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
-<table border="1" cellpadding="5" cellspacing="5">
+<table class="styled-table">
+        <thead>
         <tr>
             <th><fmt:message key="label.lang.admin.client" /></th>
             <th><fmt:message key="label.lang.admin.passport" /></th>
@@ -20,7 +24,9 @@
             <th><fmt:message key="label.lang.admin.status" /></th>
             <th><fmt:message key="label.lang.admin.changeStatus" /></th>
         </tr>
+        </thead>
 
+        <tbody>
         <c:forEach var="trip" items="${cruisesTLD:getAllTrip()}">
             <c:set var="user" value="${cruisesTLD:getUserByUserId(trip.user_id)}"/>
             <c:set var="liner" value="${cruisesTLD:getLinerById(trip.liner_id)}"/>
@@ -86,5 +92,6 @@
                 </c:choose>
                 </td>
             </tr>
+            </tbody>
         </c:forEach>
     </table>

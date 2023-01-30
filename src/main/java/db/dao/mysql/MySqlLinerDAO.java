@@ -161,7 +161,9 @@ public class MySqlLinerDAO implements LinerDAO {
             }
         } finally {
             close(stmt);
-            con.close();
+            if (con != null) {
+                con.close();
+            }
         }
         return date;
     }
@@ -188,7 +190,9 @@ public class MySqlLinerDAO implements LinerDAO {
             }
         } finally {
             close(stmt);
-            con.close();
+            if (con != null) {
+                con.close();
+            }
         }
         return allDuration;
     }
@@ -213,7 +217,9 @@ public class MySqlLinerDAO implements LinerDAO {
             throw e;
         } finally {
             close(stmt);
-            con.close();
+            if (con != null) {
+                con.close();
+            }
         }
         return u;
     }

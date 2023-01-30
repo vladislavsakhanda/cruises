@@ -8,24 +8,28 @@
 
 <head>
     <title><fmt:message key="label.lang.registration.profile.title" /></title>
+    <style><%@include file="/WEB-INF/css/style.css"%></style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
+<div id="indent">
 <p><fmt:message key="label.lang.registration.profile.hello" /> ${sessionScope.userSurname} ${sessionScope.userName}!
 <fmt:message key="label.lang.registration.profile.helloContinue" /> ${sessionScope.userEmail}</p>
-<a href="profile/logout">Log out</a><br>
+<a href="profile/logout"><fmt:message key="label.lang.registration.profile.user.logout" /></a>
 
 <c:choose>
     <c:when test="${role != null}">
-      <a href="/cruises/requestsCatalog">
+      <br><br><a href="/cruises/requestsCatalog">
       <fmt:message key="label.lang.registration.profile.admin.requestManagement" />
       </a><br>
     </c:when>
 <c:otherwise>
 
-<p><fmt:message key="label.lang.registration.profile.user.requests" />:</p>
 <c:set var="trips" value="${cruisesTLD:getAllTripByUserId(sessionScope.userId)}"/>
 
-<table border="1" cellpadding="5" cellspacing="5">
+<table class="styled-table">
+        <thead>
         <tr>
             <th><fmt:message key="label.lang.registration.profile.user.number" /></th>
             <th><fmt:message key="label.lang.registration.profile.user.name" /></th>
@@ -33,12 +37,14 @@
             <th><fmt:message key="label.lang.registration.profile.user.actions" /></th>
             <th><fmt:message key="label.lang.registration.profile.user.status" /></th>
         </tr>
+        </thead>
+        <tbody>
         <c:forEach var="trip" items="${trips}">
             <tr>
                 <td>${trip.id}</td>
                 <td><a href="cruisesCatalog/liner?id=${trip.liner_id}">${cruisesTLD:getLinerById(trip.liner_id).name}</a></td>
                 <td>${trip.date_start} по ${trip.date_end}</td>
-                <td><c:choose>
+                <td style="align: center;"><c:choose>
                    <c:when test="${trip.status == 1}">
                          <form action="profile" method="POST">
                             <input type="hidden" name="action" value="changePayment">
@@ -52,7 +58,7 @@
                             <input type="hidden" name="action" value="removeRequest">
                             <input type="hidden" name="id" value="${trip.id}">
 
-                            <input type="submit" value="Відмінити заявку" />
+                            <input type="submit" style="align: center;" value="<fmt:message key="label.lang.registration.profile.user.cancelRequest" />" />
                         </form>
                     </c:when>
                     <c:otherwise>
@@ -74,7 +80,10 @@
                    </c:when>
                 </c:choose>
             </tr>
+            </tbody>
         </c:forEach>
 </table>
     </c:otherwise>
 </c:choose>
+
+</div>
