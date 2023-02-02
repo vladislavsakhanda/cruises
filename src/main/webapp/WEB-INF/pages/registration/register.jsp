@@ -29,12 +29,9 @@
 
   <body>
 
-
     <div id="form">
     <h3 id="formTitle"><fmt:message key="label.lang.registration.register.registration" /></h3>
-    <form action="register" method="post">
-
-
+    <form action="?command=Register" method="POST">
         <div><fmt:message key="label.lang.registration.register.name" />:</div>
         <span><input name="name" value="${name}"/></span>
         <c:if test="${requestScope.messageName != null}">

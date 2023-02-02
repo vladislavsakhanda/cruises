@@ -15,7 +15,7 @@
 <body>
     <div id="center">
     <h5><fmt:message key="label.lang.cruisesCatalog.bookTour.providePassport" /></h5>
-    <form method="post" class="form-group" action="bookTour" enctype="multipart/form-data">
+    <form method="POST" class="form-group" action="?command=BookTour" enctype="multipart/form-data">
      <input type="hidden" name="liner_id" value="${liner_id}" />
      <input type="hidden" name="price" value="${price}" />
      <input type="hidden" name="date_start" value="${date_start}" />

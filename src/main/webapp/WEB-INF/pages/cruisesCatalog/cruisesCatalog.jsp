@@ -16,15 +16,15 @@
 
 <body>
     <div id="filter">
-    <form action="cruisesCatalog" method="get" style="margin: 0px;">
+    <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
         <input type="hidden" name="action" value="change" />
 
         <div style="margin-top: 15px;">
         <span><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.cruisesCatalog" />:</span>
-        <span><select name="recordsPerPage">
-            <option>3</option>
-            <option>5</option>
-            <option>10</option>
+        <span><select name="recordsPerPage" value="5">
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
         </select></span>
         </div>
 
@@ -39,15 +39,15 @@
         </div>
 
         <div style="margin-top: 15px;">
-        <span style=""><input type="date" min='${minDate}' max='${maxDate}' value='${minDate}' name="date_start"></span>
+        <span style=""><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateStart}' name="date_start"></span>
         <span><fmt:message key="label.lang.admin.to" /></span>
-        <span><input type="date" min='${minDate}' max='${maxDate}' value='${maxDate}' name="date_end"></span>
+        <span><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateEnd}' name="date_end"></span>
         </div>
 
         <div style="margin-top: 15px;">
         <span"><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.confirm" />" style="margin: 0px;"/></span>
 
-        <form action="cruisesCatalog" method="post" style="margin: 0px;">
+        <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
             <span><input type="hidden" name="action" value="reset" /></span>
 
             <span><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.reset" />" /></span>
@@ -72,7 +72,7 @@
         <tbody>
         <c:forEach var="liner" items="${linerList}">
             <tr class="active-row">
-                <td><a href="cruisesCatalog/liner?id=${liner.id}">${liner.name}</a></td>
+                <td><a href="/cruises?command=CruisesCatalogLiner&id=${liner.id}">${liner.name}</a></td>
                 <td>${liner.date_start} по ${liner.date_end}</td>
                 <td>${cruisesTLD:countPriceLiner(liner)}$</td>
                 <td>${liner.capacity}</td>
@@ -85,7 +85,7 @@
         <tr>
             <c:choose>
             <c:when test="${currentPage != 1}">
-                <td style="padding: 12px 15px;"><a href="cruisesCatalog?page=${currentPage - 1}">
+                <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&page=${currentPage - 1}">
                 <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.previous" /></a></td>
             </c:when>
             <c:otherwise>
@@ -100,14 +100,14 @@
                         <td style="padding: 12px 15px;">${i}</td>
                     </c:when>
                     <c:otherwise>
-                        <td style="padding: 12px 15px;"><a href="cruisesCatalog?page=${i}">${i}</a></td>
+                        <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&page=${i}">${i}</a></td>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
 
             <c:choose>
             <c:when test="${currentPage lt numberPages}">
-                <td style="padding: 12px 15px;"><a href="cruisesCatalog?page=${currentPage + 1}">
+                <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&page=${currentPage + 1}">
                 <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.next" /></a></td>
             </c:when>
             <c:otherwise>

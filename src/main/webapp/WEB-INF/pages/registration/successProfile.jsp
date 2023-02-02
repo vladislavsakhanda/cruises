@@ -16,11 +16,11 @@
 <div id="indent">
 <p><fmt:message key="label.lang.registration.profile.hello" /> ${sessionScope.userSurname} ${sessionScope.userName}!
 <fmt:message key="label.lang.registration.profile.helloContinue" /> ${sessionScope.userEmail}</p>
-<a href="profile/logout"><fmt:message key="label.lang.registration.profile.user.logout" /></a>
+<a href="/cruises?command=LogOut"><fmt:message key="label.lang.registration.profile.user.logout" /></a>
 
 <c:choose>
     <c:when test="${role != null}">
-      <br><br><a href="/cruises/requestsCatalog">
+      <br><br><a href="/cruises?command=RequestsCatalog">
       <fmt:message key="label.lang.registration.profile.admin.requestManagement" />
       </a><br>
     </c:when>
@@ -42,8 +42,8 @@
         <c:forEach var="trip" items="${trips}">
             <tr>
                 <td>${trip.id}</td>
-                <td><a href="cruisesCatalog/liner?id=${trip.liner_id}">${cruisesTLD:getLinerById(trip.liner_id).name}</a></td>
-                <td>${trip.date_start} по ${trip.date_end}</td>
+                <td><a href="/cruises?command=CruisesCatalogLiner&id=${trip.liner_id}">${cruisesTLD:getLinerById(trip.liner_id).name}</a></td>
+                <td>${trip.date_start} <fmt:message key="label.lang.admin.to" /> ${trip.date_end}</td>
                 <td style="align: center;"><c:choose>
                    <c:when test="${trip.status == 1}">
                          <form action="profile" method="POST">
@@ -54,7 +54,7 @@
                          </form>
                    </c:when>
                    <c:when test="${trip.is_paid == false}">
-                       <form action="profile" method="POST">
+                       <form action="?command=Profile" method="POST">
                             <input type="hidden" name="action" value="removeRequest">
                             <input type="hidden" name="id" value="${trip.id}">
 

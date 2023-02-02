@@ -30,9 +30,7 @@
   <body>
     <h3><fmt:message key="label.lang.registration.login.login" /></h3>
 
-    <form action="login" method="post">
-
-
+    <form action="?command=Login" method="POST">
 
         <div><fmt:message key="label.lang.registration.login.email" />:</div>
         <span><input name="email" value="${email}" /></span>

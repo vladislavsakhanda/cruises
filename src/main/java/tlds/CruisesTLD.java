@@ -25,8 +25,8 @@ public class CruisesTLD {
     public static void getAndWriteTempImageOfPassport(Trip trip, java.lang.String pathProjectDirectory) {
         String pathToStore = null;
         try {
-            pathToStore = pathProjectDirectory + "\\images\\" + trip.getId() + "_temp.jpg";
-
+            pathToStore = pathProjectDirectory + "images\\" + trip.getId() + "_temp.jpg";
+            System.out.println(pathToStore);
 //            Files.deleteIfExists(new File(pathToStore).toPath());
 
             File image = new File(pathToStore);

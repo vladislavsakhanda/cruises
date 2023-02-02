@@ -35,7 +35,7 @@
                 <td>${user.surname} ${user.name}</td>
                 <td>
                 ${cruisesTLD:getAndWriteTempImageOfPassport(trip, pathProjectDirectory)}
-                <img src="./images/${trip.id}_temp.jpg" width="250" height="250"/>
+                <img src="/images/${trip.id}_temp.jpg" width="250" height="250"/>
                 </td>
                 <td>${liner.name}</td>
                 <td>${trip.date_start} <fmt:message key="label.lang.admin.to" /> ${trip.date_end}</td>
@@ -65,7 +65,7 @@
                 <td>
                 <c:choose>
                 <c:when test ="${trip.status != 3}">
-                    <form action="requestsCatalog" method="POST">
+                    <form action="?command=RequestsCatalog" method="POST">
                         <select name="status">
                             <c:if test="${trip.status != 0}">
                                 <option value="0"><fmt:message key="label.lang.admin.pending" /></option>

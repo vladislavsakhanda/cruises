@@ -76,11 +76,12 @@
     </c:when>
     <c:otherwise>
         <p>
-        <form method="get" action="bookTour">
+        <form method="POST" action="?command=BookTour">
                     <input type="hidden" name="liner_id" value="${liner_id}" />
                     <input type="hidden" name="price" value="${price}" />
                     <input type="hidden" name="date_start" value="${date_start}" />
                     <input type="hidden" name="date_end" value="${date_end}" />
+                    <input type="hidden" name="action" value="book" />
                     <input type='submit' name="Submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.makeRequest" />" />
         </form>
         <p>
