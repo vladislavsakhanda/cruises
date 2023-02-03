@@ -65,4 +65,10 @@
         <function-class>tlds.CruisesTLD</function-class>
         <function-signature>db.dao.mysql.entity.User getUserByUserId(long)</function-signature>
     </function>
+
+    <function>
+        <name>getBlobFromInputStream</name>
+        <function-class>tlds.CruisesTLD</function-class>
+        <function-signature>java.lang.String getBlobFromInputStream(db.dao.mysql.entity.Trip)</function-signature>
+    </function>
 </taglib>

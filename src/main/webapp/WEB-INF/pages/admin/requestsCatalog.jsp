@@ -31,11 +31,14 @@
             <c:set var="user" value="${cruisesTLD:getUserByUserId(trip.user_id)}"/>
             <c:set var="liner" value="${cruisesTLD:getLinerById(trip.liner_id)}"/>
 
+            <c:set var="image" value="${cruisesTLD:getBlobFromInputStream(trip)}"/>
+
             <tr>
                 <td>${user.surname} ${user.name}</td>
                 <td>
                 ${cruisesTLD:getAndWriteTempImageOfPassport(trip, pathProjectDirectory)}
-                <img src="/images/${trip.id}_temp.jpg" width="250" height="250"/>
+
+                <img src="data:image/jpg;base64,${image}" width="250" height="250"/>
                 </td>
                 <td>${liner.name}</td>
                 <td>${trip.date_start} <fmt:message key="label.lang.admin.to" /> ${trip.date_end}</td>

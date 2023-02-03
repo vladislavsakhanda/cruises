@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "SessionLocaleFilter", urlPatterns = {"/*"})
+@WebFilter(filterName = "SessionLocaleFilter", urlPatterns="/url3/*")
 public class SessionLocaleFilter implements Filter {
     public void init(FilterConfig arg0) throws ServletException {
     }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="cruisesTLD" uri="/WEB-INF/tlds/cruises.tld" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:setLocale value="${lang}" />
@@ -24,10 +25,22 @@
     </c:otherwise>
 </c:choose>
 
+<c:set var="parametersPath" value=""/>
+<c:forEach var="entry" items="${paramValues}">
+        <c:if test="${entry.key != 'language'}">
+            <c:set var="parametersPath" value="${parametersPath}${entry.key}"/>
+
+            <c:forEach var="value" items="${entry.value}">
+                <c:set var="parametersPath" value="${parametersPath}=${value}&"/>
+            </c:forEach>
+        </c:if>
+
+</c:forEach>
+
+
 <select name="language" onchange="location = this.value;" class="select-css">
     <option value=""><fmt:message key="label.lang.registration.changeLanguage" /></option>
-    <option value="${pageContext.request.contextPath}&language=en">English</option>
-    <option value="&language=ua">Українська</option>
+    <option value="?${parametersPath}language=en">English</option>
+    <option value="?${parametersPath}language=ua">Українська</option>
 </select>
-
 </div>

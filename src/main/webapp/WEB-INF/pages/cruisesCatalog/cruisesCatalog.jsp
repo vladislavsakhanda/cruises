@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <div id="filter">
     <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
         <input type="hidden" name="action" value="change" />

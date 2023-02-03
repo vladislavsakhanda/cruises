@@ -82,8 +82,7 @@ public class CruisesCatalogCommand extends FrontCommand {
             request.setAttribute("allDuration", allDuration);
             List<Liner> liners = new ArrayList<>();
             int choseDuration = 0;
-            System.out.println("date_start " + date_start);
-            System.out.println("date_end " + date_end);
+
             if (request.getParameter("choseDuration") == null || Objects.equals(request.getParameter("choseDuration"), "all")) {
                 liners = dao.getAll(date_start, date_end, (page - 1) * recordsPerPage, recordsPerPage);
             } else {

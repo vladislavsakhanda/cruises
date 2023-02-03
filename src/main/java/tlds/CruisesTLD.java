@@ -11,22 +11,42 @@ import db.dao.mysql.entity.Trip;
 import db.dao.mysql.entity.User;
 import org.apache.commons.io.IOUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CruisesTLD {
+
     public static User getUserByUserId(long user_id) throws SQLException {
         return new MySqlUserDAO().read(user_id);
+    }
+
+    public static String getBlobFromInputStream(Trip trip) throws IOException {
+        InputStream inputStream = trip.getPassport();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        byte[] imageBytes = outputStream.toByteArray();
+        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+        inputStream.close();
+        outputStream.close();
+
+        return base64Image;
     }
 
     public static void getAndWriteTempImageOfPassport(Trip trip, java.lang.String pathProjectDirectory) {
         String pathToStore = null;
         try {
             pathToStore = pathProjectDirectory + "images\\" + trip.getId() + "_temp.jpg";
-            System.out.println(pathToStore);
 //            Files.deleteIfExists(new File(pathToStore).toPath());
 
             File image = new File(pathToStore);

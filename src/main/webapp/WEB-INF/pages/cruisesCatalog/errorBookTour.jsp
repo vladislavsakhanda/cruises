@@ -24,8 +24,8 @@
 </head>
 <body>
  <center>
-  <div class="alert alert-success">
-   <strong><fmt:message key="label.lang.cruisesCatalog.bookTour.successMessage" /></strong>
+  <div class="alert alert-danger">
+   <strong><fmt:message key="label.lang.cruisesCatalog.bookTour.errorMessage" /></strong>
   </div>
  </center>
 </body>

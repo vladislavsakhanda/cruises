@@ -81,13 +81,13 @@
                     <input type="hidden" name="price" value="${price}" />
                     <input type="hidden" name="date_start" value="${date_start}" />
                     <input type="hidden" name="date_end" value="${date_end}" />
-                    <input type="hidden" name="action" value="book" />
+                    <input type="hidden" name="actionBook" value="bookView" />
                     <input type='submit' name="Submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.makeRequest" />" />
         </form>
         <p>
     </c:otherwise>
 </c:choose>
-<a href="/cruises/cruisesCatalog"><fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.chooseOtherCruise" /></a><br>
+<a href="/cruises?command=CruisesCatalog"><fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.chooseOtherCruise" /></a><br>
 </h5>
 </body>
 
