@@ -4,6 +4,8 @@ import controller.FrontCommand;
 import db.dao.mysql.MySqlDAOFactory;
 import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class RegisterCommand extends FrontCommand {
+    private static final Logger LOGGER = LogManager.getLogger(RegisterCommand.class);
     private static final String REGEX_EMAIL = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
     private static final String REGEX_NAME = "^[a-zA-ZА-Яа-яіІЇїєЄ]{3,}";
 
@@ -78,8 +81,10 @@ public class RegisterCommand extends FrontCommand {
         } else {
             try {
                 register(name, surname, email, password);
+                LOGGER.info("register success");
                 sendRedirect("/cruises?command=SuccessRegistration");
             } catch (Exception e) {
+                LOGGER.trace("register error");
                 sendRedirect("/cruises?command=ErrorRegistration");
             }
         }
@@ -89,8 +94,10 @@ public class RegisterCommand extends FrontCommand {
     public void register(String name, String surname, String email, String password) throws Exception {
         try {
             new MySqlDAOFactory().getUserDao().create(User.createUser(name, surname, email, password));
+            LOGGER.info("User registered");
         } catch (SQLException e) {
             e.printStackTrace();
+            LOGGER.info("User did not register");
         }
     }
 
@@ -99,6 +106,7 @@ public class RegisterCommand extends FrontCommand {
 
         try {
             user = new MySqlUserDAO().read(requestEmail);
+            LOGGER.info("User exists");
         } catch (SQLException ignored) {
 
         }

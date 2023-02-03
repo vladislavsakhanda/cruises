@@ -7,6 +7,8 @@ import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.Role;
 import db.dao.mysql.entity.RoleHasUser;
 import db.dao.mysql.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class LoginCommand extends FrontCommand {
+    private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
     private static final String REGEX_EMAIL = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
 
     @Override
@@ -67,12 +70,14 @@ public class LoginCommand extends FrontCommand {
                     session.setAttribute("userName", user.getName());
                     session.setAttribute("userSurname", user.getSurname());
                     session.setAttribute("userEmail", user.getEmail());
+                    LOGGER.info("login success");
                 } else {
                     request.setAttribute("messageErrorLogin", "label.lang.registration.messageErrorLogin");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 request.setAttribute("messageErrorLogin", "label.lang.registration.messageErrorLogin");
+                LOGGER.trace("login error");
             }
 
             doGet();

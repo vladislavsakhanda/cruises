@@ -1,11 +1,14 @@
 package controller.commands;
 
 import controller.FrontCommand;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 
 public class SuccessBookTourCommand extends FrontCommand {
+    private static final Logger LOGGER = LogManager.getLogger(SuccessBookTourCommand.class);
     @Override
     public void process() throws ServletException, IOException {
         if (request.getAttribute("method") == "GET") {
@@ -16,6 +19,7 @@ public class SuccessBookTourCommand extends FrontCommand {
     }
 
     private void doGet() throws ServletException, IOException {
+        LOGGER.info("book tour success");
         forward("cruisesCatalog/successBookTour");
     }
 

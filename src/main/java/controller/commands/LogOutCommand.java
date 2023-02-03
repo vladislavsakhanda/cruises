@@ -1,12 +1,15 @@
 package controller.commands;
 
 import controller.FrontCommand;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogOutCommand extends FrontCommand {
+    private static final Logger LOGGER = LogManager.getLogger(LogOutCommand.class);
     @Override
     public void process() throws ServletException, IOException {
         if (request.getAttribute("method") == "GET") {
@@ -22,6 +25,7 @@ public class LogOutCommand extends FrontCommand {
         session.invalidate();
         request.getSession().setAttribute("lang", language);
 
+        LOGGER.info("log out success");
         forward("home");
     }
 

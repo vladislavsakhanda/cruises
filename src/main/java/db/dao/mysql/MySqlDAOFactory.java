@@ -15,8 +15,6 @@ public class MySqlDAOFactory extends DAOFactory {
     private MySqlRoleDAO mySqlRoleDAO;
     private MySqlLinerDAO mySqlLinerDAO;
 
-
-
     @Override
     public MySqlUserDAO getUserDao() {
         if (mySqlUserDAO == null) {

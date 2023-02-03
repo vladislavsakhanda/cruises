@@ -3,6 +3,8 @@ package controller.commands;
 import controller.FrontCommand;
 import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.entity.Liner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CruisesCatalogCommand extends FrontCommand {
+    private static final Logger LOGGER = LogManager.getLogger(CruisesCatalogCommand.class);
     @Override
     public void process() throws ServletException, IOException {
         if (request.getAttribute("method") == "GET") {
@@ -47,7 +50,7 @@ public class CruisesCatalogCommand extends FrontCommand {
             context.setAttribute("minDate", minDate);
             context.setAttribute("maxDate", maxDate);
 
-            Object contextCurrentDateStart= context.getAttribute("currentDateStart");
+            Object contextCurrentDateStart = context.getAttribute("currentDateStart");
             if (request.getParameter("date_start") != null) {
                 date_start = Date.valueOf(request.getParameter("date_start"));
                 context.setAttribute("currentDateStart", request.getParameter("date_start"));
@@ -98,6 +101,7 @@ public class CruisesCatalogCommand extends FrontCommand {
             context.setAttribute("currentPage", page);
         } catch (SQLException e) {
             e.printStackTrace();
+            LOGGER.trace("cruises catalog error");
         }
 
         forward("cruisesCatalog/cruisesCatalog");

@@ -3,6 +3,8 @@ package controller.commands;
 import controller.FrontCommand;
 import db.dao.mysql.MySqlTripDAO;
 import db.dao.mysql.entity.Trip;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class BookTourCommand extends FrontCommand {
+    private static final Logger LOGGER = LogManager.getLogger(BookTourCommand.class);
     @Override
     public void process() throws ServletException, IOException {
         if (request.getAttribute("method") == "GET") {
@@ -76,8 +79,10 @@ public class BookTourCommand extends FrontCommand {
             new MySqlTripDAO().create(Trip.createTrip(user_id, liner_id, is_paid,
                     price, date_start, date_end, inputStream, status));
             context.setAttribute("actionBook", request.getParameter("bookFinish"));
+            LOGGER.info("user booked tour");
         } catch (Exception e) {
             e.printStackTrace();
+            LOGGER.trace("user can`t book tour");
         }
     }
 
