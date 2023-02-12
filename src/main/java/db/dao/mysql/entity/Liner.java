@@ -1,5 +1,7 @@
 package db.dao.mysql.entity;
 
+import exeptions.IllegalFieldException;
+
 import java.sql.Date;
 
 public class Liner extends Entity {
@@ -7,17 +9,29 @@ public class Liner extends Entity {
     private String description;
     private int capacity;
     private String route;
-    private double price_coefficient;
-    private Date date_start;
-    private Date date_end;
+    private double priceCoefficient;
+    private Date dateStart;
+    private Date dateEnd;
 
-    public static Liner createLiner(String name, String description, int capacity, String route, int price_coefficient) {
+    public static boolean datesCheck(Date dateStart, Date dateEnd) throws IllegalFieldException {
+        if (dateStart.compareTo(dateEnd) > 0) {
+            throw new IllegalFieldException("dateStart cannot be later than dateEnd");
+        }
+        return true;
+    }
+
+    public static Liner createLiner(String name, String description, int capacity, String route,
+                                    int priceCoefficient, Date dateStart, Date dateEnd) throws IllegalFieldException {
         Liner liner = new Liner();
         liner.setName(name);
         liner.setDescription(description);
         liner.setCapacity(capacity);
         liner.setRoute(route);
-        liner.setPrice_coefficient(price_coefficient);
+        liner.setPriceCoefficient(priceCoefficient);
+        liner.setDateStart(dateStart);
+        liner.setDateEnd(dateEnd);
+        // throw IllegalFieldException if dateStart later than dateEnd
+        datesCheck(dateStart, dateEnd);
         return liner;
     }
 
@@ -25,39 +39,65 @@ public class Liner extends Entity {
         super();
     }
 
-    public Liner(long id) {
+    public Liner(long id) throws IllegalFieldException {
         super(id);
     }
 
     public Liner(String name, String description, int capacity, String route,
-                 int price_coefficient, Date date_start, Date date_end) {
+                 int priceCoefficient, Date dateStart, Date dateEnd) throws IllegalFieldException {
+        // We use the ready-made createLiner method, which has checks
+        Liner liner = Liner.createLiner(
+                name, description, capacity, route,
+                priceCoefficient, dateStart, dateEnd);
+
+        this.name = liner.getName();
+        this.description = liner.getDescription();
+        this.capacity = liner.getCapacity();
+        this.route = liner.getRoute();
+        this.priceCoefficient = liner.getPriceCoefficient();
+        this.dateStart = liner.getDateStart();
+        this.dateEnd = liner.getDateEnd();
+    }
+
+    public void setName(String name) throws IllegalFieldException {
+        if (name == null) {
+            throw new IllegalFieldException("Name is null.");
+        } else if (name.length() == 0) {
+            throw new IllegalFieldException("Name must contain at least 1 character.");
+        }
+
         this.name = name;
-        this.description = description;
-        this.capacity = capacity;
-        this.route = route;
-        this.price_coefficient = price_coefficient;
-        this.date_start = date_start;
-        this.date_end = date_end;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setDescription(String description) throws IllegalFieldException {
+        if (description == null) {
+            throw new IllegalFieldException("description is null.");
+        }
 
-    public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(int capacity) throws IllegalFieldException {
+        if (capacity < 0) {
+            throw new IllegalFieldException("capacity must be greater than or equal to zero.");
+        }
         this.capacity = capacity;
     }
 
-    public void setRoute(String route) {
+    public void setRoute(String route) throws IllegalFieldException {
+        if (route == null) {
+            throw new IllegalFieldException("route is null.");
+        }
+
         this.route = route;
     }
 
-    public void setPrice_coefficient(double price_coefficient) {
-        this.price_coefficient = price_coefficient;
+    public void setPriceCoefficient(double priceCoefficient) throws IllegalFieldException {
+        if (priceCoefficient <= 0) {
+            throw new IllegalFieldException("priceCoefficient must be greater than zero.");
+        }
+
+        this.priceCoefficient = priceCoefficient;
     }
 
     public String getName() {
@@ -76,24 +116,30 @@ public class Liner extends Entity {
         return route;
     }
 
-    public double getPrice_coefficient() {
-        return price_coefficient;
+    public double getPriceCoefficient() {
+        return priceCoefficient;
     }
 
-    public Date getDate_start() {
-        return date_start;
+    public Date getDateStart() {
+        return dateStart;
     }
 
-    public void setDate_start(Date date_start) {
-        this.date_start = date_start;
+    public void setDateStart(Date dateStart) throws IllegalFieldException {
+        if (dateStart == null) {
+            throw new IllegalFieldException("dateStart cannot be null");
+        }
+        this.dateStart = dateStart;
     }
 
-    public Date getDate_end() {
-        return date_end;
+    public Date getDateEnd() {
+        return dateEnd;
     }
 
-    public void setDate_end(Date date_end) {
-        this.date_end = date_end;
+    public void setDateEnd(Date dateEnd) throws IllegalFieldException {
+        if (dateEnd == null) {
+            throw new IllegalFieldException("dateEnd cannot be null");
+        }
+        this.dateEnd = dateEnd;
     }
 
     @Override
@@ -103,9 +149,9 @@ public class Liner extends Entity {
                 ", description='" + description + '\'' +
                 ", capacity=" + capacity +
                 ", route='" + route + '\'' +
-                ", price_coefficient=" + price_coefficient +
-                ", date_start=" + date_start +
-                ", date_end=" + date_end +
+                ", priceCoefficient=" + priceCoefficient +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
                 '}';
     }
 }

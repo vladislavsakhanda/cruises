@@ -16,10 +16,10 @@
     <div id="center">
     <h5><fmt:message key="label.lang.cruisesCatalog.bookTour.providePassport" /></h5>
     <form method="POST" class="form-group" action="?command=BookTour" enctype="multipart/form-data">
-     <input type="hidden" name="liner_id" value="${liner_id}" />
+     <input type="hidden" name="linerId" value="${linerId}" />
      <input type="hidden" name="price" value="${price}" />
-     <input type="hidden" name="date_start" value="${date_start}" />
-     <input type="hidden" name="date_end" value="${date_end}" />
+     <input type="hidden" name="dateStart" value="${dateStart}" />
+     <input type="hidden" name="dateEnd" value="${dateEnd}" />
      <div class="form-group">
       <label for="Profile Photo"></label>
       <input type="file" accept="image/*" name="passport" required/>

@@ -4,52 +4,62 @@ import com.zaxxer.hikari.HikariDataSource;
 import db.dao.DataSource;
 import db.dao.StaffDAO;
 import db.dao.mysql.entity.Staff;
+import exeptions.DBException;
+import exeptions.IllegalFieldException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static db.dao.DataSource.closeConnection;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlStaffDAO implements StaffDAO {
-    private static Staff mapStaff(ResultSet rs) throws SQLException {
+    private static Staff mapStaff(ResultSet rs) throws SQLException, IllegalFieldException {
         Staff s = new Staff();
         s.setId(rs.getLong(ID));
         s.setName(rs.getString("name"));
         s.setSurname(rs.getString("surname"));
-        s.setSpecialization(rs.getString("specialization"));
-        s.setLiner_id(rs.getLong("liner_id"));
+        s.setSpecialization(Staff.Specialization.valueOf(rs.getString("specialization")));
+        s.setLinerId(rs.getLong("liner_id"));
         return s;
     }
 
     @Override
-    public List<Staff> getAll() {
+    public List<Staff> getAll() throws DBException, IllegalFieldException {
         List<Staff> staff = new ArrayList<>();
-        try (Connection con = DataSource.getConnection()) {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(GET_ALL_STAFF);
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(GET_ALL_STAFF);
             while (rs.next()) {
                 staff.add(mapStaff(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
+        } finally {
+            close(rs);
+            close(stmt);
+            closeConnection(con);
         }
         return staff;
     }
 
     @Override
-    public Staff read(long id) throws SQLException {
-        Staff s = new Staff();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_STAFF_BY_ID)
-        ) {
+    public Staff read(long id) throws DBException, IllegalFieldException {
+        Staff s = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_STAFF_BY_ID);
+
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 rs.next();
@@ -57,13 +67,16 @@ public class MySqlStaffDAO implements StaffDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw e;
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return s;
     }
 
     @Override
-    public void create(Staff staff) throws SQLException {
+    public void create(Staff staff) throws DBException, IllegalFieldException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -74,7 +87,7 @@ public class MySqlStaffDAO implements StaffDAO {
             int k = 0;
             stmt.setString(++k, staff.getName());
             stmt.setString(++k, staff.getSurname());
-            stmt.setString(++k, staff.getSpecialization());
+            stmt.setString(++k, staff.getSpecialization().getCode());
             stmt.setLong(++k, staff.getLiner_id());
 
             int count = stmt.executeUpdate();
@@ -85,19 +98,20 @@ public class MySqlStaffDAO implements StaffDAO {
                     }
                 }
             }
+
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 
     @Override
-    public void update(Staff staff) throws SQLException {
+    public void update(Staff staff) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -107,25 +121,24 @@ public class MySqlStaffDAO implements StaffDAO {
             int k = 0;
             stmt.setString(++k, staff.getName());
             stmt.setString(++k, staff.getSurname());
-            stmt.setString(++k, staff.getSpecialization());
+            stmt.setString(++k, staff.getSpecialization().getCode());
             stmt.setLong(++k, staff.getLiner_id());
             stmt.setLong(++k, staff.getId());
-
             stmt.executeUpdate();
 
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 
     @Override
-    public void delete(Staff staff) throws SQLException {
+    public void delete(Staff staff) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -140,10 +153,10 @@ public class MySqlStaffDAO implements StaffDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 }

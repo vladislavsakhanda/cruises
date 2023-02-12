@@ -3,59 +3,68 @@ package db.dao.mysql;
 import db.dao.DataSource;
 import db.dao.LinerDAO;
 import db.dao.mysql.entity.Liner;
+import exeptions.DBException;
+import exeptions.IllegalFieldException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static db.dao.DataSource.closeConnection;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 
 public class MySqlLinerDAO implements LinerDAO {
-    private static Liner mapLiner(ResultSet rs) throws SQLException {
+    private static Liner mapLiner(ResultSet rs) throws SQLException, IllegalFieldException {
         Liner l = new Liner();
         l.setId(rs.getLong(ID));
         l.setName(rs.getString("name"));
         l.setDescription(rs.getString("description"));
         l.setCapacity(rs.getInt("capacity"));
         l.setRoute(rs.getString("route"));
-        l.setPrice_coefficient(rs.getDouble("price_coefficient"));
-        l.setDate_start(rs.getDate("date_start"));
-        l.setDate_end(rs.getDate("date_end"));
+        l.setPriceCoefficient(rs.getDouble("price_coefficient"));
+        l.setDateStart(rs.getDate("date_start"));
+        l.setDateEnd(rs.getDate("date_end"));
         return l;
     }
 
     @Override
-    public List<Liner> getAll() {
+    public List<Liner> getAll() throws DBException {
         List<Liner> liners = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(GET_ALL_LINERS)) {
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(GET_ALL_LINERS);
             while (rs.next()) {
                 liners.add(mapLiner(rs));
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return liners;
     }
 
     private int numberPageRecords;
 
-    public List<Liner> getAll(int duration, Date date_start, Date date_end, int offset, int recordsPerPage) {
+    @Override
+    public List<Liner> getAll(int duration, Date dateStart, Date dateEnd, int offset, int recordsPerPage) throws DBException {
         List<Liner> liners = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_ALL_LINERS_PAGINATION)) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_ALL_LINERS_PAGINATION);
 
             int k = 0;
             stmt.setInt(++k, duration);
-            stmt.setDate(++k, date_start);
-            stmt.setDate(++k, date_end);
+            stmt.setDate(++k, dateStart);
+            stmt.setDate(++k, dateEnd);
             stmt.setInt(++k, offset);
             stmt.setInt(++k, recordsPerPage);
             ResultSet rs = stmt.executeQuery();
@@ -67,25 +76,28 @@ public class MySqlLinerDAO implements LinerDAO {
             if (rs.next()) {
                 this.numberPageRecords = rs.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return liners;
     }
 
-    public List<Liner> getAll(Date date_start, Date date_end, int offset, int recordsPerPage) {
+    @Override
+    public List<Liner> getAll(Date dateStart, Date dateEnd, int offset, int recordsPerPage) throws DBException {
         List<Liner> liners = new ArrayList<>();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_ALL_LINERS_PAGINATION_ALL_DURATION)) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_ALL_LINERS_PAGINATION_ALL_DURATION);
 
             int k = 0;
-            stmt.setDate(++k, date_start);
-            stmt.setDate(++k, date_end);
+            stmt.setDate(++k, dateStart);
+            stmt.setDate(++k, dateEnd);
             stmt.setInt(++k, offset);
             stmt.setInt(++k, recordsPerPage);
             ResultSet rs = stmt.executeQuery();
@@ -97,13 +109,12 @@ public class MySqlLinerDAO implements LinerDAO {
             if (rs.next()) {
                 this.numberPageRecords = rs.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return liners;
     }
@@ -125,7 +136,7 @@ public class MySqlLinerDAO implements LinerDAO {
         }
     }
 
-    public Date getDate(QueryDate queryDate) throws SQLException {
+    public Date getDate(QueryDate queryDate) throws DBException {
         Date date = null;
         Connection con = null;
         Statement stmt = null;
@@ -153,22 +164,16 @@ public class MySqlLinerDAO implements LinerDAO {
                 date = rs.getDate(1);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
         } finally {
             close(stmt);
-            if (con != null) {
-                con.close();
-            }
+            closeConnection(con);
         }
         return date;
     }
 
-    public List<Integer> getAllDurationOfTrip() throws SQLException {
+    @Override
+    public List<Integer> getAllDurationOfTrip() throws DBException {
         List<Integer> allDuration = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
@@ -183,23 +188,17 @@ public class MySqlLinerDAO implements LinerDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
         } finally {
             close(stmt);
-            if (con != null) {
-                con.close();
-            }
+            closeConnection(con);
         }
         return allDuration;
     }
 
 
     @Override
-    public Liner read(long id) throws SQLException {
+    public Liner read(long id) throws DBException, IllegalFieldException {
         Liner u;
         Connection con = null;
         PreparedStatement stmt = null;
@@ -214,28 +213,26 @@ public class MySqlLinerDAO implements LinerDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            if (con != null) {
-                con.close();
-            }
+            closeConnection(con);
         }
         return u;
     }
 
     @Override
-    public void create(Liner entity) {
+    public void create(Liner liner) {
 
     }
 
     @Override
-    public void update(Liner entity) {
+    public void update(Liner liner) {
 
     }
 
     @Override
-    public void delete(Liner entity) {
+    public void delete(Liner liner) {
 
     }
 

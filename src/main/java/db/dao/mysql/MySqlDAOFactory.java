@@ -75,7 +75,9 @@ public class MySqlDAOFactory extends DAOFactory {
 
     public static void rollback(Connection con) {
         try {
-            con.rollback();
+            if (con != null) {
+                con.rollback();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

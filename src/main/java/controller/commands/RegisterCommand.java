@@ -1,26 +1,26 @@
 package controller.commands;
 
 import controller.FrontCommand;
-import db.dao.mysql.MySqlDAOFactory;
 import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.User;
+import exeptions.IllegalFieldException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import services.UserService;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.regex.Pattern;
+
+import static db.dao.mysql.entity.EntityConstants.REGEX_EMAIL;
+import static db.dao.mysql.entity.EntityConstants.REGEX_NAME_AND_SURNAME;
 
 public class RegisterCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(RegisterCommand.class);
-    private static final String REGEX_EMAIL = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
-    private static final String REGEX_NAME = "^[a-zA-ZА-Яа-яіІЇїєЄ]{3,}";
+    private final UserService userService = new UserService(new MySqlUserDAO());
 
     @Override
-    public void process() throws ServletException, IOException {
+    public void process() throws ServletException, IOException, IllegalFieldException {
         if (request.getAttribute("method") == "GET") {
             doGet();
         } else if (request.getAttribute("method") == "POST") {
@@ -32,7 +32,7 @@ public class RegisterCommand extends FrontCommand {
         forward("registration/register");
     }
 
-    private void doPost() throws ServletException, IOException {
+    private void doPost() throws ServletException, IOException, IllegalFieldException {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
@@ -46,7 +46,7 @@ public class RegisterCommand extends FrontCommand {
             request.setAttribute("messageName", "label.lang.registration.register.messageNameRequired");
         } else if (name.length() < 3) {
             request.setAttribute("messageName", "label.lang.registration.register.messageNameContainMin");
-        } else if (!Pattern.compile(REGEX_NAME).matcher(name).matches()) {
+        } else if (!Pattern.compile(REGEX_NAME_AND_SURNAME).matcher(name).matches()) {
             request.setAttribute("messageName", "label.lang.registration.register.messageNameIncorrect");
         }
 
@@ -54,7 +54,7 @@ public class RegisterCommand extends FrontCommand {
             request.setAttribute("messageSurname", "label.lang.registration.register.messageSurnameRequired");
         } else if (surname.length() < 3) {
             request.setAttribute("messageSurname", "label.lang.registration.register.messageSurnameContainMin");
-        } else if (!Pattern.compile(REGEX_NAME).matcher(surname).matches()) {
+        } else if (!Pattern.compile(REGEX_NAME_AND_SURNAME).matcher(surname).matches()) {
             request.setAttribute("messageSurname", "label.lang.registration.register.messageSurnameIncorrect");
         }
 
@@ -79,38 +79,17 @@ public class RegisterCommand extends FrontCommand {
         ) {
             forward("registration/register");
         } else {
-            try {
-                register(name, surname, email, password);
-                LOGGER.info("register success");
-                sendRedirect("/cruises?command=SuccessRegistration");
-            } catch (Exception e) {
-                LOGGER.trace("register error");
-                sendRedirect("/cruises?command=ErrorRegistration");
-            }
+            register(name, surname, email, password);
+            sendRedirect("/cruises?command=SuccessRegistration");
         }
     }
 
 
-    public void register(String name, String surname, String email, String password) throws Exception {
-        try {
-            new MySqlDAOFactory().getUserDao().create(User.createUser(name, surname, email, password));
-            LOGGER.info("User registered");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            LOGGER.info("User did not register");
-        }
+    public void register(String name, String surname, String email, String password) throws IllegalFieldException {
+        userService.create(User.createUser(name, surname, email, password));
     }
 
-    private boolean userExist(String requestEmail) {
-        User user = null;
-
-        try {
-            user = new MySqlUserDAO().read(requestEmail);
-            LOGGER.info("User exists");
-        } catch (SQLException ignored) {
-
-        }
-
-        return user != null;
+    private boolean userExist(String requestEmail) throws IllegalFieldException {
+        return userService.read(requestEmail) != null;
     }
 }

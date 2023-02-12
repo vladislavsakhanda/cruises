@@ -4,56 +4,59 @@ import db.dao.DataSource;
 import db.dao.TripDAO;
 import db.dao.mysql.entity.Liner;
 import db.dao.mysql.entity.Trip;
-import db.dao.mysql.entity.User;
+import exeptions.DBException;
+import exeptions.IllegalFieldException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static db.dao.DataSource.closeConnection;
+import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
-import static db.dao.mysql.MySqlConstants.*;
-
-import javax.servlet.http.Part;
 
 public class MySqlTripDAO implements TripDAO {
-    private static Trip mapTrip(ResultSet rs) throws SQLException {
+    private static Trip mapTrip(ResultSet rs) throws SQLException, IllegalFieldException {
         Trip t = new Trip();
         t.setId(rs.getLong(ID));
-        t.setUser_id(rs.getLong("user_id"));
-        t.setLiner_id(rs.getLong("liner_id"));
-        t.setIs_paid(rs.getBoolean("is_paid"));
+        t.setUserId(rs.getLong("user_id"));
+        t.setLinerId(rs.getLong("liner_id"));
+        t.setIsPaid(rs.getBoolean("is_paid"));
         t.setPrice(rs.getDouble("price"));
-        t.setDate_start(rs.getDate("date_start"));
-        t.setDate_end(rs.getDate("date_end"));
+        t.setDateStart(rs.getDate("date_start"));
+        t.setDateEnd(rs.getDate("date_end"));
         t.setPassport(rs.getBinaryStream("passport"));
-        t.setStatus(rs.getInt("status"));
+        t.setStatus(Trip.Status.valueOf(rs.getInt("status")));
         return t;
     }
 
     @Override
-    public List<Trip> getAll() {
+    public List<Trip> getAll() throws DBException, IllegalFieldException {
         List<Trip> trips = new ArrayList<>();
-        try (Connection con = DataSource.getConnection()) {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(GET_ALL_TRIPS);
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(GET_ALL_TRIPS);
             while (rs.next()) {
                 trips.add(mapTrip(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                throw e;
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            throw new DBException();
+        } finally {
+            close(rs);
+            close(stmt);
+            closeConnection(con);
         }
         return trips;
     }
 
-    public List<Trip> getAllByLiner(Liner liner) throws SQLException {
+    @Override
+    public List<Trip> getAllByLiner(Liner liner) throws DBException, IllegalFieldException {
         List<Trip> trips = new ArrayList<>();
         Connection con = null;
         PreparedStatement stmt = null;
@@ -75,15 +78,16 @@ public class MySqlTripDAO implements TripDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
         return trips;
     }
 
-    public List<Trip> getAllByUserId(long userId) throws SQLException {
+    @Override
+    public List<Trip> getAllByUserId(long userId) throws DBException, IllegalFieldException {
         List<Trip> trips = new ArrayList<>();
         Connection con = null;
         PreparedStatement stmt = null;
@@ -105,20 +109,23 @@ public class MySqlTripDAO implements TripDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
         return trips;
     }
 
     @Override
-    public Trip read(long id) throws SQLException {
+    public Trip read(long id) throws DBException, IllegalFieldException {
         Trip t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_ID)
-        ) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_TRIP_BY_ID);
+
             stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 rs.next();
@@ -126,16 +133,23 @@ public class MySqlTripDAO implements TripDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw e;
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return t;
     }
 
-    public Trip readByLinerId(long liner_id) throws SQLException {
+    @Override
+    public Trip readByLinerId(long liner_id) throws DBException, IllegalFieldException {
         Trip t = null;
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID)
-        ) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_TRIP_BY_USER_ID);
+
             stmt.setLong(1, liner_id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -144,18 +158,19 @@ public class MySqlTripDAO implements TripDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw e;
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return t;
     }
 
-    public Trip readByUserIdAndLinerId(long user_id, long liner_id) throws SQLException {
+    @Override
+    public Trip readByUserIdAndLinerId(long user_id, long liner_id) throws SQLException, IllegalFieldException {
         Trip t = null;
         Connection con = null;
         PreparedStatement stmt = null;
-//        try (Connection con = DataSource.getConnection();
-//             PreparedStatement stmt = con.prepareStatement(GET_TRIP_BY_USER_ID_AND_LINER_ID)
-//        ) {
         try {
             con = DataSource.getConnection();
             stmt = con.prepareStatement(GET_TRIP_BY_USER_ID_AND_LINER_ID);
@@ -172,37 +187,44 @@ public class MySqlTripDAO implements TripDAO {
             e.printStackTrace();
             throw e;
         } finally {
-            stmt.close();
-            con.close();
+            close(stmt);
+            closeConnection(con);
         }
         return t;
     }
 
     @Override
-    public void create(Trip trip) {
-        try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRIP)) {
+    public void create(Trip trip) throws DBException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(INSERT_TRIP);
 
             int k = 0;
-            preparedStatement.setLong(++k, trip.getUser_id());
-            preparedStatement.setLong(++k, trip.getLiner_id());
-            preparedStatement.setBoolean(++k, trip.getIs_paid());
-            preparedStatement.setDouble(++k, trip.getPrice());
-            preparedStatement.setDate(++k, trip.getDate_start());
-            preparedStatement.setDate(++k, trip.getDate_end());
-            preparedStatement.setInt(++k, trip.getStatus());
+            stmt.setLong(++k, trip.getUserId());
+            stmt.setLong(++k, trip.getLinerId());
+            stmt.setBoolean(++k, trip.getIsPaid());
+            stmt.setDouble(++k, trip.getPrice());
+            stmt.setDate(++k, trip.getDateStart());
+            stmt.setDate(++k, trip.getDateEnd());
+            stmt.setInt(++k, trip.getStatus().getCode());
             if (trip.getPassport() != null) {
-                preparedStatement.setBinaryStream(++k, trip.getPassport());
+                stmt.setBinaryStream(++k, trip.getPassport());
             }
-            preparedStatement.executeUpdate();
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
     }
 
     @Override
-    public void update(Trip trip) throws SQLException {
+    public void update(Trip trip) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -210,13 +232,13 @@ public class MySqlTripDAO implements TripDAO {
             con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_TRIP);
             int k = 0;
-            stmt.setLong(++k, trip.getUser_id());
-            stmt.setLong(++k, trip.getLiner_id());
-            stmt.setBoolean(++k, trip.getIs_paid());
+            stmt.setLong(++k, trip.getUserId());
+            stmt.setLong(++k, trip.getLinerId());
+            stmt.setBoolean(++k, trip.getIsPaid());
             stmt.setDouble(++k, trip.getPrice());
-            stmt.setDate(++k, trip.getDate_start());
-            stmt.setDate(++k, trip.getDate_end());
-            stmt.setInt(++k, trip.getStatus());
+            stmt.setDate(++k, trip.getDateStart());
+            stmt.setDate(++k, trip.getDateEnd());
+            stmt.setInt(++k, trip.getStatus().getCode());
             stmt.setBinaryStream(++k, trip.getPassport());
             stmt.setLong(++k, trip.getId());
 
@@ -226,14 +248,15 @@ public class MySqlTripDAO implements TripDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 
-    public void updateIsPaid(boolean isPaid, long id) throws SQLException {
+    @Override
+    public void updateIsPaid(boolean isPaid, long id) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -250,14 +273,15 @@ public class MySqlTripDAO implements TripDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 
-    public void updateIsStatus(Trip.Status status, long id) throws SQLException {
+    @Override
+    public void updateIsStatus(Trip.Status status, long id) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -274,15 +298,15 @@ public class MySqlTripDAO implements TripDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 
     @Override
-    public void delete(Trip trip) throws SQLException {
+    public void delete(Trip trip) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -297,12 +321,10 @@ public class MySqlTripDAO implements TripDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
-
-
 }

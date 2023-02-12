@@ -40,9 +40,9 @@
         </div>
 
         <div style="margin-top: 15px;">
-        <span style=""><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateStart}' name="date_start"></span>
+        <span style=""><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateStart}' name="dateStart"></span>
         <span><fmt:message key="label.lang.admin.to" /></span>
-        <span><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateEnd}' name="date_end"></span>
+        <span><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateEnd}' name="dateEnd"></span>
         </div>
 
         <div style="margin-top: 15px;">
@@ -74,7 +74,7 @@
         <c:forEach var="liner" items="${linerList}">
             <tr class="active-row">
                 <td><a href="/cruises?command=CruisesCatalogLiner&id=${liner.id}">${liner.name}</a></td>
-                <td>${liner.date_start} по ${liner.date_end}</td>
+                <td>${liner.dateStart} <fmt:message key="label.lang.admin.to" /> ${liner.dateEnd}</td>
                 <td>${cruisesTLD:countPriceLiner(liner)}$</td>
                 <td>${liner.capacity}</td>
             </tr>

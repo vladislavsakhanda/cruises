@@ -1,10 +1,10 @@
 package db.dao.mysql;
 
-import com.zaxxer.hikari.HikariDataSource;
 import db.dao.DataSource;
 import db.dao.RoleHasUserDAO;
 import db.dao.mysql.entity.RoleHasUser;
-import db.dao.mysql.entity.User;
+import exeptions.DBException;
+import exeptions.IllegalFieldException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static db.dao.DataSource.closeConnection;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
@@ -23,35 +24,42 @@ public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
     }
 
     @Override
-    public RoleHasUser read(long id) throws SQLException {
+    public RoleHasUser read(long id) {
         return null;
     }
 
-    public RoleHasUser read(RoleHasUser roleHasUser) throws SQLException {
+    @Override
+    public RoleHasUser read(long role_id, long user_id) throws DBException, IllegalFieldException {
         RoleHasUser r = new RoleHasUser();
-        try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_ROLE_HAS_USER_BY)
-        ) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(GET_ROLE_HAS_USER_BY);
+
             int k = 0;
-            stmt.setLong(++k, roleHasUser.getRole_id());
-            stmt.setLong(++k, roleHasUser.getUser_id());
+            stmt.setLong(++k, role_id);
+            stmt.setLong(++k, user_id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs != null && rs.next()) {
-                    r.setRole_id(rs.getLong("role_id"));
-                    r.setUser_id(rs.getLong("user_id"));
+                    r.setRoleId(rs.getLong("role_id"));
+                    r.setUserId(rs.getLong("user_id"));
                 } else {
                     r = null;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw e;
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
         }
         return r;
     }
 
     @Override
-    public void create(RoleHasUser roleHasUser) throws SQLException {
+    public void create(RoleHasUser roleHasUser) throws DBException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -59,8 +67,8 @@ public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
             con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_ROLE_HAS_USER);
             int k = 0;
-            stmt.setLong(++k, roleHasUser.getRole_id());
-            stmt.setLong(++k, roleHasUser.getUser_id());
+            stmt.setLong(++k, roleHasUser.getRoleId());
+            stmt.setLong(++k, roleHasUser.getUserId());
 
             stmt.executeUpdate();
 
@@ -68,10 +76,10 @@ public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             rollback(con);
-            throw e;
+            throw new DBException();
         } finally {
             close(stmt);
-            con.close();
+            closeConnection(con);
         }
     }
 

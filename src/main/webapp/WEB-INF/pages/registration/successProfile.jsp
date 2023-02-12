@@ -42,10 +42,10 @@
         <c:forEach var="trip" items="${trips}">
             <tr>
                 <td>${trip.id}</td>
-                <td><a href="/cruises?command=CruisesCatalogLiner&id=${trip.liner_id}">${cruisesTLD:getLinerById(trip.liner_id).name}</a></td>
-                <td>${trip.date_start} <fmt:message key="label.lang.admin.to" /> ${trip.date_end}</td>
+                <td><a href="/cruises?command=CruisesCatalogLiner&id=${trip.linerId}">${cruisesTLD:getLinerById(trip.linerId).name}</a></td>
+                <td>${trip.dateStart} <fmt:message key="label.lang.admin.to" /> ${trip.dateEnd}</td>
                 <td style="align: center;"><c:choose>
-                   <c:when test="${trip.status == 1}">
+                   <c:when test="${trip.status.code == 1}">
                          <form action="profile" method="POST">
                             <input type="hidden" name="action" value="changePayment">
                             <input type="hidden" name="id" value="${trip.id}">
@@ -53,7 +53,7 @@
                             <input type="submit" value="Сплатити" />
                          </form>
                    </c:when>
-                   <c:when test="${trip.is_paid == false}">
+                   <c:when test="${trip.isPaid == false}">
                        <form action="?command=Profile" method="POST">
                             <input type="hidden" name="action" value="removeRequest">
                             <input type="hidden" name="id" value="${trip.id}">
@@ -66,16 +66,16 @@
                     </c:otherwise>
                 </c:choose></td>
                 <c:choose>
-                    <c:when test="${trip.status == 0}">
+                    <c:when test="${trip.status.code == 0}">
                         <td><fmt:message key="label.lang.registration.profile.user.status.pending" /></td>
                     </c:when>
-                    <c:when test="${trip.status == 1}">
+                    <c:when test="${trip.status.code == 1}">
                         <td><fmt:message key="label.lang.registration.profile.user.status.requiresPayment" /></td>
                    </c:when>
-                   <c:when test="${trip.status == 2}">
+                   <c:when test="${trip.status.code == 2}">
                         <td><fmt:message key="label.lang.registration.profile.user.status.rejected" /></td>
                    </c:when>
-                   <c:when test="${trip.status == 3}">
+                   <c:when test="${trip.status.code == 3}">
                         <td><fmt:message key="label.lang.registration.profile.user.status.confirmed" /></td>
                    </c:when>
                 </c:choose>

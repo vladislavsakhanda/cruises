@@ -10,27 +10,27 @@ import java.util.List;
 public class MySqlRoleDAO implements RoleDAO {
 
     @Override
-    public List<Role> getAll() throws SQLException {
+    public List<Role> getAll() {
         return null;
     }
 
     @Override
-    public Role read(long id) throws SQLException {
+    public Role read(long id)  {
         return null;
     }
 
     @Override
-    public void create(Role entity) throws SQLException {
+    public void create(Role role)  {
 
     }
 
     @Override
-    public void update(Role entity) throws SQLException {
+    public void update(Role role)  {
 
     }
 
     @Override
-    public void delete(Role entity) throws SQLException {
+    public void delete(Role role)  {
 
     }
 }

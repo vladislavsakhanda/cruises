@@ -28,8 +28,8 @@
 
         <tbody>
         <c:forEach var="trip" items="${cruisesTLD:getAllTrip()}">
-            <c:set var="user" value="${cruisesTLD:getUserByUserId(trip.user_id)}"/>
-            <c:set var="liner" value="${cruisesTLD:getLinerById(trip.liner_id)}"/>
+            <c:set var="user" value="${cruisesTLD:getUserByUserId(trip.userId)}"/>
+            <c:set var="liner" value="${cruisesTLD:getLinerById(trip.linerId)}"/>
 
             <c:set var="image" value="${cruisesTLD:getBlobFromInputStream(trip)}"/>
 
@@ -41,9 +41,9 @@
                 <img src="data:image/jpg;base64,${image}" width="250" height="250"/>
                 </td>
                 <td>${liner.name}</td>
-                <td>${trip.date_start} <fmt:message key="label.lang.admin.to" /> ${trip.date_end}</td>
+                <td>${trip.dateStart} <fmt:message key="label.lang.admin.to" /> ${trip.dateEnd}</td>
                 <c:choose>
-                    <c:when test="${trip.is_paid == false}">
+                    <c:when test="${trip.isPaid == false}">
                         <td><fmt:message key="label.lang.admin.notPaid" /></td>
                     </c:when>
                     <c:otherwise>
@@ -51,40 +51,40 @@
                     </c:otherwise>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${trip.status == 0}">
+                    <c:when test="${trip.status.code == 0}">
                         <td><fmt:message key="label.lang.admin.pending" /></td>
                     </c:when>
-                    <c:when test="${trip.status == 1}">
+                    <c:when test="${trip.status.code == 1}">
                         <td><fmt:message key="label.lang.admin.requiresPayment" /></td>
                     </c:when>
-                    <c:when test="${trip.status == 2}">
+                    <c:when test="${trip.status.code == 2}">
                         <td><fmt:message key="label.lang.admin.rejected" /></td>
                     </c:when>
-                    <c:when test="${trip.status == 3}">
+                    <c:when test="${trip.status.code == 3}">
                         <td><fmt:message key="label.lang.admin.confirmed" /></td>
                     </c:when>
                 </c:choose>
 
                 <td>
                 <c:choose>
-                <c:when test ="${trip.status != 3}">
+                <c:when test ="${trip.status.code != 3}">
                     <form action="?command=RequestsCatalog" method="POST">
                         <select name="status">
-                            <c:if test="${trip.status != 0}">
+                            <c:if test="${trip.status.code != 0}">
                                 <option value="0"><fmt:message key="label.lang.admin.pending" /></option>
                             </c:if>
-                            <c:if test="${trip.status != 1 && trip.is_paid == false}">
+                            <c:if test="${trip.status.code != 1 && trip.isPaid == false}">
                                 <option value="1"><fmt:message key="label.lang.admin.requiresPayment" /></option>
                             </c:if>
-                            <c:if test="${trip.status != 2 && trip.is_paid == false}">
+                            <c:if test="${trip.status.code != 2 && trip.isPaid == false}">
                                 <option value="2"><fmt:message key="label.lang.admin.rejected" /></option>
                             </c:if>
-                            <c:if test="${trip.status != 3 && trip.is_paid == true}">
+                            <c:if test="${trip.status.code != 3 && trip.isPaid == true}">
                                 <option value="3"><fmt:message key="label.lang.admin.confirmed" /></option>
                             </c:if>
                         </select>
                         <br><br>
-                        <input type="hidden" name="trip_id" value="${trip.id}" />
+                        <input type="hidden" name="tripId" value="${trip.id}" />
                         <input type="submit" value="<fmt:message key="label.lang.admin.change" />" />
                     </form>
                 </c:when>

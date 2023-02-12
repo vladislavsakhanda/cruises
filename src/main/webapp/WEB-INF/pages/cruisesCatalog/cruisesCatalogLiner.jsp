@@ -16,10 +16,10 @@
 <body>
 <div id="indent">
 <c:set var="liner" value="${cruisesTLD:getLinerById(id)}"/>
-<c:set var="liner_id" value="${liner.getId()}"/>
+<c:set var="linerId" value="${liner.getId()}"/>
 <c:set var="price" value="${cruisesTLD:countPriceLiner(liner)}"/>
-<c:set var="date_start" value="${liner.getDate_end()}"/>
-<c:set var="date_end" value="${liner.getDate_start()}"/>
+<c:set var="dateStart" value="${liner.getDateStart()}"/>
+<c:set var="dateEnd" value="${liner.getDateEnd()}"/>
 <c:set var="freePlaces" value="${cruisesTLD:getLinerFreePlaces(liner)}"/>
 
 <table class="styled-table" style="margin-left: 5px; position: absolute; list-style: none; padding-left: 0;">
@@ -38,7 +38,7 @@
                 <td>${liner.name}</td>
                 <td>${price}$</td>
                 <td>${freePlaces}</td>
-                <td>${date_start} <fmt:message key="label.lang.admin.to" /> ${date_end}</td>
+                <td>${dateStart} <fmt:message key="label.lang.admin.to" /> ${dateEnd}</td>
                 <td style="font-size: 25px; max-width:700px; word-wrap:break-word;">${liner.description}</td>
             </tr>
         </tbody>
@@ -63,7 +63,7 @@
 </table>
 
 <h5 style="position: relative;position:absolute;bottom: 0px;left: 0;right:0;">
-<c:set var="trip" value="${cruisesTLD:getTripByUserIdAndLinerId(sessionScope.userId, liner_id)}"/>
+<c:set var="trip" value="${cruisesTLD:getTripByUserIdAndLinerId(sessionScope.userId, linerId)}"/>
 <c:choose>
     <c:when test="${trip != null}">
         <p><fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.requestExist" />.</p>
@@ -77,10 +77,10 @@
     <c:otherwise>
         <p>
         <form method="POST" action="?command=BookTour">
-                    <input type="hidden" name="liner_id" value="${liner_id}" />
+                    <input type="hidden" name="linerId" value="${linerId}" />
                     <input type="hidden" name="price" value="${price}" />
-                    <input type="hidden" name="date_start" value="${date_start}" />
-                    <input type="hidden" name="date_end" value="${date_end}" />
+                    <input type="hidden" name="dateStart" value="${dateStart}" />
+                    <input type="hidden" name="dateEnd" value="${dateEnd}" />
                     <input type="hidden" name="actionBook" value="bookView" />
                     <input type='submit' name="Submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.makeRequest" />" />
         </form>

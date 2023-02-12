@@ -2,9 +2,13 @@ package controller.commands;
 
 import controller.FrontCommand;
 import db.dao.mysql.MySqlTripDAO;
+import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.Trip;
+import exeptions.IllegalFieldException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import services.TripService;
+import services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
@@ -16,8 +20,11 @@ import java.util.Objects;
 
 public class BookTourCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(BookTourCommand.class);
+    private final TripService tripService = new TripService(new MySqlTripDAO());
+
+
     @Override
-    public void process() throws ServletException, IOException {
+    public void process() throws ServletException, IOException, IllegalFieldException {
         if (request.getAttribute("method") == "GET") {
             doGet();
         } else if (request.getAttribute("method") == "POST") {
@@ -25,22 +32,19 @@ public class BookTourCommand extends FrontCommand {
         }
     }
 
-    private boolean TripExist () {
+    private boolean TripExist() throws IllegalFieldException {
         Trip trip = null;
-        try {
-            if (request.getParameter("liner_id") != null) {
-                trip = new MySqlTripDAO().readByUserIdAndLinerId(
-                        (Long) request.getSession().getAttribute("userId"),
-                        Long.parseLong(request.getParameter("liner_id")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (request.getParameter("linerId") != null) {
+            trip = tripService.readByUserIdAndLinerId(
+                    (Long) request.getSession().getAttribute("userId"),
+                    Long.parseLong(request.getParameter("linerId")));
         }
 
         return trip != null;
     }
 
-    private void doGet() throws ServletException, IOException {
+    private void doGet() throws ServletException, IOException, IllegalFieldException {
         if (TripExist()) {
             sendRedirect("/cruises?command=ErrorBookTour");
         } else {
@@ -48,7 +52,7 @@ public class BookTourCommand extends FrontCommand {
         }
     }
 
-    private void doPost() throws ServletException, IOException {
+    private void doPost() throws ServletException, IOException, IllegalFieldException {
         if (Objects.equals(request.getParameter("actionBook"), "bookView")) {
             setServletContext();
             doGet();
@@ -60,14 +64,12 @@ public class BookTourCommand extends FrontCommand {
         }
     }
 
-    private void bookTour() throws ServletException, IOException {
-        long user_id = (long) request.getSession().getAttribute("userId");
-        long liner_id = (long) context.getAttribute("liner_id");
-        boolean is_paid = false;
+    private void bookTour() throws ServletException, IOException, IllegalFieldException {
+        long userId = (long) request.getSession().getAttribute("userId");
+        long linerId = (long) context.getAttribute("linerId");
         double price = (double) context.getAttribute("price");
-        Date date_start = (Date) context.getAttribute("date_start");
-        Date date_end = (Date) context.getAttribute("date_end");
-        int status = 0;
+        Date dateStart = (Date) context.getAttribute("dateStart");
+        Date dateEnd = (Date) context.getAttribute("dateEnd");
 
         InputStream inputStream = null;
         Part filePart = request.getPart("passport");
@@ -75,22 +77,19 @@ public class BookTourCommand extends FrontCommand {
             inputStream = filePart.getInputStream();
         }
 
-        try {
-            new MySqlTripDAO().create(Trip.createTrip(user_id, liner_id, is_paid,
-                    price, date_start, date_end, inputStream, status));
-            context.setAttribute("actionBook", request.getParameter("bookFinish"));
-            LOGGER.info("user booked tour");
-        } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.trace("user can`t book tour");
-        }
+
+        tripService.create(Trip.createTrip(userId, linerId, false,
+                price, dateStart, dateEnd, Trip.Status.PENDING, inputStream));
+        context.setAttribute("actionBook", request.getParameter("bookFinish"));
+        LOGGER.info("user booked tour");
+
     }
 
     private void setServletContext() {
         context.setAttribute("actionBook", "bookReady");
-        context.setAttribute("liner_id", Long.parseLong(request.getParameter("liner_id")));
+        context.setAttribute("linerId", Long.parseLong(request.getParameter("linerId")));
         context.setAttribute("price", Double.parseDouble(request.getParameter("price")));
-        context.setAttribute("date_start", Date.valueOf(request.getParameter("date_start")));
-        context.setAttribute("date_end", Date.valueOf(request.getParameter("date_end")));
+        context.setAttribute("dateStart", Date.valueOf(request.getParameter("dateStart")));
+        context.setAttribute("dateEnd", Date.valueOf(request.getParameter("dateEnd")));
     }
 }

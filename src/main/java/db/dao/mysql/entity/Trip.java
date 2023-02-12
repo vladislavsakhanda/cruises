@@ -1,25 +1,45 @@
 package db.dao.mysql.entity;
 
-import java.io.IOException;
+import exeptions.IllegalFieldException;
+
 import java.io.InputStream;
 import java.sql.Date;
 
 public class Trip extends Entity {
-    private long user_id;
-    private long liner_id;
-    private boolean is_paid;
+    private long userId;
+    private long linerId;
+    private boolean isPaid;
     private double price;
-    private Date date_start;
-    private Date date_end;
-    private int status;
+    private Date dateStart;
+    private Date dateEnd;
+    private Status status;
     private InputStream passport;
 
     public enum Status {
-        PENDING(0), REQUIRING_PAYMENT(1), REJECTED(2), CONFIRMED(3);
+        PENDING(0),
+        REQUIRING_PAYMENT(1),
+        REJECTED(2),
+        CONFIRMED(3);
+
         private final int code;
 
         Status(int code) {
             this.code = code;
+        }
+
+        public static Status valueOf(int code) throws IllegalFieldException {
+            switch (code) {
+                case 0:
+                    return PENDING;
+                case 1:
+                    return REQUIRING_PAYMENT;
+                case 2:
+                    return REJECTED;
+                case 3:
+                    return CONFIRMED;
+                default:
+                    throw new IllegalFieldException();
+            }
         }
 
         public int getCode() {
@@ -27,17 +47,27 @@ public class Trip extends Entity {
         }
     }
 
+
+    public static boolean datesCheck(Date dateStart, Date dateEnd) throws IllegalFieldException {
+        if (dateStart.compareTo(dateEnd) > 0) {
+            throw new IllegalFieldException("dateStart cannot be later than dateEnd");
+        }
+        return true;
+    }
+
     public static Trip createTrip(long user_id, long liner_id, boolean is_paid, double price,
-                                  Date date_start, Date date_end, InputStream passport, int status) {
+                                  Date dateStart, Date dateEnd, Status status, InputStream passport) throws IllegalFieldException {
         Trip trip = new Trip();
-        trip.setUser_id(user_id);
-        trip.setLiner_id(liner_id);
-        trip.setIs_paid(is_paid);
+        trip.setUserId(user_id);
+        trip.setLinerId(liner_id);
+        trip.setIsPaid(is_paid);
         trip.setPrice(price);
-        trip.setDate_start(date_start);
-        trip.setDate_end(date_end);
-        trip.setPassport(passport);
+        trip.setDateStart(dateStart);
+        trip.setDateEnd(dateEnd);
         trip.setStatus(status);
+        trip.setPassport(passport);
+        // throw IllegalFieldException if dateStart later than dateEnd
+        datesCheck(dateStart, dateEnd);
         return trip;
     }
 
@@ -45,95 +75,118 @@ public class Trip extends Entity {
         super();
     }
 
-    public Trip(long id) {
+    public Trip(long id) throws IllegalFieldException {
         super(id);
     }
 
-    public Trip(long user_id, long liner_id, boolean is_paid, double price, Date date_start, Date date_end, InputStream passport, int status) {
-        this.user_id = user_id;
-        this.liner_id = liner_id;
-        this.is_paid = is_paid;
+    public Trip(long userId, long linerId, boolean isPaid, double price,
+                Date dateStart, Date dateEnd, Status status, InputStream passport) throws IllegalFieldException {
+        // We use the ready-made createTrip method, which has checks
+        Trip trip = Trip.createTrip(userId, linerId, isPaid, price,
+                dateStart, dateEnd, status, passport);
+
+        this.userId = trip.getUserId();
+        this.linerId = trip.getLinerId();
+        this.isPaid = trip.getIsPaid();
+        this.price = trip.getPrice();
+        this.dateStart = trip.getDateStart();
+        this.dateEnd = trip.getDateEnd();
+        this.status = trip.getStatus();
+        this.passport = trip.getPassport();
+    }
+
+    public void setUserId(long user_id) throws IllegalFieldException {
+        if (user_id <= 0) {
+            throw new IllegalFieldException("user_id must be greater than zero.");
+        }
+        this.userId = user_id;
+    }
+
+    public void setLinerId(long liner_id) throws IllegalFieldException {
+        if (liner_id <= 0) {
+            throw new IllegalFieldException("liner_id must be greater than zero.");
+        }
+        this.linerId = liner_id;
+    }
+
+    public void setPrice(double price) throws IllegalFieldException {
+        if (price < 0) {
+            throw new IllegalFieldException("price must be greater or equal than zero.");
+        }
         this.price = price;
-        this.date_start = date_start;
-        this.date_end = date_end;
+    }
+
+    public void setDateStart(Date dateStart) throws IllegalFieldException {
+        if (dateStart == null) {
+            throw new IllegalFieldException("dateStart cannot be null");
+        }
+        this.dateStart = dateStart;
+    }
+
+    public void setDateEnd(Date dateEnd) throws IllegalFieldException {
+        if (dateEnd == null) {
+            throw new IllegalFieldException("dateEnd cannot be null");
+        }
+        this.dateEnd = dateEnd;
+    }
+
+    public void setPassport(InputStream passport) throws IllegalFieldException {
         this.passport = passport;
+    }
+
+    public void setIsPaid(boolean is_paid) {
+        this.isPaid = is_paid;
+    }
+
+    public void setStatus(Status status) throws IllegalFieldException {
+        if (status == null) {
+            throw new IllegalFieldException("price must be greater or equal than zero.");
+        }
         this.status = status;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setLiner_id(long liner_id) {
-        this.liner_id = liner_id;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setDate_start(Date date_start) {
-        this.date_start = date_start;
-    }
-
-    public void setDate_end(Date date_end) {
-        this.date_end = date_end;
-    }
-
-    public long getUser_id() {
-        return user_id;
-    }
-
-    public long getLiner_id() {
-        return liner_id;
+    public long getLinerId() {
+        return linerId;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public Date getDate_start() {
-        return date_start;
+    public Date getDateStart() {
+        return dateStart;
     }
 
-    public Date getDate_end() {
-        return date_end;
+    public Date getDateEnd() {
+        return dateEnd;
     }
 
     public InputStream getPassport() {
         return passport;
     }
 
-    public void setPassport(InputStream passport) {
-        this.passport = passport;
+    public boolean getIsPaid() {
+        return isPaid;
     }
 
-    public boolean getIs_paid() {
-        return is_paid;
-    }
-
-    public void setIs_paid(boolean is_paid) {
-        this.is_paid = is_paid;
-    }
-
-    public int getStatus() {
+    public Status getStatus() {
         return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     @Override
     public String toString() {
         return "Trip{" +
                 "id=" + getId() +
-                ", user_id=" + user_id +
-                ", liner_id=" + liner_id +
-                ", is_paid=" + is_paid +
+                ", user_id=" + userId +
+                ", liner_id=" + linerId +
+                ", is_paid=" + isPaid +
                 ", price=" + price +
-                ", date_start=" + date_start +
-                ", date_end=" + date_end +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
                 ", status=" + status +
                 '}';
     }

@@ -3,25 +3,43 @@ package tlds;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import controller.commands.RegisterCommand;
 import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.MySqlTripDAO;
 import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.Liner;
 import db.dao.mysql.entity.Trip;
 import db.dao.mysql.entity.User;
+import exeptions.DBException;
+import exeptions.IllegalFieldException;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import services.LinerService;
+import services.TripService;
+import services.UserService;
 
 import java.io.*;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CruisesTLD {
+    private static final UserService userService = new UserService(new MySqlUserDAO());
+    private static final TripService tripService = new TripService(new MySqlTripDAO());
+    private static final LinerService linerService = new LinerService(new MySqlLinerDAO());
 
-    public static User getUserByUserId(long user_id) throws SQLException {
-        return new MySqlUserDAO().read(user_id);
+    private static final Logger LOGGER = LogManager.getLogger(CruisesTLD.class);
+
+    public static User getUserByUserId(long user_id) {
+        User user = null;
+        try {
+            user = userService.read(user_id);
+        } catch (IllegalFieldException e) {
+            LOGGER.trace("IllegalFieldException", e);
+        }
+        return user;
     }
 
     public static String getBlobFromInputStream(Trip trip) throws IOException {
@@ -47,7 +65,6 @@ public class CruisesTLD {
         String pathToStore = null;
         try {
             pathToStore = pathProjectDirectory + "images\\" + trip.getId() + "_temp.jpg";
-//            Files.deleteIfExists(new File(pathToStore).toPath());
 
             File image = new File(pathToStore);
             FileOutputStream fos = new FileOutputStream(image, false);
@@ -61,36 +78,32 @@ public class CruisesTLD {
         }
     }
 
-    public static Trip getTripByUserIdAndLinerId(long user_id, long liner_id) throws SQLException {
-        return new MySqlTripDAO().readByUserIdAndLinerId(user_id, liner_id);
+    public static Trip getTripByUserIdAndLinerId(long user_id, long liner_id) throws SQLException, IllegalFieldException {
+        return tripService.readByUserIdAndLinerId(user_id, liner_id);
     }
 
-    public static List<Trip> getAllTrip() throws SQLException {
+    public static List<Trip> getAllTrip() throws SQLException, DBException, IllegalFieldException {
         return new MySqlTripDAO().getAll();
     }
 
-    public static List<Trip> getAllTripByUserId(long id) throws SQLException {
-        return new MySqlTripDAO().getAllByUserId(id);
+    public static List<Trip> getAllTripByUserId(long id) throws SQLException, IllegalFieldException {
+        return tripService.getAllByUserId(id);
     }
 
     public static int getLinerFreePlaces(Liner liner) {
         int linerCapacity = liner.getCapacity();
         int busyLinerPlaces = 0;
         try {
-            busyLinerPlaces = new MySqlTripDAO().getAllByLiner(new Liner(liner.getId())).size();
-        } catch (SQLException e) {
+            busyLinerPlaces = tripService.getAllByLiner(new Liner(liner.getId())).size();
+        } catch (IllegalFieldException e) {
             e.printStackTrace();
         }
         return linerCapacity - busyLinerPlaces;
     }
 
-    public static Liner getLinerById(long id) {
+    public static Liner getLinerById(long id) throws IllegalFieldException {
         Liner liner = null;
-        try {
-            liner = new MySqlLinerDAO().read(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        liner = linerService.read(id);
         return liner;
     }
 
@@ -111,7 +124,7 @@ public class CruisesTLD {
         for (Object s : route.keySet()) {
             amountRoutes++;
         }
-        return round(amountRoutes * liner.getPrice_coefficient(), 2);
+        return round(amountRoutes * liner.getPriceCoefficient(), 2);
     }
 
     private static double round(double value, int places) {

@@ -4,30 +4,81 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="Some changes with roles">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheme.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
+    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="log4j2">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorPageCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/EntityConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exeptions/DBException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exeptions/IllegalFieldException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/LinerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/RoleHasUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/StaffService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/TripService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/junit-jupiter-api-5.9.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/junit-jupiter-engine-5.9.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/maven-surefire-plugin-3.0.0-M8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mockito-core-5.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mockito-junit-jupiter-5.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/errorPage.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/EntityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/LinerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/RoleHasUserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/RoleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/StaffTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/TripTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entities/UserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/LinerServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/RoleHasUserServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/RoleServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/StaffServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/TripServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/services/UserServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/FrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/FrontCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/FrontControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/FrontControllerServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/BookTourCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/BookTourCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesCatalogCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesCatalogCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesCatalogLinerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesCatalogLinerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorBookTourCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorBookTourCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorRegistrationCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/HomeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/HomeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/LogOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/LogOutCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/LoginCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ProfileCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/RegisterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/RequestsCatalogCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/RequestsCatalogCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessBookTourCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessBookTourCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessLoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessLoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessRegistrationCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/UnknownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/UnknownCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/DataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/ItemDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/ItemDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/LinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/LinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/RoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/RoleHasUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/TripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/TripDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Liner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Liner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/RoleHasUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/RoleHasUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dto/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dto/UserCreationDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dto/UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/unknown.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestDB.java" beforeDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +105,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/cruises.tld" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test/java/entities/UserTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,32 +131,35 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path&quot;: &quot;C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\lib&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/webapp/WEB-INF/lib&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2954023&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/java/com/my/Test.java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path": "C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\lib",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-18",
+    "last_opened_file_path": "C:/Users/megai/JetBrains/cruises/src/main/webapp/WEB-INF/pages",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2954023",
+    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture",
+    "two.files.diff.last.used.file": "C:/Users/megai/JetBrains/cruises/src/main/java/com/my/Test.java"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="services" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
+      <recent name="C:\Users\megai\JetBrains\cruises\src\main\java\service" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages\cruisesCatalog" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\css" />
-      <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\images" />
-      <recent name="C:\Users\megai\JetBrains\cruises\plugins" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\images" />
@@ -112,6 +167,9 @@
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\lib" />
       <recent name="C:\Users\megai\JetBrains\cruises" />
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="controller.commands" />
@@ -121,50 +179,71 @@
     </key>
   </component>
   <component name="RunManager" selected="Maven.cruises [package]">
-    <configuration name="FastTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FastTest" />
+    <configuration name="All in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="aa" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="aa" />
-      <module name="cruises" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestDB" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cruises" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestDB" />
-      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoleHasUserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="services" />
+      <option name="MAIN_CLASS_NAME" value="services.RoleHasUserServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestDB.testGetAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RoleServiceTest.getAllTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestDB" />
-      <option name="METHOD_NAME" value="testGetAll" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="services" />
+      <option name="MAIN_CLASS_NAME" value="services.RoleServiceTest" />
+      <option name="METHOD_NAME" value="getAllTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestDB.testHash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.setEmailTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestDB" />
-      <option name="METHOD_NAME" value="testHash" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="entities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="entities" />
+      <option name="MAIN_CLASS_NAME" value="entities.UserTest" />
+      <option name="METHOD_NAME" value="setEmailTest" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="services in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="services" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -195,20 +274,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.aa" />
-      <item itemvalue="Application.FastTest" />
-      <item itemvalue="JUnit.TestDB.testHash" />
-      <item itemvalue="JUnit.TestDB" />
-      <item itemvalue="JUnit.TestDB.testGetAll" />
+      <item itemvalue="JUnit.RoleHasUserServiceTest" />
+      <item itemvalue="JUnit.RoleServiceTest.getAllTest" />
+      <item itemvalue="JUnit.UserTest.setEmailTest" />
+      <item itemvalue="JUnit.services in cruises" />
+      <item itemvalue="JUnit.All in cruises" />
       <item itemvalue="Maven.cruises [package]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestDB.testGetAll" />
-        <item itemvalue="JUnit.TestDB.testHash" />
-        <item itemvalue="JUnit.TestDB" />
-        <item itemvalue="Application.aa" />
-        <item itemvalue="Application.FastTest" />
+        <item itemvalue="JUnit.All in cruises" />
+        <item itemvalue="JUnit.services in cruises" />
+        <item itemvalue="JUnit.RoleHasUserServiceTest" />
+        <item itemvalue="JUnit.RoleServiceTest.getAllTest" />
+        <item itemvalue="JUnit.UserTest.setEmailTest" />
       </list>
     </recent_temporary>
   </component>
@@ -386,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675388662250</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="log4j2">
+      <created>1675453491099</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1675453491099</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -426,10 +512,35 @@
     <MESSAGE value="Localization and some bugs" />
     <MESSAGE value="PRG and Front Controller" />
     <MESSAGE value="Some changes with roles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some changes with roles" />
+    <MESSAGE value="log4j2" />
+    <option name="LAST_COMMIT_MESSAGE" value="log4j2" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLException" package="java.sql" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cruises$TestDB_testGetAll.ic" NAME="TestDB.testGetAll Coverage Results" MODIFIED="1675617530034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/cruises$UserServiceTest.ic" NAME="UserServiceTest Coverage Results" MODIFIED="1675783937863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/cruises$services_in_cruises.ic" NAME="services in cruises Coverage Results" MODIFIED="1675939498666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>services.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/cruises$entities_in_cruises.ic" NAME="entities in cruises Coverage Results" MODIFIED="1675971984778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>entities.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/cruises$All_in_cruises.ic" NAME="All in cruises Coverage Results" MODIFIED="1676011023375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/cruises$UserServiceTest_getAllTest.ic" NAME="UserServiceTest.getAllTest Coverage Results" MODIFIED="1675752840945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>services.*</FILTER>
+    </SUITE>
   </component>
 </project>

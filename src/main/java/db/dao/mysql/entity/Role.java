@@ -1,7 +1,9 @@
 package db.dao.mysql.entity;
 
+import exeptions.IllegalFieldException;
+
 public class Role extends Entity {
-    private String name;
+    private Roles roles;
 
     public enum Roles {
         ADMIN(1);
@@ -16,10 +18,10 @@ public class Role extends Entity {
         }
     }
 
-    public static Role createRole(long id, String name) {
+    public static Role createRole(long id, Roles roles) throws IllegalFieldException {
         Role role = new Role();
         role.setId(id);
-        role.setName(name);
+        role.setRole(roles);
         return role;
     }
 
@@ -27,15 +29,17 @@ public class Role extends Entity {
         super();
     }
 
-    public Role(long id) {
+    public Role(long id) throws IllegalFieldException {
         super(id);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Roles getRole() {
+        return roles;
     }
 
-    public String getName() {
-        return name;
+    public void setRole(Roles roles) throws IllegalFieldException {
+        if (roles == null)
+            throw new IllegalFieldException("role is null.");
+        this.roles = roles;
     }
 }

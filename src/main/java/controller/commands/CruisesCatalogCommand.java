@@ -3,6 +3,8 @@ package controller.commands;
 import controller.FrontCommand;
 import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.entity.Liner;
+import exeptions.DBException;
+import exeptions.IllegalFieldException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +21,7 @@ import java.util.Objects;
 public class CruisesCatalogCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(CruisesCatalogCommand.class);
     @Override
-    public void process() throws ServletException, IOException {
+    public void process() throws ServletException, DBException, IOException {
         if (request.getAttribute("method") == "GET") {
             doGet();
         } else if (request.getAttribute("method") == "POST") {
@@ -27,7 +29,7 @@ public class CruisesCatalogCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    private void doGet() throws ServletException, IOException, DBException {
         System.out.println();
         System.out.println();
         int page = 1;
@@ -40,74 +42,69 @@ public class CruisesCatalogCommand extends FrontCommand {
             recordsPerPage = Integer.parseInt(request.getParameter("recordsPerPage"));
         }
 
-        try {
-            MySqlLinerDAO dao = new MySqlLinerDAO();
-            Date date_start = null;
-            Date date_end = null;
+        MySqlLinerDAO dao = new MySqlLinerDAO();
+        Date dateStart = null;
+        Date dateEnd = null;
 
-            Date minDate = dao.getDate(MySqlLinerDAO.QueryDate.MIN_DATE_START);
-            Date maxDate = dao.getDate(MySqlLinerDAO.QueryDate.MAX_DATE_END);
-            context.setAttribute("minDate", minDate);
-            context.setAttribute("maxDate", maxDate);
+        Date minDate = dao.getDate(MySqlLinerDAO.QueryDate.MIN_DATE_START);
+        Date maxDate = dao.getDate(MySqlLinerDAO.QueryDate.MAX_DATE_END);
+        context.setAttribute("minDate", minDate);
+        context.setAttribute("maxDate", maxDate);
 
-            Object contextCurrentDateStart = context.getAttribute("currentDateStart");
-            if (request.getParameter("date_start") != null) {
-                date_start = Date.valueOf(request.getParameter("date_start"));
-                context.setAttribute("currentDateStart", request.getParameter("date_start"));
-            } else if (context.getAttribute("currentDateStart") == null) {
-                date_start = minDate;
-                context.setAttribute("currentDateStart", date_start);
+        Object contextCurrentDateStart = context.getAttribute("currentDateStart");
+        if (request.getParameter("dateStart") != null) {
+            dateStart = Date.valueOf(request.getParameter("dateStart"));
+            context.setAttribute("currentDateStart", request.getParameter("dateStart"));
+        } else if (context.getAttribute("currentDateStart") == null) {
+            dateStart = minDate;
+            context.setAttribute("currentDateStart", dateStart);
+        } else {
+            if (contextCurrentDateStart.getClass() == String.class) {
+                dateStart = Date.valueOf((String) contextCurrentDateStart);
             } else {
-                if (contextCurrentDateStart.getClass() == String.class) {
-                    date_start = java.sql.Date.valueOf((String) contextCurrentDateStart);
-                } else {
-                    date_start = (Date) contextCurrentDateStart;
-                }
+                dateStart = (Date) contextCurrentDateStart;
             }
-
-            Object contextCurrentDateEnd = context.getAttribute("currentDateEnd");
-            if (request.getParameter("date_end") != null) {
-                date_end = Date.valueOf(request.getParameter("date_end"));
-                context.setAttribute("currentDateEnd", request.getParameter("date_end"));
-            } else if (contextCurrentDateEnd == null) {
-                date_end = maxDate;
-                context.setAttribute("currentDateEnd", date_end);
-            } else {
-                if (contextCurrentDateEnd.getClass() == String.class) {
-                    date_end = java.sql.Date.valueOf((String) contextCurrentDateEnd);
-                } else {
-                    date_end = (Date) contextCurrentDateEnd;
-                }
-            }
-
-            ArrayList<Integer> allDuration = (ArrayList<Integer>) dao.getAllDurationOfTrip();
-            Collections.sort(allDuration);
-            request.setAttribute("allDuration", allDuration);
-            List<Liner> liners = new ArrayList<>();
-            int choseDuration = 0;
-
-            if (request.getParameter("choseDuration") == null || Objects.equals(request.getParameter("choseDuration"), "all")) {
-                liners = dao.getAll(date_start, date_end, (page - 1) * recordsPerPage, recordsPerPage);
-            } else {
-                choseDuration = Integer.parseInt(request.getParameter("choseDuration"));
-                liners = dao.getAll(choseDuration, date_start, date_end, (page - 1) * recordsPerPage, recordsPerPage);
-            }
-
-            int numberPageRecords = dao.getNumberPageRecords();
-            int numberPages = (int) Math.ceil(numberPageRecords * 1.0 / recordsPerPage);
-
-            context.setAttribute("linerList", liners);
-            context.setAttribute("numberPages", numberPages);
-            context.setAttribute("currentPage", page);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            LOGGER.trace("cruises catalog error");
         }
+
+        Object contextCurrentDateEnd = context.getAttribute("currentDateEnd");
+        if (request.getParameter("dateEnd") != null) {
+            dateEnd = Date.valueOf(request.getParameter("dateEnd"));
+            context.setAttribute("currentDateEnd", request.getParameter("dateEnd"));
+        } else if (contextCurrentDateEnd == null) {
+            dateEnd = maxDate;
+            context.setAttribute("currentDateEnd", dateEnd);
+        } else {
+            if (contextCurrentDateEnd.getClass() == String.class) {
+                dateEnd = Date.valueOf((String) contextCurrentDateEnd);
+            } else {
+                dateEnd = (Date) contextCurrentDateEnd;
+            }
+        }
+
+        ArrayList<Integer> allDuration = (ArrayList<Integer>) dao.getAllDurationOfTrip();
+        Collections.sort(allDuration);
+        request.setAttribute("allDuration", allDuration);
+        List<Liner> liners = new ArrayList<>();
+        int choseDuration = 0;
+
+        if (request.getParameter("choseDuration") == null || Objects.equals(request.getParameter("choseDuration"), "all")) {
+            liners = dao.getAll(dateStart, dateEnd, (page - 1) * recordsPerPage, recordsPerPage);
+        } else {
+            choseDuration = Integer.parseInt(request.getParameter("choseDuration"));
+            liners = dao.getAll(choseDuration, dateStart, dateEnd, (page - 1) * recordsPerPage, recordsPerPage);
+        }
+
+        int numberPageRecords = dao.getNumberPageRecords();
+        int numberPages = (int) Math.ceil(numberPageRecords * 1.0 / recordsPerPage);
+
+        context.setAttribute("linerList", liners);
+        context.setAttribute("numberPages", numberPages);
+        context.setAttribute("currentPage", page);
 
         forward("cruisesCatalog/cruisesCatalog");
     }
 
-    private void doPost() throws ServletException, IOException {
+    private void doPost() throws ServletException, IOException, DBException {
         doGet();
     }
 }
