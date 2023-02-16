@@ -38,7 +38,7 @@
                 <td>
                 ${cruisesTLD:getAndWriteTempImageOfPassport(trip, pathProjectDirectory)}
 
-                <img src="data:image/jpg;base64,${image}" width="250" height="250"/>
+                <img src="data:image/jpg;base64,${image}" width="425" height="250"/>
                 </td>
                 <td>${liner.name}</td>
                 <td>${trip.dateStart} <fmt:message key="label.lang.admin.to" /> ${trip.dateEnd}</td>

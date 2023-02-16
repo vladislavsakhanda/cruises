@@ -15,8 +15,6 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.List;
 
-
-
 public class ConnectionPoolContextListener implements ServletContextListener {
     private static final Logger LOGGER = LogManager.getLogger(CruisesCatalogCommand.class);
 

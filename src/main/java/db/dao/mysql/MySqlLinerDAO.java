@@ -229,7 +229,6 @@ public class MySqlLinerDAO implements LinerDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_LINER, Statement.RETURN_GENERATED_KEYS);
 
             int k = 0;

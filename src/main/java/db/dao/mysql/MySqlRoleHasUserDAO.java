@@ -64,7 +64,6 @@ public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_ROLE_HAS_USER);
             int k = 0;
             stmt.setLong(++k, roleHasUser.getRoleId());

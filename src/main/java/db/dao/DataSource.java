@@ -34,7 +34,7 @@ public class DataSource {
         config.setMaxLifetime(600000);
 
         config.setAutoCommit(false);
-        config.setTransactionIsolation("TRANSACTION_REPEATABLE_READ");
+//        config.setTransactionIsolation("TRANSACTION_REPEATABLE_READ");
         config.setLeakDetectionThreshold(7500);
 
         ds = new HikariDataSource(config);

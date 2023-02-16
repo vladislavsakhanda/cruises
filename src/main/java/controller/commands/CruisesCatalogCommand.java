@@ -63,9 +63,6 @@ public class CruisesCatalogCommand extends FrontCommand {
             recordsPerPage = (int) context.getAttribute("recordsPerPage");
         }
 
-        Date dateStart = null;
-        Date dateEnd = null;
-
         Date minDateStart = linerService.getDate(MySqlLinerDAO.QueryDate.MIN_DATE_START);
         Date maxDateStart = linerService.getDate(MySqlLinerDAO.QueryDate.MAX_DATE_START);
         Date minDateEnd = linerService.getDate(MySqlLinerDAO.QueryDate.MIN_DATE_END);
@@ -76,15 +73,14 @@ public class CruisesCatalogCommand extends FrontCommand {
         context.setAttribute("minDateEnd", minDateEnd);
         context.setAttribute("maxDateEnd", maxDateEnd);
 
+        Date dateStart = minDateStart;
         Object contextCurrentDateStart = context.getAttribute("currentDateStart");
         if (Objects.equals(request.getParameter("action"), "reset")) {
-            dateStart = minDateStart;
             context.setAttribute("currentDateStart", minDateStart);
         } else if (request.getParameter("action") == null && request.getParameter("dateStart") != null) {
             dateStart = Date.valueOf(request.getParameter("dateStart"));
             context.setAttribute("currentDateStart", request.getParameter("dateStart"));
         } else if (context.getAttribute("currentDateStart") == null) {
-            dateStart = minDateStart;
             context.setAttribute("currentDateStart", dateStart);
         } else {
             if (contextCurrentDateStart.getClass() == String.class) {
@@ -94,9 +90,9 @@ public class CruisesCatalogCommand extends FrontCommand {
             }
         }
 
+        Date dateEnd = maxDateEnd;
         Object contextCurrentDateEnd = context.getAttribute("currentDateEnd");
         if (Objects.equals(request.getParameter("action"), "reset")) {
-            dateEnd = maxDateEnd;
             context.setAttribute("currentDateEnd", maxDateEnd);
         } else if (request.getParameter("dateEnd") != null) {
             dateEnd = Date.valueOf(request.getParameter("dateEnd"));

@@ -213,8 +213,9 @@ public class MySqlTripDAO implements TripDAO {
                 stmt.setBinaryStream(++k, trip.getPassport());
             }
             stmt.executeUpdate();
-
-        } catch (SQLException e) {
+            con.commit();
+        } catch (SQLException | NullPointerException e) {
+            rollback(con);
             e.printStackTrace();
             throw new DBException();
         } finally {
@@ -229,7 +230,6 @@ public class MySqlTripDAO implements TripDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_TRIP);
             int k = 0;
             stmt.setLong(++k, trip.getUserId());
@@ -261,14 +261,12 @@ public class MySqlTripDAO implements TripDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_IS_PAID_IN_TRIP);
             int k = 0;
             stmt.setBoolean(++k, isPaid);
             stmt.setLong(++k, id);
 
             stmt.executeUpdate();
-
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -286,14 +284,12 @@ public class MySqlTripDAO implements TripDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_IS_PAID_IN_TRIP);
             int k = 0;
             stmt.setInt(++k, status.getCode());
             stmt.setLong(++k, id);
 
             stmt.executeUpdate();
-
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -311,12 +307,11 @@ public class MySqlTripDAO implements TripDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(DELETE_TRIP);
 
             stmt.setLong(1, trip.getId());
-            stmt.executeUpdate();
 
+            stmt.executeUpdate();
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();

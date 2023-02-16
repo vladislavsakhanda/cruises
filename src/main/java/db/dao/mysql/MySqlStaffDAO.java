@@ -81,7 +81,6 @@ public class MySqlStaffDAO implements StaffDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_STAFF, Statement.RETURN_GENERATED_KEYS);
 
             int k = 0;
@@ -116,7 +115,6 @@ public class MySqlStaffDAO implements StaffDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_STAFF);
             int k = 0;
             stmt.setString(++k, staff.getName());
@@ -143,7 +141,6 @@ public class MySqlStaffDAO implements StaffDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(DELETE_STAFF);
 
             stmt.setLong(1, staff.getId());

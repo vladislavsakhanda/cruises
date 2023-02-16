@@ -11,4 +11,4 @@
 
 ## Схема бази даних:
 
-<img height="600" src="C:\Users\megai\JetBrains\cruises\scheme.png" width="1000"/>
+<img height="600" src=".\scheme.png" width="1000"/>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="cruisesTLD" uri="/WEB-INF/tlds/cruises.tld" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="messages" />
 <html lang="${lang}">
@@ -28,6 +29,7 @@
 
 <c:set var="trips" value="${cruisesTLD:getAllTripByUserId(sessionScope.userId)}"/>
 
+<c:if test="${fn:length(trips) != 0}">
 <table class="styled-table">
         <thead>
         <tr>
@@ -39,6 +41,8 @@
         </tr>
         </thead>
         <tbody>
+
+
         <c:forEach var="trip" items="${trips}">
             <tr>
                 <td>${trip.id}</td>
@@ -46,11 +50,11 @@
                 <td>${trip.dateStart} <fmt:message key="label.lang.admin.to" /> ${trip.dateEnd}</td>
                 <td style="align: center;"><c:choose>
                    <c:when test="${trip.status.code == 1}">
-                         <form action="profile" method="POST">
+                         <form action="?command=Profile" method="POST">
                             <input type="hidden" name="action" value="changePayment">
                             <input type="hidden" name="id" value="${trip.id}">
 
-                            <input type="submit" value="Сплатити" />
+                            <input type="submit" value="<fmt:message key="label.lang.registration.profile.user.pay" />" />
                          </form>
                    </c:when>
                    <c:when test="${trip.isPaid == false}">
@@ -83,7 +87,9 @@
             </tbody>
         </c:forEach>
 </table>
+</c:if>
     </c:otherwise>
 </c:choose>
+
 
 </div>

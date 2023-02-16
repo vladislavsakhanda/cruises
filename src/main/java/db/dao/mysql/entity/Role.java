@@ -6,7 +6,7 @@ public class Role extends Entity {
     private Roles roles;
 
     public enum Roles {
-        ADMIN(1);
+        ADMIN(3);
         private final long code;
 
         Roles(long code) {

@@ -40,7 +40,6 @@ public class ProfileCommand extends FrontCommand {
 
     private void doPost() throws ServletException, IOException, IllegalFieldException {
         if (Objects.equals(request.getParameter("action"), "removeRequest")) {
-
             tripService.delete(new Trip(Long.parseLong(request.getParameter("id"))));
 
             forward("registration/successProfile");
@@ -51,6 +50,8 @@ public class ProfileCommand extends FrontCommand {
             trip.setIsPaid(true);
             trip.setStatus(Trip.Status.CONFIRMED);
             tripService.update(trip);
+
+            forward("registration/successProfile");
         }
     }
 }

@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class BookTourCommand extends FrontCommand {
-    private static final Logger LOGGER = LogManager.getLogger(BookTourCommand.class);
     private final TripService tripService = new TripService(new MySqlTripDAO());
 
 
@@ -77,11 +76,9 @@ public class BookTourCommand extends FrontCommand {
             inputStream = filePart.getInputStream();
         }
 
-
         tripService.create(Trip.createTrip(userId, linerId, false,
                 price, dateStart, dateEnd, Trip.Status.PENDING, inputStream));
         context.setAttribute("actionBook", request.getParameter("bookFinish"));
-        LOGGER.info("user booked tour");
 
     }
 

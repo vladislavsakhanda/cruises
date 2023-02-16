@@ -149,7 +149,6 @@ public class MySqlUserDAO implements UserDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS);
 
             int k = 0;
@@ -183,7 +182,6 @@ public class MySqlUserDAO implements UserDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(UPDATE_USER);
             int k = 0;
             stmt.setString(++k, user.getName());
@@ -210,12 +208,10 @@ public class MySqlUserDAO implements UserDAO {
         PreparedStatement stmt = null;
         try {
             con = DataSource.getConnection();
-            con.setAutoCommit(false);
             stmt = con.prepareStatement(DELETE_USER);
-
             stmt.setLong(1, user.getId());
-            stmt.executeUpdate();
 
+            stmt.executeUpdate();
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
