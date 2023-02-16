@@ -50,7 +50,9 @@ public class MySqlConstants {
             "SELECT SQL_CALC_FOUND_ROWS * FROM liner l " +
                     "WHERE l.date_start >= ? AND l.date_end <= ? " +
                     "ORDER BY l.date_start LIMIT ?, ?;";
-    public static final String INSERT_LINER = "INSERT INTO liner (name, description, capacity, route, price_coefficient) VALUES (?, ?, ?, ?);";
+
+    public static final String INSERT_LINER =
+            "INSERT INTO liner (name, description, capacity, route, price_coefficient, date_start, date_end) VALUES (? ,? ,? ,? ,? ,? ,?);";
     public static final String GET_LINER_BY_ID = "SELECT * FROM liner WHERE liner.id = ?;";
     public static final String GET_MAX_DATE_START_FROM_LINER = "SELECT MAX(liner.date_start) FROM liner;";
     public static final String GET_MIN_DATE_START_FROM_LINER = "SELECT MIN(liner.date_start) FROM liner;";

@@ -10,6 +10,8 @@ import services.UserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.regex.Pattern;
 
 import static db.dao.mysql.entity.EntityConstants.REGEX_EMAIL;
@@ -41,7 +43,7 @@ public class RegisterCommand extends FrontCommand {
         request.setAttribute("name", name);
         request.setAttribute("surname", surname);
         request.setAttribute("email", email);
-
+        
         if (name.length() == 0) {
             request.setAttribute("messageName", "label.lang.registration.register.messageNameRequired");
         } else if (name.length() < 3) {

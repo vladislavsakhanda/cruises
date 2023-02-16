@@ -22,7 +22,7 @@
      <input type="hidden" name="dateEnd" value="${dateEnd}" />
      <div class="form-group">
       <label for="Profile Photo"></label>
-      <input type="file" accept="image/*" name="passport" required/>
+      <input type="file" class="form-control" accept="image/*" name="passport" required/>
      </div>
      <input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.bookTour.confirmRequest" />" class="btn btn-success">
     </form>

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@WebFilter(filterName = "CheckRoleAdminFilter", urlPatterns = "/url1/*")
+@WebFilter(filterName = "CheckRoleAdminFilter", urlPatterns = "/url2/*")
 public class CheckRoleAdminFilter implements Filter {
     final private List<String> accessesForAdmin = Collections.unmodifiableList(new ArrayList<String>() {{
         add("RequestsCatalog");
@@ -33,7 +33,6 @@ public class CheckRoleAdminFilter implements Filter {
                          ServletResponse response,
                          FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println("CheckRoleAdminFilter#");
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;

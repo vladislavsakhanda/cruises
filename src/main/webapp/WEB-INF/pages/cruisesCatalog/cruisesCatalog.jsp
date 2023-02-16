@@ -18,8 +18,6 @@
 
     <div id="filter">
     <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
-        <input type="hidden" name="action" value="change" />
-
         <div style="margin-top: 15px;">
         <span><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.cruisesCatalog" />:</span>
         <span><select name="recordsPerPage" value="5">
@@ -32,32 +30,29 @@
         <div style="margin-top: 15px;">
         <span><fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.duration" />:</span>
         <span><select name="choseDuration">
-            <option value="all">*</option>
-            <c:forEach var="duration" items="${allDuration}">
+            <option value="0">*</option>
+            <c:forEach var="duration" items="${allDurations}">
                 <option value="${duration}">${duration} <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.days" /></option>
             </c:forEach>
         </select></span>
         </div>
 
         <div style="margin-top: 15px;">
-        <span style=""><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateStart}' name="dateStart"></span>
+        <span><input type="date" min='${minDateStart}' max='${maxDateStart}' value='${currentDateStart}' name="dateStart" required></span>
         <span><fmt:message key="label.lang.admin.to" /></span>
-        <span><input type="date" min='${minDate}' max='${maxDate}' value='${currentDateEnd}' name="dateEnd"></span>
+        <span><input type="date" min='${minDateEnd}' max='${maxDateEnd}' value='${currentDateEnd}' name="dateEnd" required></span>
         </div>
 
         <div style="margin-top: 15px;">
         <span"><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.confirm" />" style="margin: 0px;"/></span>
 
-        <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
-            <span><input type="hidden" name="action" value="reset" /></span>
 
-            <span><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.reset" />" /></span>
-        </form>
-        </div>
     </form>
-
-
-
+    <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
+                <span><input type="hidden" name="action" value="reset" /></span>
+                <span><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.reset" />" /></span>
+            </form>
+            </div>
     </div>
 
     <table class="styled-table">
@@ -86,7 +81,7 @@
         <tr>
             <c:choose>
             <c:when test="${currentPage != 1}">
-                <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&page=${currentPage - 1}">
+                <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&currentPage=${currentPage - 1}">
                 <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.previous" /></a></td>
             </c:when>
             <c:otherwise>
@@ -101,14 +96,14 @@
                         <td style="padding: 12px 15px;">${i}</td>
                     </c:when>
                     <c:otherwise>
-                        <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&page=${i}">${i}</a></td>
+                        <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&currentPage=${i}">${i}</a></td>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
 
             <c:choose>
             <c:when test="${currentPage lt numberPages}">
-                <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&page=${currentPage + 1}">
+                <td style="padding: 12px 15px;"><a href="/cruises?command=CruisesCatalog&currentPage=${currentPage + 1}">
                 <fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.next" /></a></td>
             </c:when>
             <c:otherwise>

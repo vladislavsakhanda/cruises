@@ -1,19 +1,15 @@
 package services;
 
-import db.dao.DataSource;
 import db.dao.LinerDAO;
-import db.dao.UserDAO;
+import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.entity.Liner;
-import db.dao.mysql.entity.User;
 import exeptions.DBException;
 import exeptions.IllegalFieldException;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static db.dao.mysql.MySqlConstants.*;
-import static db.dao.mysql.MySqlDAOFactory.close;
 
 public class LinerService implements LinerDAO {
     private LinerDAO linerDAO;
@@ -33,15 +29,15 @@ public class LinerService implements LinerDAO {
         return liners;
     }
 
-    public List<Liner> getAll(int duration, Date date_start, Date date_end, int offset, int recordsPerPage) throws IllegalFieldException, DBException {
+    public List<Liner> getAll(int duration, Date dateStart, Date dateEnd, int offset, int recordsPerPage) throws IllegalFieldException, DBException {
         if (duration < 0)
             throw new IllegalFieldException("duration must be greater than zero.");
-        if (date_start == null)
-            throw new IllegalFieldException("date_start is null.");
-        if (date_end == null)
-            throw new IllegalFieldException("date_end is null.");
-        if (date_start.compareTo(date_end) > 0)
-            throw new IllegalFieldException("date_end is null.");
+        if (dateStart == null)
+            throw new IllegalFieldException("dateStart is null.");
+        if (dateEnd == null)
+            throw new IllegalFieldException("dateEnd is null.");
+        if (dateStart.compareTo(dateEnd) > 0)
+            throw new IllegalFieldException("dateEnd is null.");
         if (offset < 0)
             throw new IllegalFieldException("offset must be greater than zero.");
         if (recordsPerPage < 0)
@@ -49,75 +45,28 @@ public class LinerService implements LinerDAO {
 
         return linerDAO.getAll(
                 duration,
-                date_start,
-                date_end,
+                dateStart,
+                dateEnd,
                 offset,
                 recordsPerPage
         );
     }
 
-    public List<Liner> getAll(Date date_start, Date date_end, int offset, int recordsPerPage)
+    public List<Liner> getAll(Date dateStart, Date dateEnd, int offset, int recordsPerPage)
             throws IllegalFieldException, DBException {
-        if (date_start == null)
-            throw new IllegalFieldException("date_start is null.");
-        if (date_end == null)
-            throw new IllegalFieldException("date_end is null.");
-        if (date_start.compareTo(date_end) > 0)
-            throw new IllegalFieldException("date_end is null.");
+        if (dateStart == null)
+            throw new IllegalFieldException("dateStart is null.");
+        if (dateEnd == null)
+            throw new IllegalFieldException("dateEnd is null.");
+        if (dateStart.compareTo(dateEnd) > 0)
+            throw new IllegalFieldException("dateStart cannot be later than dateEnd.");
         if (offset < 0)
             throw new IllegalFieldException("offset must be greater than zero.");
         if (recordsPerPage < 0)
             throw new IllegalFieldException("recordsPerPage must be greater than zero.");
 
-        return linerDAO.getAll(date_start, date_end, offset, recordsPerPage);
+        return linerDAO.getAll(dateStart, dateEnd, offset, recordsPerPage);
     }
-
-//    public int getNumberPageRecords() {
-//        return this.numberPageRecords;
-//    }
-//
-//    public Date getDate(QueryDate queryDate) throws SQLException {
-//        Date date = null;
-//        Connection con = null;
-//        Statement stmt = null;
-//        try {
-//            con = DataSource.getConnection();
-//            stmt = con.createStatement();
-//            String QUERY = null;
-//            switch (queryDate.getCode()) {
-//                case 0:
-//                    QUERY = GET_MIN_DATE_START_FROM_LINER;
-//                    break;
-//                case 1:
-//                    QUERY = GET_MAX_DATE_START_FROM_LINER;
-//                    break;
-//                case 2:
-//                    QUERY = GET_MIN_DATE_END_FROM_LINER;
-//                    break;
-//                case 3:
-//                    QUERY = GET_MAX_DATE_END_FROM_LINER;
-//                    break;
-//            }
-//
-//            try (ResultSet rs = stmt.executeQuery(QUERY)) {
-//                rs.next();
-//                date = rs.getDate(1);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            try {
-//                throw e;
-//            } catch (SQLException ex) {
-//                throw new RuntimeException(ex);
-//            }
-//        } finally {
-//            close(stmt);
-//            if (con != null) {
-//                con.close();
-//            }
-//        }
-//        return date;
-//    }
 
     public List<Integer> getAllDurationOfTrip() throws SQLException {
         List<Integer> durations = new ArrayList<>();
@@ -129,6 +78,26 @@ public class LinerService implements LinerDAO {
         return durations;
     }
 
+    @Override
+    public Date getDate(MySqlLinerDAO.QueryDate queryDate) throws SQLException, DBException {
+        Date date = null;
+        try {
+            date = linerDAO.getDate(queryDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    @Override
+    public int getNumberPageRecords() {
+        try {
+            return linerDAO.getNumberPageRecords();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     @Override
     public Liner read(long id) throws IllegalFieldException {

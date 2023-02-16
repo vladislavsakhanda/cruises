@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static db.dao.DataSource.closeConnection;
+import static db.dao.PBKDF2.generatePasswordHash;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
+import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlLinerDAO implements LinerDAO {
     private static Liner mapLiner(ResultSet rs) throws SQLException, IllegalFieldException {
@@ -222,8 +224,40 @@ public class MySqlLinerDAO implements LinerDAO {
     }
 
     @Override
-    public void create(Liner liner) {
+    public void create(Liner liner) throws DBException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            con.setAutoCommit(false);
+            stmt = con.prepareStatement(INSERT_LINER, Statement.RETURN_GENERATED_KEYS);
 
+            int k = 0;
+            stmt.setString(++k, liner.getName());
+            stmt.setString(++k, liner.getDescription());
+            stmt.setInt(++k, liner.getCapacity());
+            stmt.setString(++k, liner.getRoute());
+            stmt.setDouble(++k, liner.getPriceCoefficient());
+            stmt.setDate(++k, liner.getDateStart());
+            stmt.setDate(++k, liner.getDateEnd());
+
+            int count = stmt.executeUpdate();
+            if (count > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        liner.setId(rs.getInt(1));
+                    }
+                }
+            }
+            con.commit();
+        } catch (SQLException | IllegalFieldException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
+        }
     }
 
     @Override

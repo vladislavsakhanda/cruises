@@ -12,7 +12,6 @@ public class SessionLocaleFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("SessionLocaleFilter");
 
         HttpServletRequest req = (HttpServletRequest) request;
         if (req.getParameter("language") != null) {

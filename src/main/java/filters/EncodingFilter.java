@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(filterName="EncodingFilter", urlPatterns="/url2/*")
+@WebFilter(filterName="EncodingFilter", urlPatterns="/url1/*")
 public class EncodingFilter implements Filter {
     private String encoding = "utf-8";
 
@@ -20,7 +20,6 @@ public class EncodingFilter implements Filter {
                          ServletResponse response,
                          FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println("EncodingFilter#" + encoding);
 
         request.setCharacterEncoding(encoding);
         response.setContentType("text/html; charset=UTF-8");

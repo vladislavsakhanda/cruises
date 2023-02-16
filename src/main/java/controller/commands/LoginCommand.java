@@ -48,7 +48,9 @@ public class LoginCommand extends FrontCommand {
         }
     }
 
-    private void doPost() throws ServletException, NullPointerException, IOException, IllegalFieldException, NoSuchAlgorithmException, InvalidKeySpecException, SQLException {
+    private void doPost()
+            throws ServletException, NullPointerException, IOException, IllegalFieldException,
+            NoSuchAlgorithmException, InvalidKeySpecException, SQLException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -82,7 +84,6 @@ public class LoginCommand extends FrontCommand {
                 session.setAttribute("userName", user.getName());
                 session.setAttribute("userSurname", user.getSurname());
                 session.setAttribute("userEmail", user.getEmail());
-                LOGGER.info("login success");
             } else {
                 request.setAttribute("messageErrorLogin", "label.lang.registration.messageErrorLogin");
             }
