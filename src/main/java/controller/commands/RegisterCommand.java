@@ -10,8 +10,6 @@ import services.UserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.regex.Pattern;
 
 import static db.dao.mysql.entity.EntityConstants.REGEX_EMAIL;
@@ -19,7 +17,7 @@ import static db.dao.mysql.entity.EntityConstants.REGEX_NAME_AND_SURNAME;
 
 public class RegisterCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(RegisterCommand.class);
-    private final UserService userService = new UserService(new MySqlUserDAO());
+    private final UserService userService = new UserService(MySqlUserDAO.getInstance());
 
     @Override
     public void process() throws ServletException, IOException, IllegalFieldException {
@@ -30,11 +28,11 @@ public class RegisterCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         forward("registration/register");
     }
 
-    private void doPost() throws ServletException, IOException, IllegalFieldException {
+    void doPost() throws ServletException, IOException, IllegalFieldException {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
@@ -64,7 +62,7 @@ public class RegisterCommand extends FrontCommand {
             request.setAttribute("messageEmail", "label.lang.registration.register.messageEmailRequired");
         } else if (!Pattern.compile(REGEX_EMAIL).matcher(email).matches()) {
             request.setAttribute("messageEmail", "label.lang.registration.register.messageEmailFormatInvalid");
-        } else if (userExist(email)) {
+        } else if (userService.read(email) != null) {
             request.setAttribute("messageEmail", "label.lang.registration.register.messageEmailExists");
         }
 
@@ -81,17 +79,8 @@ public class RegisterCommand extends FrontCommand {
         ) {
             forward("registration/register");
         } else {
-            register(name, surname, email, password);
+            userService.create(User.createUser(name, surname, email, password));
             sendRedirect("/cruises?command=SuccessRegistration");
         }
-    }
-
-
-    public void register(String name, String surname, String email, String password) throws IllegalFieldException {
-        userService.create(User.createUser(name, surname, email, password));
-    }
-
-    private boolean userExist(String requestEmail) throws IllegalFieldException {
-        return userService.read(requestEmail) != null;
     }
 }

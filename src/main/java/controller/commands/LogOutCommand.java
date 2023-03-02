@@ -19,7 +19,7 @@ public class LogOutCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         HttpSession session = request.getSession();
         String language = String.valueOf(session.getAttribute("lang"));
         session.invalidate();
@@ -29,7 +29,7 @@ public class LogOutCommand extends FrontCommand {
         forward("home");
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
 
     }
 }

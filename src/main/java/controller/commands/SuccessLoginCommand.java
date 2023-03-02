@@ -21,12 +21,12 @@ public class SuccessLoginCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         LOGGER.info("login success");
         forward("registration/successLogin");
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
         LOGGER.info("login success");
         forward("registration/successLogin");
     }

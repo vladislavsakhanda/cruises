@@ -17,6 +17,18 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlTripDAO implements TripDAO {
+    private static MySqlTripDAO instance;
+
+    private MySqlTripDAO() {
+
+    }
+
+    public static synchronized MySqlTripDAO getInstance() {
+        if (instance == null) {
+            instance = new MySqlTripDAO();
+        }
+        return instance;
+    }
     private static Trip mapTrip(ResultSet rs) throws SQLException, IllegalFieldException {
         Trip t = new Trip();
         t.setId(rs.getLong(ID));

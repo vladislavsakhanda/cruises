@@ -17,6 +17,18 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlLinerDAO implements LinerDAO {
+    private static MySqlLinerDAO instance;
+
+    private MySqlLinerDAO() {
+
+    }
+
+    public static synchronized MySqlLinerDAO getInstance() {
+        if (instance == null) {
+            instance = new MySqlLinerDAO();
+        }
+        return instance;
+    }
     private static Liner mapLiner(ResultSet rs) throws SQLException, IllegalFieldException {
         Liner l = new Liner();
         l.setId(rs.getLong(ID));

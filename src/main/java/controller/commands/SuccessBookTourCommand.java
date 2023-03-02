@@ -18,12 +18,12 @@ public class SuccessBookTourCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         LOGGER.info("book tour success");
         forward("cruisesCatalog/successBookTour");
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
 
     }
 }

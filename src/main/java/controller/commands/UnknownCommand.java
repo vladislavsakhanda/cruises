@@ -19,13 +19,13 @@ public class UnknownCommand extends FrontCommand {
 
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         LOGGER.info("unknown page");
         forward("unknown");
 
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
 
     }
 }

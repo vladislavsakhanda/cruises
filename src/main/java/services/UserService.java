@@ -1,12 +1,10 @@
 package services;
 
 import db.dao.UserDAO;
-import db.dao.mysql.entity.Entity;
 import db.dao.mysql.entity.User;
 import exeptions.DBException;
 import exeptions.IllegalFieldException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -14,7 +12,7 @@ import java.util.regex.Pattern;
 import static db.dao.mysql.entity.EntityConstants.REGEX_EMAIL;
 
 public class UserService implements UserDAO {
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public UserService(UserDAO userDAO) {
         this.userDAO = userDAO;

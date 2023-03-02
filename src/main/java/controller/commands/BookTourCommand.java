@@ -19,8 +19,11 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class BookTourCommand extends FrontCommand {
-    private final TripService tripService = new TripService(new MySqlTripDAO());
+    private final TripService tripService = getTripService();
 
+    public TripService getTripService() {
+        return new TripService(MySqlTripDAO.getInstance());
+    }
 
     @Override
     public void process() throws ServletException, IOException, IllegalFieldException {
@@ -43,7 +46,7 @@ public class BookTourCommand extends FrontCommand {
         return trip != null;
     }
 
-    private void doGet() throws ServletException, IOException, IllegalFieldException {
+    void doGet() throws ServletException, IOException, IllegalFieldException {
         if (TripExist()) {
             sendRedirect("/cruises?command=ErrorBookTour");
         } else {
@@ -51,7 +54,7 @@ public class BookTourCommand extends FrontCommand {
         }
     }
 
-    private void doPost() throws ServletException, IOException, IllegalFieldException {
+    void doPost() throws ServletException, IOException, IllegalFieldException {
         if (Objects.equals(request.getParameter("actionBook"), "bookView")) {
             setServletContext();
             doGet();
@@ -74,6 +77,12 @@ public class BookTourCommand extends FrontCommand {
         Part filePart = request.getPart("passport");
         if (filePart != null) {
             inputStream = filePart.getInputStream();
+
+            if (!filePart.getContentType().startsWith("image/")) {
+                request.setAttribute("errorMessageUpload", "label.lang.cruisesCatalog.bookTour.errorMessageUpload");
+                forward("cruisesCatalog/bookTour");
+                return;
+            }
         }
 
         tripService.create(Trip.createTrip(userId, linerId, false,

@@ -18,6 +18,18 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlRoleHasUserDAO implements RoleHasUserDAO {
+    private static MySqlRoleHasUserDAO instance;
+
+    private MySqlRoleHasUserDAO() {
+
+    }
+
+    public static synchronized MySqlRoleHasUserDAO getInstance() {
+        if (instance == null) {
+            instance = new MySqlRoleHasUserDAO();
+        }
+        return instance;
+    }
     @Override
     public List<RoleHasUser> getAll() {
         return null;

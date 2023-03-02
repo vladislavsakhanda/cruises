@@ -8,6 +8,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class MySqlRoleDAO implements RoleDAO {
+    private static MySqlRoleDAO instance;
+
+    private MySqlRoleDAO() {
+
+    }
+
+    public static synchronized MySqlRoleDAO getInstance() {
+        if (instance == null) {
+            instance = new MySqlRoleDAO();
+        }
+        return instance;
+    }
 
     @Override
     public List<Role> getAll() {

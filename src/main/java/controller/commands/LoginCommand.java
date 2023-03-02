@@ -11,6 +11,7 @@ import exeptions.IllegalFieldException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import services.RoleHasUserService;
+import services.ServiceFactory;
 import services.UserService;
 
 import javax.servlet.ServletException;
@@ -24,9 +25,9 @@ import java.util.regex.Pattern;
 import static db.dao.mysql.entity.EntityConstants.REGEX_EMAIL;
 
 public class LoginCommand extends FrontCommand {
-    private static final Logger LOGGER = LogManager.getLogger(LoginCommand.class);
-    private final UserService userService = new UserService(new MySqlUserDAO());
-    private final RoleHasUserService roleHasUserService = new RoleHasUserService(new MySqlRoleHasUserDAO());
+
+    public LoginCommand() throws Exception {
+    }
 
     @Override
     public void process()
@@ -39,7 +40,7 @@ public class LoginCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    public void doGet() throws ServletException, IOException {
         if (request.getSession().getAttribute("userEmail") == null) {
             request.setAttribute("email", request.getParameter("email"));
             forward("registration/login");
@@ -48,17 +49,22 @@ public class LoginCommand extends FrontCommand {
         }
     }
 
-    private void doPost()
+    public void doPost()
             throws ServletException, NullPointerException, IOException, IllegalFieldException,
             NoSuchAlgorithmException, InvalidKeySpecException, SQLException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        ServiceFactory serviceFactory = ServiceFactory.getServiceFactory();
+        UserService userService = serviceFactory.getUserService(MySqlUserDAO.getInstance());
+        RoleHasUserService roleHasUserService = serviceFactory.getRoleHasUserService(MySqlRoleHasUserDAO.getInstance());
+        User user = userService.read(email);
+
         if (email.length() == 0) {
             request.setAttribute("messageEmail", "label.lang.registration.messageEmailRequired");
         } else if (!Pattern.compile(REGEX_EMAIL).matcher(email).matches()) {
             request.setAttribute("messageEmail", "label.lang.registration.messageEmailFormatInvalid");
-        } else if (!userExist(email)) {
+        } else if (user == null) {
             request.setAttribute("messageEmail", "label.lang.registration.messageEmailNotExist");
         }
 
@@ -69,8 +75,6 @@ public class LoginCommand extends FrontCommand {
         if (request.getAttribute("messageEmail") != null || request.getAttribute("messagePassword") != null) {
             doGet();
         } else {
-            User user = userService.read(email);
-
             if (user != null && PBKDF2.validatePassword(password, user.getPassword())) {
                 HttpSession session = request.getSession();
                 RoleHasUser roleHasUser = roleHasUserService.
@@ -90,10 +94,5 @@ public class LoginCommand extends FrontCommand {
 
             doGet();
         }
-
-    }
-
-    private boolean userExist(String requestEmail) throws IllegalFieldException {
-        return userService.read(requestEmail) != null;
     }
 }

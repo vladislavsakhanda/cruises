@@ -18,12 +18,12 @@ public class ErrorRegistrationCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         LOGGER.warn("register warn");
         forward("registration/errorRegistration");
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
 
     }
 }

@@ -6,12 +6,17 @@ import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 
 public class PBKDF2 {
     public static boolean validatePassword(String originalPassword, String storedPassword)
             throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         String[] parts = storedPassword.split(":");
+        System.out.println("fdas");
+        System.out.println(storedPassword);
+        System.out.println(Arrays.asList(parts).toString());
+        System.out.println(parts[0]);
         int iterations = Integer.parseInt(parts[0]);
 
         byte[] salt = fromHex(parts[1]);

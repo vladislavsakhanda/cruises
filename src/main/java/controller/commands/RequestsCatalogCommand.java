@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class RequestsCatalogCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(RequestsCatalogCommand.class);
-    private final TripService tripService = new TripService(new MySqlTripDAO());
+    private final TripService tripService = new TripService(MySqlTripDAO.getInstance());
 
     @Override
     public void process() throws ServletException, IOException, DBException, IllegalFieldException {
@@ -26,19 +26,18 @@ public class RequestsCatalogCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         request.setAttribute("pathProjectDirectory", context.getRealPath("/"));
-
         forward("admin/requestsCatalog");
-        ;
     }
 
-    private void doPost() throws ServletException, IOException, IllegalFieldException {
-        Trip trip = tripService.read(Long.parseLong(request.getParameter("tripId")));
-        trip.setStatus(Trip.Status.valueOf(Integer.parseInt(request.getParameter("status"))));
-        tripService.update(trip);
-        LOGGER.info("trip status updated");
-
+    void doPost() throws ServletException, IOException, IllegalFieldException {
+        if (request.getParameter("tripId") != null) {
+            Trip trip = tripService.read(Long.parseLong(request.getParameter("tripId")));
+            trip.setStatus(Trip.Status.valueOf(Integer.parseInt(request.getParameter("status"))));
+            tripService.update(trip);
+            LOGGER.info("trip status updated");
+        }
         sendRedirect("/cruises?command=RequestsCatalog");
     }
 }

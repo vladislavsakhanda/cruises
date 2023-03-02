@@ -3,7 +3,6 @@ package tlds;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import controller.commands.RegisterCommand;
 import db.dao.mysql.MySqlLinerDAO;
 import db.dao.mysql.MySqlTripDAO;
 import db.dao.mysql.MySqlUserDAO;
@@ -26,9 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CruisesTLD {
-    private static final UserService userService = new UserService(new MySqlUserDAO());
-    private static final TripService tripService = new TripService(new MySqlTripDAO());
-    private static final LinerService linerService = new LinerService(new MySqlLinerDAO());
+    private static final UserService userService = new UserService(MySqlUserDAO.getInstance());
+    private static final TripService tripService = new TripService(MySqlTripDAO.getInstance());
+    private static final LinerService linerService = new LinerService(MySqlLinerDAO.getInstance());
 
     private static final Logger LOGGER = LogManager.getLogger(CruisesTLD.class);
 
@@ -83,7 +82,7 @@ public class CruisesTLD {
     }
 
     public static List<Trip> getAllTrip() throws SQLException, DBException, IllegalFieldException {
-        return new MySqlTripDAO().getAll();
+        return MySqlTripDAO.getInstance().getAll();
     }
 
     public static List<Trip> getAllTripByUserId(long id) throws SQLException, IllegalFieldException {

@@ -5,23 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="Other changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/ServiceFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/pagination.tag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/BookTourCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/CruisesCatalogCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/ErrorBookTourCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/ErrorPageCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/ErrorRegistrationCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/HomeCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/LogOutCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/LoginCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/ProfileCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/RegisterCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/RequestsCatalogCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/SuccessBookTourCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/SuccessLoginCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/SuccessRegistrationCommandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/commands/UnknownCommandTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/FrontCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/FrontCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/BookTourCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/BookTourCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesCatalogCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesCatalogCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorBookTourCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorBookTourCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorPageCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ErrorRegistrationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/HomeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/HomeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/LogOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/LogOutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/LoginCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/ProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/ProfileCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/DataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/RegisterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/RequestsCatalogCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/RequestsCatalogCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessBookTourCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessBookTourCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessLoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessLoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessRegistrationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/SuccessRegistrationCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/UnknownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/UnknownCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/PBKDF2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/PBKDF2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlDAOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlRoleHasUserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlStaffDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlTripDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/ConnectionPoolContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/ConnectionPoolContextListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/bookTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/cruisesCatalogLiner.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/errorBookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/errorBookTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/successBookTour.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/cruisesCatalog/successBookTour.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/errorPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/errorPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/errorRegistration.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successLogout.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successRegistration.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successRegistration.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/templates/registrationTemplate.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/unknown.jsp" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +162,7 @@
       <recent name="C:\Users\megai\JetBrains\cruises\src\main\webapp\WEB-INF\pages" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="controller.commands" />
       <recent name="services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -122,13 +173,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.All in cruises">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="cruises" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
       <option name="PACKAGE_NAME" value="" />
@@ -137,47 +181,66 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoleHasUserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HomeCommandTest.doGet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="services.*" />
+          <option name="PATTERN" value="controller.commands.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="services" />
-      <option name="MAIN_CLASS_NAME" value="services.RoleHasUserServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RoleServiceTest.getAllTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cruises" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="services" />
-      <option name="MAIN_CLASS_NAME" value="services.RoleServiceTest" />
-      <option name="METHOD_NAME" value="getAllTest" />
+      <option name="PACKAGE_NAME" value="controller.commands" />
+      <option name="MAIN_CLASS_NAME" value="controller.commands.HomeCommandTest" />
+      <option name="METHOD_NAME" value="doGet" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="services in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogOutCommandTest.doGetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="services.*" />
+          <option name="PATTERN" value="controller.commands.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="services" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="controller.commands" />
+      <option name="MAIN_CLASS_NAME" value="controller.commands.LogOutCommandTest" />
+      <option name="METHOD_NAME" value="doGetTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileCommandTest.doGetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.commands" />
+      <option name="MAIN_CLASS_NAME" value="controller.commands.ProfileCommandTest" />
+      <option name="METHOD_NAME" value="doGetTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileCommandTest.doPostTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cruises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="controller.commands" />
+      <option name="MAIN_CLASS_NAME" value="controller.commands.ProfileCommandTest" />
+      <option name="METHOD_NAME" value="doPostTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -208,20 +271,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.RoleHasUserServiceTest" />
-      <item itemvalue="JUnit.RoleServiceTest.getAllTest" />
-      <item itemvalue="JUnit.services in cruises" />
       <item itemvalue="JUnit.All in cruises" />
+      <item itemvalue="JUnit.HomeCommandTest.doGet" />
+      <item itemvalue="JUnit.LogOutCommandTest.doGetTest" />
+      <item itemvalue="JUnit.ProfileCommandTest.doGetTest" />
+      <item itemvalue="JUnit.ProfileCommandTest.doPostTest" />
       <item itemvalue="Maven.cruises [package]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in cruises" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.services in cruises" />
-        <item itemvalue="JUnit.RoleHasUserServiceTest" />
-        <item itemvalue="JUnit.RoleServiceTest.getAllTest" />
+        <item itemvalue="JUnit.ProfileCommandTest.doPostTest" />
+        <item itemvalue="JUnit.ProfileCommandTest.doGetTest" />
+        <item itemvalue="JUnit.LogOutCommandTest.doGetTest" />
+        <item itemvalue="JUnit.HomeCommandTest.doGet" />
       </list>
     </recent_temporary>
   </component>
@@ -488,7 +551,10 @@
     <SUITE FILE_PATH="coverage/cruises$entities_in_cruises.ic" NAME="entities in cruises Coverage Results" MODIFIED="1675971984778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>entities.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/cruises$All_in_cruises.ic" NAME="All in cruises Coverage Results" MODIFIED="1676549014641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/cruises$LoginCommandTest_testDoPostSuccessfulLogin.ic" NAME="LoginCommandTest.testDoPostSuccessfulLogin Coverage Results" MODIFIED="1677427049751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.commands.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/cruises$All_in_cruises.ic" NAME="All in cruises Coverage Results" MODIFIED="1677697732373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/cruises$UserServiceTest_getAllTest.ic" NAME="UserServiceTest.getAllTest Coverage Results" MODIFIED="1675752840945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>services.*</FILTER>
     </SUITE>

@@ -18,12 +18,12 @@ public class ErrorBookTourCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         LOGGER.warn("book tour warn");
         forward("cruisesCatalog/errorBookTour");
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
 
     }
 }

@@ -1,5 +1,6 @@
 package db.dao;
 
+import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.User;
 import exeptions.DBException;
 import exeptions.IllegalFieldException;

@@ -17,6 +17,18 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlStaffDAO implements StaffDAO {
+    private static MySqlStaffDAO instance;
+
+    private MySqlStaffDAO() {
+
+    }
+
+    public static synchronized MySqlStaffDAO getInstance() {
+        if (instance == null) {
+            instance = new MySqlStaffDAO();
+        }
+        return instance;
+    }
     private static Staff mapStaff(ResultSet rs) throws SQLException, IllegalFieldException {
         Staff s = new Staff();
         s.setId(rs.getLong(ID));

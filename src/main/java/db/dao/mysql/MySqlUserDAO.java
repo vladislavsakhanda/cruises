@@ -19,6 +19,19 @@ import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
 
 public class MySqlUserDAO implements UserDAO {
+    private static MySqlUserDAO instance;
+
+    private MySqlUserDAO() {
+
+    }
+
+    public static synchronized MySqlUserDAO getInstance() {
+        if (instance == null) {
+            instance = new MySqlUserDAO();
+        }
+        return instance;
+    }
+
     private static User mapUser(ResultSet rs) throws SQLException, IllegalFieldException {
         User u = new User();
         u.setId(rs.getLong(ID));
@@ -77,32 +90,9 @@ public class MySqlUserDAO implements UserDAO {
 
     @Override
     public User read(String email) throws DBException, IllegalFieldException {
-//        User u = null;
-//        Connection con = null;
-//        PreparedStatement stmt = null;
-//        try {
-//            con = DataSource.getConnection();
-//            stmt = con.prepareStatement(GET_USER_BY_EMAIL);
-//
-//            int k = 0;
-//            stmt.setString(++k, email);
-//            try (ResultSet rs = stmt.executeQuery()) {
-//                if (rs != null && rs.next()) {
-//                    u = mapUser(rs);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new DBException();
-//        } finally {
-//            close(stmt);
-//            closeConnection(con);
-//        }
-//        return u;
         User u = null;
         try (Connection con = DataSource.getConnection();
-             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_EMAIL))
-        {
+             PreparedStatement stmt = con.prepareStatement(GET_USER_BY_EMAIL)) {
             int k = 0;
             stmt.setString(++k, email);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -144,7 +134,8 @@ public class MySqlUserDAO implements UserDAO {
     }
 
     @Override
-    public void create(User user) throws DBException, NoSuchAlgorithmException, InvalidKeySpecException, IllegalFieldException {
+    public void create(User user)
+            throws DBException, NoSuchAlgorithmException, InvalidKeySpecException, IllegalFieldException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {

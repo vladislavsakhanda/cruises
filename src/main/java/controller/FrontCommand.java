@@ -1,7 +1,10 @@
 package controller;
 
+import controller.commands.LoginCommand;
 import exeptions.DBException;
 import exeptions.IllegalFieldException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -30,13 +33,13 @@ public abstract class FrontCommand {
 
     public abstract void process() throws ServletException, DBException, IOException, IllegalFieldException, SQLException, NoSuchAlgorithmException, InvalidKeySpecException;
 
-    protected void forward(String target) throws ServletException, IOException {
+    public void forward(String target) throws ServletException, IOException {
         target = String.format("/WEB-INF/pages/%s.jsp", target);
         RequestDispatcher dispatcher = context.getRequestDispatcher(target);
         dispatcher.forward(request, response);
     }
 
-    protected void sendRedirect(String target) throws ServletException, IOException {
+    public void sendRedirect(String target) throws ServletException, IOException {
         response.sendRedirect(target);
     }
 }

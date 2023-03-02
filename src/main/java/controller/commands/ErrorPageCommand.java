@@ -16,12 +16,12 @@ public class ErrorPageCommand extends FrontCommand {
 
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         forward("errorPage");
 
     }
 
-    private void doPost() throws ServletException, IOException {
+    void doPost() throws ServletException, IOException {
         forward("errorPage");
     }
 }

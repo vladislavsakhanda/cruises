@@ -9,7 +9,7 @@ import static db.dao.mysql.entity.EntityConstants.REGEX_NAME_AND_SURNAME;
 
 public class Entity implements Serializable {
 
-    private long id;
+    private long id = 1;
 
     public Entity() {
 

@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class ProfileCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(ProfileCommand.class);
-    private final TripService tripService = new TripService(new MySqlTripDAO());
+    private final TripService tripService = new TripService(MySqlTripDAO.getInstance());
 
     @Override
     public void process() throws ServletException, IOException, IllegalFieldException {
@@ -29,7 +29,7 @@ public class ProfileCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException {
+    void doGet() throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("userEmail") != null) {
             forward("registration/successProfile");
@@ -38,15 +38,15 @@ public class ProfileCommand extends FrontCommand {
         }
     }
 
-    private void doPost() throws ServletException, IOException, IllegalFieldException {
+    void doPost() throws ServletException, IOException, IllegalFieldException {
+        long id = Long.parseLong(request.getParameter("id"));
+
         if (Objects.equals(request.getParameter("action"), "removeRequest")) {
-            tripService.delete(new Trip(Long.parseLong(request.getParameter("id"))));
+            tripService.delete(new Trip(id));
 
             forward("registration/successProfile");
-        }
-
-        if (Objects.equals(request.getParameter("action"), "changePayment")) {
-            Trip trip = tripService.read(Long.parseLong(request.getParameter("id")));
+        } else if (Objects.equals(request.getParameter("action"), "changePayment")) {
+            Trip trip = tripService.read(id);
             trip.setIsPaid(true);
             trip.setStatus(Trip.Status.CONFIRMED);
             tripService.update(trip);

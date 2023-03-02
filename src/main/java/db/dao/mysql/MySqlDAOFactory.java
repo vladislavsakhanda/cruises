@@ -18,7 +18,7 @@ public class MySqlDAOFactory extends DAOFactory {
     @Override
     public MySqlUserDAO getUserDao() {
         if (mySqlUserDAO == null) {
-            mySqlUserDAO = new MySqlUserDAO();
+            mySqlUserDAO = MySqlUserDAO.getInstance();
         }
         return mySqlUserDAO;
     }
@@ -26,7 +26,7 @@ public class MySqlDAOFactory extends DAOFactory {
     @Override
     public MySqlTripDAO getTripDAO() {
         if (mySqlTripDAO == null) {
-            mySqlTripDAO = new MySqlTripDAO();
+            mySqlTripDAO = MySqlTripDAO.getInstance();
         }
         return mySqlTripDAO;
     }
@@ -34,7 +34,7 @@ public class MySqlDAOFactory extends DAOFactory {
     @Override
     public MySqlStaffDAO getStaffDAO() {
         if (mySqlStaffDAO == null) {
-            mySqlStaffDAO = new MySqlStaffDAO();
+            mySqlStaffDAO = MySqlStaffDAO.getInstance();
         }
         return mySqlStaffDAO;
     }
@@ -42,7 +42,7 @@ public class MySqlDAOFactory extends DAOFactory {
     @Override
     public MySqlRoleHasUserDAO getRoleHasUserDAO() {
         if (mySqlRoleHasUserDAO == null) {
-            mySqlRoleHasUserDAO = new MySqlRoleHasUserDAO();
+            mySqlRoleHasUserDAO = MySqlRoleHasUserDAO.getInstance();
         }
         return mySqlRoleHasUserDAO;
     }
@@ -50,7 +50,7 @@ public class MySqlDAOFactory extends DAOFactory {
     @Override
     public MySqlRoleDAO getRoleDAO() {
         if (mySqlRoleDAO == null) {
-            mySqlRoleDAO = new MySqlRoleDAO();
+            mySqlRoleDAO = MySqlRoleDAO.getInstance();
         }
         return mySqlRoleDAO;
     }
@@ -58,7 +58,7 @@ public class MySqlDAOFactory extends DAOFactory {
     @Override
     public MySqlLinerDAO getLinerDAO() {
         if (mySqlLinerDAO == null) {
-            mySqlLinerDAO = new MySqlLinerDAO();
+            mySqlLinerDAO = MySqlLinerDAO.getInstance();
         }
         return mySqlLinerDAO;
     }

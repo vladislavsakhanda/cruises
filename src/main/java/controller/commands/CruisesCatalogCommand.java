@@ -20,7 +20,7 @@ import java.util.Objects;
 
 public class CruisesCatalogCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(CruisesCatalogCommand.class);
-    private final LinerService linerService = new LinerService(new MySqlLinerDAO());
+    private final LinerService linerService = new LinerService(MySqlLinerDAO.getInstance());
     private static final int DEFAULT_CURRENT_PAGE = 1;
     private static final int DEFAULT_RECORDS_PER_PAGE = 5;
     private static final int DEFAULT_CHOSE_DURATION = 0;
@@ -48,7 +48,7 @@ public class CruisesCatalogCommand extends FrontCommand {
         }
     }
 
-    private void doGet() throws ServletException, IOException, DBException, SQLException, IllegalFieldException {
+    void doGet() throws ServletException, IOException, DBException, SQLException, IllegalFieldException {
         int currentPage = DEFAULT_CURRENT_PAGE;
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -140,7 +140,7 @@ public class CruisesCatalogCommand extends FrontCommand {
         forward("cruisesCatalog/cruisesCatalog");
     }
 
-    private void doPost() throws ServletException, IOException, DBException, IllegalFieldException, SQLException {
+    void doPost() throws ServletException, IOException, DBException, IllegalFieldException, SQLException {
         action();
         doGet();
     }
