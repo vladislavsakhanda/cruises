@@ -14,7 +14,9 @@ import org.mockito.MockitoAnnotations;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -108,7 +110,7 @@ public class TripServiceTest {
                 "liner",
                 "description",
                 200,
-                "{rout}",
+                new ArrayList<>(),
                 10,
                 Date.valueOf("2022-10-10"),
                 Date.valueOf("2022-12-12"));
@@ -127,7 +129,7 @@ public class TripServiceTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            (String) incorrectLiner.get(3),
+                            Collections.singletonList(incorrectLiner.get(3).toString()),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)

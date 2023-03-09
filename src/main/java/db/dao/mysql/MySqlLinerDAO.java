@@ -1,20 +1,32 @@
 package db.dao.mysql;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import db.dao.DataSource;
 import db.dao.LinerDAO;
 import db.dao.mysql.entity.Liner;
 import exeptions.DBException;
 import exeptions.IllegalFieldException;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
 import static db.dao.DataSource.closeConnection;
 import static db.dao.PBKDF2.generatePasswordHash;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
+import java.util.Map;
 
 public class MySqlLinerDAO implements LinerDAO {
     private static MySqlLinerDAO instance;
@@ -29,13 +41,21 @@ public class MySqlLinerDAO implements LinerDAO {
         }
         return instance;
     }
-    private static Liner mapLiner(ResultSet rs) throws SQLException, IllegalFieldException {
+    private static Liner mapLiner(ResultSet rs) throws SQLException, IllegalFieldException, IOException {
         Liner l = new Liner();
         l.setId(rs.getLong(ID));
         l.setName(rs.getString("name"));
         l.setDescription(rs.getString("description"));
         l.setCapacity(rs.getInt("capacity"));
-        l.setRoute(rs.getString("route"));
+
+
+        String jsonData = rs.getString("route");
+        ObjectMapper objectMapper = new ObjectMapper();
+        TypeReference<Map<String, String>> typeRef = new TypeReference<Map<String, String>>() {};
+        Map<String, String> map = objectMapper.readValue(jsonData, typeRef);
+        List<String> route = List.copyOf(map.values());
+        l.setRoute(route);
+
         l.setPriceCoefficient(rs.getDouble("price_coefficient"));
         l.setDateStart(rs.getDate("date_start"));
         l.setDateEnd(rs.getDate("date_end"));
@@ -225,7 +245,7 @@ public class MySqlLinerDAO implements LinerDAO {
                 rs.next();
                 u = mapLiner(rs);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
             throw new DBException();
         } finally {
@@ -272,8 +292,32 @@ public class MySqlLinerDAO implements LinerDAO {
     }
 
     @Override
-    public void update(Liner liner) {
+    public void update(Liner liner) throws DBException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(UPDATE_LINER);
+            int k = 0;
+            stmt.setString(++k, liner.getName());
+            stmt.setString(++k, liner.getDescription());
+            stmt.setInt(++k, liner.getCapacity());
+            stmt.setString(++k, liner.getRoute());
+            stmt.setDouble(++k, liner.getPriceCoefficient());
+            stmt.setDate(++k, liner.getDateStart());
+            stmt.setDate(++k, liner.getDateEnd());
+            stmt.setLong(++k, liner.getId());
 
+            stmt.executeUpdate();
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
+        }
     }
 
     @Override

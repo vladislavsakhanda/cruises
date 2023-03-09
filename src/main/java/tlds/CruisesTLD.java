@@ -19,6 +19,7 @@ import services.TripService;
 import services.UserService;
 
 import java.io.*;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.HashMap;
@@ -30,6 +31,14 @@ public class CruisesTLD {
     private static final LinerService linerService = new LinerService(MySqlLinerDAO.getInstance());
 
     private static final Logger LOGGER = LogManager.getLogger(CruisesTLD.class);
+
+    public static Date getCurrentDate(){
+        return new java.sql.Date(System.currentTimeMillis());
+    }
+
+    public static Date getCurrentDatePlusYear(){
+        return Date.valueOf(getCurrentDate().toLocalDate().plusYears(1));
+    }
 
     public static User getUserByUserId(long user_id) {
         User user = null;

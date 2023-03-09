@@ -13,10 +13,6 @@ public class PBKDF2 {
             throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         String[] parts = storedPassword.split(":");
-        System.out.println("fdas");
-        System.out.println(storedPassword);
-        System.out.println(Arrays.asList(parts).toString());
-        System.out.println(parts[0]);
         int iterations = Integer.parseInt(parts[0]);
 
         byte[] salt = fromHex(parts[1]);

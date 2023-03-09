@@ -76,6 +76,7 @@
                         </select>
                         <br><br>
                         <input type="hidden" name="tripId" value="${trip.id}" />
+
                         <input type="submit" value="<fmt:message key="label.lang.admin.change" />" />
                     </form>
                 </c:when>

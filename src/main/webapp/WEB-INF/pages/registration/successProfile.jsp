@@ -11,8 +11,13 @@
 
 <c:choose>
     <c:when test="${role != null}">
-      <br><br><a href="/cruises?command=RequestsCatalog">
-      <fmt:message key="label.lang.registration.profile.admin.requestManagement" />
+      <br><br>
+      <a href="/cruises?command=RequestsCatalog">
+        <fmt:message key="label.lang.registration.profile.admin.requestManagement" />
+      </a><br>
+
+      <a href="/cruises?command=CruisesRecords">
+        <fmt:message key="label.lang.registration.profile.admin.cruisesRecordsManagement" />
       </a><br>
     </c:when>
 <c:otherwise>

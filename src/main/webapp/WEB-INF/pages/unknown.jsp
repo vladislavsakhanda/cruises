@@ -1,5 +1,4 @@
-
-
+<%@ include file="/WEB-INF/pages/templates/registrationTemplate.jsp" %>
 
 <head>
     <title><fmt:message key="label.lang.unknownTitle" /></title>

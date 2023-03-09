@@ -59,6 +59,8 @@ public class MySqlConstants {
     public static final String GET_MAX_DATE_END_FROM_LINER = "SELECT MAX(liner.date_end) FROM liner;";
     public static final String GET_MIN_DATE_END_FROM_LINER = "SELECT MIN(liner.date_end) FROM liner;";
     public static final String GET_ALL_DURATION_OF_TRIP_FROM_LINER = "SELECT DISTINCT(date_end - date_start) FROM liner l;";
+    public static final String UPDATE_LINER =
+            "UPDATE liner SET name=?, description=?, capacity=?, route=?, price_coefficient=?, date_start=?, date_end=? WHERE id=?;";
 
     public static final String GET_ALL_STAFF = "SELECT * FROM staff s ORDER BY s.specialization;";
     public static final String INSERT_STAFF = "INSERT INTO staff (name, surname, specialization, liner_id) VALUES (?, ?, ?, ?);";

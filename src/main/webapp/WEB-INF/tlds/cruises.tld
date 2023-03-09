@@ -71,4 +71,16 @@
         <function-class>tlds.CruisesTLD</function-class>
         <function-signature>java.lang.String getBlobFromInputStream(db.dao.mysql.entity.Trip)</function-signature>
     </function>
+
+    <function>
+        <name>getCurrentDate</name>
+        <function-class>tlds.CruisesTLD</function-class>
+        <function-signature>java.sql.Date getCurrentDate()</function-signature>
+    </function>
+
+    <function>
+        <name>getCurrentDatePlusYear</name>
+        <function-class>tlds.CruisesTLD</function-class>
+        <function-signature>java.sql.Date getCurrentDatePlusYear()</function-signature>
+    </function>
 </taglib>

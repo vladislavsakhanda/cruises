@@ -6,30 +6,32 @@ import exeptions.IllegalFieldException;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinerTest {
     private final List<List<Object>> incorrectLiners = Arrays.asList(
-            Arrays.asList(null, "description", 200, "{rout}",
+            Arrays.asList(null, "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
             Arrays.asList("liner", null, 200, "{rout}",
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
             Arrays.asList("liner", "description", 200, null,
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     -10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     10, null, Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), null),
-            Arrays.asList("", "description", 200, "{rout}",
+            Arrays.asList("", "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-8-10")),
-            Arrays.asList("liner", "description", -200, "{rout}",
+            Arrays.asList("liner", "description", -200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-8-10"))
     );
 
@@ -41,7 +43,7 @@ public class LinerTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            (String) incorrectLiner.get(3),
+                            Collections.singletonList(incorrectLiner.get(3).toString()),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)
@@ -77,7 +79,7 @@ public class LinerTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            (String) incorrectLiner.get(3),
+                            Collections.singletonList(incorrectLiner.get(3).toString()),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)
@@ -160,10 +162,10 @@ public class LinerTest {
     public void setRouteTest() {
         Liner testLiner = new Liner();
 
-        List<String> correctRoutes = Arrays.asList("basic route", "", "{rrr}");
+        List<String> correctRoutes = Arrays.asList("basic route", "");
 
         for (String correctRoute : correctRoutes) {
-            assertDoesNotThrow(() -> testLiner.setRoute(correctRoute));
+            assertDoesNotThrow(() -> testLiner.setRoute(Collections.singletonList(correctRoute)));
         }
 
         assertThrows(IllegalFieldException.class, ()
@@ -215,7 +217,7 @@ public class LinerTest {
     @Test
     public void getRouteTest() throws IllegalFieldException {
         Liner testLiner = new Liner();
-        testLiner.setRoute("{route1}");
+        testLiner.setRoute(new ArrayList<>());
 
         assertEquals("{route1}", testLiner.getRoute());
     }
