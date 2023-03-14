@@ -4,31 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="new Tests">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesRecordsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesRecordsLinerCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ttt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/cruisesRecords.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/cruisesRecordsLiner.jsp" afterDir="false" />
+    <list default="true" id="3586ce93-3f50-49e9-a1b9-a5943cb21e78" name="mapUser" comment="Problem commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/FrontControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/FrontControllerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/PBKDF2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/PBKDF2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesRecordsLinerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/commands/CruisesRecordsLinerCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/MySqlLinerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Liner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/dao/mysql/entity/Liner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filters/CheckRoleAdminFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filters/CheckRoleAdminFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tlds/CruisesTLD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/messages_ua.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/requestsCatalog.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/registration/successProfile.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/unknown.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/unknown.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/cruises.tld" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tlds/cruises.tld" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/entities/LinerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/entities/LinerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/services/LinerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/services/LinerServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/services/TripServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/services/TripServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/cruisesRecordsLiner.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/cruisesRecordsLiner.jsp" afterDir="false" />
     </list>
     <list id="cd190895-4960-4e55-9aa4-3508b3a5a683" name="Changes" comment="Preparation to testing and work with db" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +80,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2954023&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.capture&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
     &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/megai/JetBrains/cruises/src/main/java/com/my/Test.java&quot;
   }
 }</component>
@@ -130,7 +114,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Maven.cruises [package]">
-    <configuration name="ttt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ttt" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ttt" />
       <module name="cruises" />
       <method v="2">
@@ -140,6 +124,8 @@
     <configuration name="All in cruises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cruises" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -193,31 +179,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cruises [package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="package" />
-              </list>
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.ttt" />
       <item itemvalue="JUnit.All in cruises" />
@@ -228,7 +189,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ttt" />
         <item itemvalue="JUnit.All in cruises" />
         <item itemvalue="JUnit.ProfileCommandTest.doPostTest" />
         <item itemvalue="JUnit.ProfileCommandTest.doGetTest" />

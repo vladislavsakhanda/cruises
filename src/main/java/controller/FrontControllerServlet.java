@@ -61,4 +61,9 @@ public class FrontControllerServlet extends HttpServlet {
             return new UnknownCommand();
         }
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
 }

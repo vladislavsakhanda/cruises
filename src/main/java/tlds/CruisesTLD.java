@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CruisesTLD {
     private static final UserService userService = new UserService(MySqlUserDAO.getInstance());
@@ -32,11 +33,11 @@ public class CruisesTLD {
 
     private static final Logger LOGGER = LogManager.getLogger(CruisesTLD.class);
 
-    public static Date getCurrentDate(){
+    public static Date getCurrentDate() {
         return new java.sql.Date(System.currentTimeMillis());
     }
 
-    public static Date getCurrentDatePlusYear(){
+    public static Date getCurrentDatePlusYear() {
         return Date.valueOf(getCurrentDate().toLocalDate().plusYears(1));
     }
 
@@ -99,6 +100,9 @@ public class CruisesTLD {
     }
 
     public static int getLinerFreePlaces(Liner liner) {
+        if (liner == null)
+            return 0;
+
         int linerCapacity = liner.getCapacity();
         int busyLinerPlaces = 0;
         try {
@@ -116,20 +120,23 @@ public class CruisesTLD {
     }
 
     public static HashMap getLinerRouteInMap(Liner liner) {
-        String jsonData = liner.getRoute();
-        JsonObject jsonObject = new JsonParser().parse(jsonData).getAsJsonObject();
-        HashMap route = new Gson().fromJson(jsonObject, HashMap.class);
+        int numberPort = 0;
+
+        HashMap<Integer, String> route = new HashMap<Integer, String>();
+        for (; numberPort < liner.getRoute().size() && numberPort < liner.getNumberDays(); numberPort++) {
+            route.put(numberPort + 1, liner.getRoute().get(numberPort));
+        }
+
+        while (route.size() < liner.getNumberDays()) {
+            route.put(++numberPort, "Port" + numberPort);
+        }
 
         return route;
     }
 
     public static double countPriceLiner(Liner liner) {
-        String jsonData = liner.getRoute();
-        JsonObject jsonObject = new JsonParser().parse(jsonData).getAsJsonObject();
-        HashMap route = new Gson().fromJson(jsonObject, HashMap.class);
-
         int amountRoutes = 0;
-        for (Object s : route.keySet()) {
+        for (Object s : liner.getRoute()) {
             amountRoutes++;
         }
         return round(amountRoutes * liner.getPriceCoefficient(), 2);

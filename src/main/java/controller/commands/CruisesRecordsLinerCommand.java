@@ -14,6 +14,10 @@ import services.UserService;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 public class CruisesRecordsLinerCommand extends FrontCommand {
     private static final Logger LOGGER = LogManager.getLogger(CruisesRecordsLinerCommand.class);
@@ -29,12 +33,20 @@ public class CruisesRecordsLinerCommand extends FrontCommand {
 
     private void doGet() throws ServletException, IOException, IllegalFieldException {
         request.setAttribute("id", request.getParameter("id"));
-        action();
+        request.setAttribute("messageName", "label.lang.empty");
+        request.setAttribute("messageDescription", "label.lang.empty");
+        request.setAttribute("messageCapacity", "label.lang.empty");
+        request.setAttribute("messagePriceCoefficient", "label.lang.empty");
+        request.setAttribute("messageDateStart", "label.lang.empty");
+        request.setAttribute("messageDateEnd", "label.lang.empty");
+
         forward("admin/cruisesRecordsLiner");
     }
 
     private void doPost() throws ServletException, IOException, IllegalFieldException {
-        doGet();
+        request.setAttribute("id", request.getParameter("id"));
+        action();
+        forward("admin/cruisesRecordsLiner");
     }
 
     private void action() throws IllegalFieldException {
@@ -47,9 +59,30 @@ public class CruisesRecordsLinerCommand extends FrontCommand {
         String dateStart = request.getParameter("dateStart");
         String dateEnd = request.getParameter("dateEnd");
 
+
         ServiceFactory serviceFactory = ServiceFactory.getServiceFactory();
         LinerService linerService = serviceFactory.getLinerService(MySqlLinerDAO.getInstance());
         Liner updatedLiner = linerService.read(linerId);
+
+        List<String> route = updatedLiner.getRoute();
+
+        ArrayList<String> newRoute = new ArrayList<String>();
+        for (int i = 0; i < updatedLiner.getNumberDays(); i++) {
+            if (!Objects.equals(request.getParameter("route" + (i + 1)), "")) {
+                System.out.println(1);
+                newRoute.add(request.getParameter("route" + (i + 1)));
+            } else if (i < route.size()) {
+                System.out.println(2);
+                newRoute.add(route.get(i));
+            } else {
+                System.out.println(3);
+                newRoute.add("Port" + (i + 1));
+            }
+        }
+//        System.out.println(newRoute);
+        updatedLiner.setRoute(newRoute);
+//        updatedLiner.setRoute(updatedLiner.getRoute());
+
 
         if (name == null || name.length() == 0) {
             request.setAttribute("messageName", "label.lang.empty");

@@ -42,6 +42,8 @@ ${liner.dateEnd}<br>
 <b>Новий кінець круїзу:</b> <input type="date" min='${cruisesTLD:getCurrentDate()}' max='${cruisesTLD:getCurrentDatePlusYear()}' name="dateEnd">
 <fmt:message key="${requestScope.messageDateEnd}" />
 
+
+
 <table class="styled-table">
         <thead>
         <tr>
@@ -52,11 +54,13 @@ ${liner.dateEnd}<br>
         </thead>
 
         <tbody>
+        <c:set var="routeNumber" value="${1}"/>
         <c:forEach var="entry" items="${cruisesTLD:getLinerRouteInMap(liner)}">
             <tr class="active-row">
                 <td>${entry.key}</a></td>
                 <td>${entry.value}</td>
-                <td><input name="name" id="myInput" /></td>
+                <td><input name="route${routeNumber}" id="myInput" /></td>
+                <c:set var="routeNumber" value="${routeNumber+1}"/>
             </tr>
         </c:forEach>
         </tbody>

@@ -1,5 +1,7 @@
 package db.dao.mysql.entity;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import exeptions.IllegalFieldException;
@@ -15,7 +17,7 @@ public class Liner extends Entity {
     private String name;
     private String description;
     private int capacity;
-    private String route;
+    private List<String> route;
     private double priceCoefficient;
     private Date dateStart;
     private Date dateEnd;
@@ -103,20 +105,7 @@ public class Liner extends Entity {
         if (route == null) {
             throw new IllegalFieldException("route is null.");
         }
-
-        Map<Integer, String> newRoute = new HashMap<>();
-        int number = 0;
-        for (String port : route) {
-            newRoute.put(++number, port);
-        }
-
-//        if (this.dateStart != null && this.dateEnd != null)
-        while (newRoute.size() < getNumberDays()) {
-            newRoute.put(++number, "Port" + number);
-        }
-
-        JsonObject jsonObject = new JsonParser().parse(newRoute.toString()).getAsJsonObject();
-        this.route = jsonObject.toString();
+        this.route = route;
     }
 
     public void setPriceCoefficient(double priceCoefficient) throws IllegalFieldException {
@@ -139,18 +128,7 @@ public class Liner extends Entity {
         return capacity;
     }
 
-    public String getRoute() {
-        /*
-        JSON Format
-        '{"1":"Лез-Абім / Франція",
-        "2":"День в море / Море",
-        "3":"Скарборо / Трінідад і Тобаго",
-        "4":"Гренада / Гренада",
-        "5":"Бриджтаун / Барбадос",
-        "6":"Сент-Люсія / Сент-Люсія",
-        "7":"For-de-France, o. Мартініка / Мартініка",
-        "8":"Лез-Абім / Франція"}'
-         */
+    public List<String> getRoute() {
         return route;
     }
 

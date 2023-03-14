@@ -1,10 +1,8 @@
 package db.dao.mysql;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import db.dao.DataSource;
 import db.dao.LinerDAO;
 import db.dao.mysql.entity.Liner;
@@ -12,21 +10,15 @@ import exeptions.DBException;
 import exeptions.IllegalFieldException;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.sql.*;
-import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static db.dao.DataSource.closeConnection;
-import static db.dao.PBKDF2.generatePasswordHash;
 import static db.dao.mysql.MySqlConstants.*;
 import static db.dao.mysql.MySqlDAOFactory.close;
 import static db.dao.mysql.MySqlDAOFactory.rollback;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.List;
-import java.util.Map;
 
 public class MySqlLinerDAO implements LinerDAO {
     private static MySqlLinerDAO instance;
@@ -41,25 +33,42 @@ public class MySqlLinerDAO implements LinerDAO {
         }
         return instance;
     }
+
     private static Liner mapLiner(ResultSet rs) throws SQLException, IllegalFieldException, IOException {
         Liner l = new Liner();
         l.setId(rs.getLong(ID));
         l.setName(rs.getString("name"));
         l.setDescription(rs.getString("description"));
         l.setCapacity(rs.getInt("capacity"));
-
-
-        String jsonData = rs.getString("route");
-        ObjectMapper objectMapper = new ObjectMapper();
-        TypeReference<Map<String, String>> typeRef = new TypeReference<Map<String, String>>() {};
-        Map<String, String> map = objectMapper.readValue(jsonData, typeRef);
-        List<String> route = List.copyOf(map.values());
-        l.setRoute(route);
-
+        l.setRoute(convertJSONRouteToList(rs.getString("route")));
         l.setPriceCoefficient(rs.getDouble("price_coefficient"));
         l.setDateStart(rs.getDate("date_start"));
         l.setDateEnd(rs.getDate("date_end"));
         return l;
+    }
+
+    private static List<String> convertJSONRouteToList(String jsonData) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        TypeReference<Map<String, String>> typeRef = new TypeReference<Map<String, String>>() {
+        };
+        Map<String, String> map = objectMapper.readValue(jsonData, typeRef);
+
+        return List.copyOf(map.values());
+    }
+
+    private static String convertListRouteToJSON(List<String> route) throws JsonProcessingException {
+
+        StringBuilder JSONRoute = new StringBuilder();
+        JSONRoute.append("{");
+        for (int i = 0; i < route.size(); i++) {
+            JSONRoute.append("\"").append(i).append("\": ").append("\"").append(route.get(i)).append("\"");
+            if (i != route.size() - 1) {
+                JSONRoute.append(", ");
+            }
+        }
+        JSONRoute.append("}");
+
+        return JSONRoute.toString();
     }
 
     @Override
@@ -267,7 +276,7 @@ public class MySqlLinerDAO implements LinerDAO {
             stmt.setString(++k, liner.getName());
             stmt.setString(++k, liner.getDescription());
             stmt.setInt(++k, liner.getCapacity());
-            stmt.setString(++k, liner.getRoute());
+            stmt.setString(++k, convertListRouteToJSON(liner.getRoute()));
             stmt.setDouble(++k, liner.getPriceCoefficient());
             stmt.setDate(++k, liner.getDateStart());
             stmt.setDate(++k, liner.getDateEnd());
@@ -281,7 +290,7 @@ public class MySqlLinerDAO implements LinerDAO {
                 }
             }
             con.commit();
-        } catch (SQLException | IllegalFieldException e) {
+        } catch (SQLException | IllegalFieldException | JsonProcessingException e) {
             e.printStackTrace();
             rollback(con);
             throw new DBException();
@@ -302,7 +311,7 @@ public class MySqlLinerDAO implements LinerDAO {
             stmt.setString(++k, liner.getName());
             stmt.setString(++k, liner.getDescription());
             stmt.setInt(++k, liner.getCapacity());
-            stmt.setString(++k, liner.getRoute());
+            stmt.setString(++k, convertListRouteToJSON(liner.getRoute()));
             stmt.setDouble(++k, liner.getPriceCoefficient());
             stmt.setDate(++k, liner.getDateStart());
             stmt.setDate(++k, liner.getDateEnd());
@@ -310,7 +319,7 @@ public class MySqlLinerDAO implements LinerDAO {
 
             stmt.executeUpdate();
             con.commit();
-        } catch (SQLException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
             rollback(con);
             throw new DBException();
