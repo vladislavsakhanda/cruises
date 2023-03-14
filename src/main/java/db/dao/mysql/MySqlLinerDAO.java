@@ -53,7 +53,7 @@ public class MySqlLinerDAO implements LinerDAO {
         };
         Map<String, String> map = objectMapper.readValue(jsonData, typeRef);
 
-        return List.copyOf(map.values());
+        return new ArrayList<>(map.values());
     }
 
     private static String convertListRouteToJSON(List<String> route) throws JsonProcessingException {
