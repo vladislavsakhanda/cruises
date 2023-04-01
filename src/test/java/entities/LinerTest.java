@@ -17,7 +17,7 @@ public class LinerTest {
     private final List<List<Object>> incorrectLiners = Arrays.asList(
             Arrays.asList(null, "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", null, 200, "{rout}",
+            Arrays.asList("liner", null, 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
             Arrays.asList("liner", "description", 200, null,
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
@@ -43,7 +43,7 @@ public class LinerTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            Collections.singletonList(incorrectLiner.get(3).toString()),
+                            (List<String>) incorrectLiner.get(3),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)
@@ -79,7 +79,7 @@ public class LinerTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            Collections.singletonList(incorrectLiner.get(3).toString()),
+                            (List<String>) incorrectLiner.get(3),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)
@@ -219,7 +219,7 @@ public class LinerTest {
         Liner testLiner = new Liner();
         testLiner.setRoute(new ArrayList<>());
 
-        assertEquals("{route1}", testLiner.getRoute());
+        assertEquals(new ArrayList<>(), testLiner.getRoute());
     }
 
     @Test

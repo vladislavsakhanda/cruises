@@ -42,7 +42,7 @@
     <form action="?command=CruisesCatalog" method="POST" style="margin: 0px;">
                 <span><input type="hidden" name="action" value="reset" /></span>
                 <span><input type="submit" value="<fmt:message key="label.lang.cruisesCatalog.cruisesCatalog.reset" />" /></span>
-            </form>
+    </form>
             </div>
     </div>
 

@@ -71,4 +71,10 @@
         </listener-class>
     </listener>
 
+    <listener>
+        <listener-class>
+            listeners.CruisesControllerListener
+        </listener-class>
+    </listener>
+
 </web-app>

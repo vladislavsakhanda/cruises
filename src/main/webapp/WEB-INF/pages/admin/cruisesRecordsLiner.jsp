@@ -11,37 +11,36 @@
 
 
 <form action="?command=CruisesRecordsLiner&id=${liner.id}" method="POST">
-<b>Актуальна назва:</b>
+<b><fmt:message key="label.lang.admin.newCruise.ActualName" />:</b>
 ${liner.name}</br>
-<b>Нова назва:</b><input name="name" id="myInput" />
+<b><fmt:message key="label.lang.admin.newCruise.NewName" />:</b><input name="name" id="myInput" />
 <fmt:message key="${requestScope.messageName}" />
 
-<br><br><b>Актуальний опис:</b>
+<br><br><b><fmt:message key="label.lang.admin.newCruise.ActualDescription" />:</b>
 ${liner.description}<br>
-<b>Новий опис:</b> <textarea name="description" cols="50" rows="10"></textarea>
+<b><fmt:message key="label.lang.admin.newCruise.NewDescription" />:</b> <textarea name="description" cols="50" rows="10"></textarea>
 <fmt:message key="${requestScope.messageDescription}" />
 
-<br><br><b>Актуальна місткість:</b>
+<br><br><b><fmt:message key="label.lang.admin.newCruise.ActualCapacity" />:</b>
 ${liner.capacity}<br>
-<b>Новий місткість:</b> <input type="number" name="capacity" id="myInput" />
+<b><fmt:message key="label.lang.admin.newCruise.NewCapacity" />:</b> <input type="number" name="capacity" id="myInput" />
 <fmt:message key="${requestScope.messageCapacity}" />
 
-<br><br><b>Актуальний ціновий коефіцієнт:</b>
+<br><br><b><fmt:message key="label.lang.admin.newCruise.ActualPriceCoefficient" />:</b>
 ${liner.priceCoefficient}<br>
-<b>Новий ціновий коефіцієнт:</b> <input type="number" step="0.01" name="priceCoefficient" id="myInput" />
+<b><fmt:message key="label.lang.admin.newCruise.NewPriceCoefficient" />:</b> <input type="number" step="0.01" name="priceCoefficient" id="myInput" />
 <fmt:message key="${requestScope.messagePriceCoefficient}" />
 
-<br><br><b>Актуальний початок круїзу:</b>
+<br><br><b><fmt:message key="label.lang.admin.newCruise.ActualStartCruise" />:</b>
 ${liner.dateStart}<br>
-<b>Новий початок круїзу:</b> <input type="date" min='${cruisesTLD:getCurrentDate()}' max='${cruisesTLD:getCurrentDatePlusYear()}' name="dateStart">
+<b><fmt:message key="label.lang.admin.newCruise.NewStartCruise" />:</b> <input type="date" min='${cruisesTLD:getCurrentDate()}' max='${cruisesTLD:getCurrentDatePlusYear()}' name="dateStart">
 <fmt:message key="${requestScope.messageDateStart}" />
 
 
-<br><br><b>Актуальний кінець круїзу:</b>
+<br><br><b><fmt:message key="label.lang.admin.newCruise.ActualEndCruise" />:</b>
 ${liner.dateEnd}<br>
-<b>Новий кінець круїзу:</b> <input type="date" min='${cruisesTLD:getCurrentDate()}' max='${cruisesTLD:getCurrentDatePlusYear()}' name="dateEnd">
+<b><fmt:message key="label.lang.admin.newCruise.NewEndCruise" />:</b> <input type="date" min='${cruisesTLD:getCurrentDate()}' max='${cruisesTLD:getCurrentDatePlusYear()}' name="dateEnd">
 <fmt:message key="${requestScope.messageDateEnd}" />
-
 
 
 <table class="styled-table">
@@ -49,7 +48,7 @@ ${liner.dateEnd}<br>
         <tr>
             <th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.day" /></th>
             <th><fmt:message key="label.lang.cruisesCatalog.cruisesCatalogLiner.port" /></th>
-            <th>Новий порт</th>
+            <th><fmt:message key="label.lang.admin.newCruise.NewPort" /></th>
         </tr>
         </thead>
 
@@ -70,7 +69,13 @@ ${liner.dateEnd}<br>
 
 <input type="hidden" name="linerId" value="${liner.id}" />
 
-<div><input type="submit" value="Змінити" /></div>
+<div><input type="submit" value="<fmt:message key="label.lang.admin.change" />" /></div>
+</form>
+
+<form action="?command=CruisesRecordsLiner" method="POST" style="margin: 0px;">
+    <input type="hidden" name="linerId" value="${liner.id}" />
+    <span><input type="hidden" name="action" value="delete" /></span>
+    <span><input type="submit" value="<fmt:message key="label.lang.admin.delete" />" /></span>
 </form>
 
 <br><br><a href="/cruises?command=CruisesRecords"><fmt:message key="label.lang.index.welcome.admin.cruisesRecordsLiner" /></a><br>

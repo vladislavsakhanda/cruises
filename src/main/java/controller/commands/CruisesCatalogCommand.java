@@ -119,7 +119,7 @@ public class CruisesCatalogCommand extends FrontCommand {
             choseDuration = (int) context.getAttribute("choseDuration");
         }
 
-        if (dateStart.compareTo(dateEnd) <= 0) {
+        if (dateStart != null && dateEnd != null && dateStart.compareTo(dateEnd) <= 0) {
             if (choseDuration == 0) {
                 liners = linerService.getAll(dateStart, dateEnd, (currentPage - 1) * recordsPerPage, recordsPerPage);
             } else {

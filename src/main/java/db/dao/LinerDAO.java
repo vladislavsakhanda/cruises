@@ -15,6 +15,8 @@ public interface LinerDAO extends ItemDAO<Liner> {
     List<Liner> getAll(Date date_start, Date date_end, int offset, int recordsPerPage) throws IllegalFieldException, DBException;
 
     List<Integer> getAllDurationOfTrip() throws SQLException, DBException;
-    public Date getDate(MySqlLinerDAO.QueryDate queryDate) throws SQLException, DBException;
-    public int getNumberPageRecords();
+    Date getDate(MySqlLinerDAO.QueryDate queryDate) throws SQLException, DBException;
+    int getNumberPageRecords();
+
+    void deleteExpiredLiners() throws DBException;
 }

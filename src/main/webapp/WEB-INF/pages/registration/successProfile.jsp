@@ -10,16 +10,8 @@
 <a href="/cruises?command=LogOut"><fmt:message key="label.lang.registration.profile.user.logout" /></a>
 
 <c:choose>
-    <c:when test="${role != null}">
-      <br><br>
-      <a href="/cruises?command=RequestsCatalog">
-        <fmt:message key="label.lang.registration.profile.admin.requestManagement" />
-      </a><br>
-
-      <a href="/cruises?command=CruisesRecords">
-        <fmt:message key="label.lang.registration.profile.admin.cruisesRecordsManagement" />
-      </a><br>
-    </c:when>
+<c:when test="${role != null}">
+</c:when>
 <c:otherwise>
 
 <c:set var="trips" value="${cruisesTLD:getAllTripByUserId(sessionScope.userId)}"/>

@@ -25,23 +25,23 @@ public class LinerServiceTest {
     private static LinerService linerService;
 
     private final List<List<Object>> incorrectLiners = Arrays.asList(
-            Arrays.asList(null, "description", 200, "{rout}",
+            Arrays.asList(null, "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", null, 200, "{rout}",
+            Arrays.asList("liner", null, 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
             Arrays.asList("liner", "description", 200, null,
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     -10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     10, null, Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), null),
-            Arrays.asList("", "description", 200, "{rout}",
+            Arrays.asList("", "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-8-10")),
-            Arrays.asList("liner", "description", -200, "{rout}",
+            Arrays.asList("liner", "description", -200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-12-12")),
-            Arrays.asList("liner", "description", 200, "{rout}",
+            Arrays.asList("liner", "description", 200, new ArrayList<>(),
                     10, Date.valueOf("2022-10-10"), Date.valueOf("2022-8-10"))
     );
 
@@ -224,7 +224,7 @@ public class LinerServiceTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            Collections.singletonList(incorrectLiner.get(3).toString()),
+                            (List<String>) incorrectLiner.get(3),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)
@@ -243,7 +243,7 @@ public class LinerServiceTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            Collections.singletonList(incorrectLiner.get(3).toString()),
+                            (List<String>) incorrectLiner.get(3),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)
@@ -262,7 +262,7 @@ public class LinerServiceTest {
                             (String) incorrectLiner.get(0),
                             (String) incorrectLiner.get(1),
                             (Integer) incorrectLiner.get(2),
-                            Collections.singletonList(incorrectLiner.get(3).toString()),
+                            (List<String>) incorrectLiner.get(3),
                             (Integer) incorrectLiner.get(4),
                             (Date) incorrectLiner.get(5),
                             (Date) incorrectLiner.get(6)

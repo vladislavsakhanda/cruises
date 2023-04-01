@@ -17,6 +17,7 @@ public class CheckRoleAdminFilter implements Filter {
         add("RequestsCatalog");
         add("CruisesRecords");
         add("CruisesRecordsLiner");
+        add("NewCruise");
     }});
 
     final private List<String> accessesForUsers = Collections.unmodifiableList(new ArrayList<String>() {{

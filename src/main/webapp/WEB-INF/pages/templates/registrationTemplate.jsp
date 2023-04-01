@@ -24,8 +24,13 @@
     </c:when>
     <c:otherwise>
         <a href="/cruises?command=Home" id="home_a"><fmt:message key="label.lang.registration.home" /></a>
-        <c:if test="${role != 'admin'}">
+        <c:if test="${role != 'admin'}">w
             <a href="/cruises?command=CruisesCatalog" id="home_a"><fmt:message key="label.lang.registration.cruisesCatalog" /></a>
+        </c:if>
+        <c:if test="${role == 'admin'}">
+            <a href="/cruises?command=RequestsCatalog" id="home_a"><fmt:message key="label.lang.registration.profile.admin.requestManagement" /></a>
+            <a href="/cruises?command=CruisesRecords" id="home_a"><fmt:message key="label.lang.registration.profile.admin.cruisesRecordsManagement" /></a>
+            <a href="/cruises?command=NewCruise" id="home_a"><fmt:message key="label.lang.registration.profile.admin.addCruise" /></a>
         </c:if>
         <a href="/cruises?command=Profile" id="home_a">${sessionScope.userEmail}</a>
     </c:otherwise>

@@ -166,6 +166,8 @@ public class MySqlLinerDAO implements LinerDAO {
         return this.numberPageRecords;
     }
 
+
+
     public enum QueryDate {
         MIN_DATE_START(0), MAX_DATE_START(1), MIN_DATE_END(2), MAX_DATE_END(3);
         private final int code;
@@ -330,8 +332,42 @@ public class MySqlLinerDAO implements LinerDAO {
     }
 
     @Override
-    public void delete(Liner liner) {
+    public void delete(Liner liner) throws DBException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.prepareStatement(DELETE_LINER);
+            stmt.setLong(1, liner.getId());
 
+            stmt.executeUpdate();
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            rollback(con);
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
+        }
     }
 
+    @Override
+    public void deleteExpiredLiners() throws DBException {
+        Connection con = null;
+        Statement stmt = null;
+        try {
+            con = DataSource.getConnection();
+            stmt = con.createStatement();
+            stmt.executeUpdate(DELETE_EXPIRED_LINERS);
+
+            con.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DBException();
+        } finally {
+            close(stmt);
+            closeConnection(con);
+        }
+    }
 }

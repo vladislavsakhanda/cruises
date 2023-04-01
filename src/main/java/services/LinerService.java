@@ -100,6 +100,15 @@ public class LinerService implements LinerDAO {
     }
 
     @Override
+    public void deleteExpiredLiners() throws DBException {
+        try {
+            linerDAO.deleteExpiredLiners();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public Liner read(long id) throws IllegalFieldException {
         if (id < 0) {
             throw new IllegalFieldException("id must be greater than zero.");

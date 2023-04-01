@@ -61,6 +61,9 @@ public class MySqlConstants {
     public static final String GET_ALL_DURATION_OF_TRIP_FROM_LINER = "SELECT DISTINCT(date_end - date_start) FROM liner l;";
     public static final String UPDATE_LINER =
             "UPDATE liner SET name=?, description=?, capacity=?, route=?, price_coefficient=?, date_start=?, date_end=? WHERE id=?;";
+    public static final String DELETE_LINER  = "DELETE FROM liner WHERE liner.id = ?";
+    public static final String DELETE_EXPIRED_LINERS  = "DELETE FROM liner WHERE liner.date_start <= (SELECT CURDATE() AS Today);";
+    public static final String SELECT_EXPIRED_LINERS  = "SELECT * FROM liner WHERE liner.date_start <= (SELECT CURDATE() AS Today);";
 
     public static final String GET_ALL_STAFF = "SELECT * FROM staff s ORDER BY s.specialization;";
     public static final String INSERT_STAFF = "INSERT INTO staff (name, surname, specialization, liner_id) VALUES (?, ?, ?, ?);";

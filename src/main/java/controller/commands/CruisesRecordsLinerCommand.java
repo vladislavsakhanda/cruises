@@ -2,25 +2,22 @@ package controller.commands;
 
 import controller.FrontCommand;
 import db.dao.mysql.MySqlLinerDAO;
-import db.dao.mysql.MySqlUserDAO;
 import db.dao.mysql.entity.Liner;
 import exeptions.IllegalFieldException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import services.LinerService;
 import services.ServiceFactory;
-import services.UserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class CruisesRecordsLinerCommand extends FrontCommand {
-    private static final Logger LOGGER = LogManager.getLogger(CruisesRecordsLinerCommand.class);
+    private static final Logger LOGGER = LogManager.getLogger(NewCruiseCommand.class);
 
     @Override
     public void process() throws ServletException, IOException, IllegalFieldException {
@@ -45,8 +42,18 @@ public class CruisesRecordsLinerCommand extends FrontCommand {
 
     private void doPost() throws ServletException, IOException, IllegalFieldException {
         request.setAttribute("id", request.getParameter("id"));
-        action();
-        forward("admin/cruisesRecordsLiner");
+
+        if (Objects.equals(request.getParameter("action"), "delete")) {
+            ServiceFactory serviceFactory = ServiceFactory.getServiceFactory();
+            LinerService linerService = serviceFactory.getLinerService(MySqlLinerDAO.getInstance());
+            linerService.delete(new Liner(Long.parseLong(request.getParameter("linerId"))));
+
+            context.setAttribute("message", "label.lang.success.CruiseDeleted");
+            sendRedirect("/cruises?command=Success");
+        } else {
+            action();
+            forward("admin/cruisesRecordsLiner");
+        }
     }
 
     private void action() throws IllegalFieldException {
@@ -69,13 +76,10 @@ public class CruisesRecordsLinerCommand extends FrontCommand {
         ArrayList<String> newRoute = new ArrayList<String>();
         for (int i = 0; i < updatedLiner.getNumberDays(); i++) {
             if (!Objects.equals(request.getParameter("route" + (i + 1)), "")) {
-                System.out.println(1);
                 newRoute.add(request.getParameter("route" + (i + 1)));
             } else if (i < route.size()) {
-                System.out.println(2);
                 newRoute.add(route.get(i));
             } else {
-                System.out.println(3);
                 newRoute.add("Port" + (i + 1));
             }
         }
